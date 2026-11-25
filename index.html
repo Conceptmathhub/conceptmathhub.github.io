@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta name="theme-color" content="#0f5132" />
-  <title>Concept Math Hub — All-in-One Portal</title>
+  <title>Concept Math Hub — Complete Portal</title>
   <style>
     :root {
       --primary: #0f5132;
@@ -74,24 +74,43 @@
       border: 1px solid var(--border);
     }
 
-    /* HOME HERO & PORTAL LAUNCHER CARDS */
-    .hero-banner {
-      background: linear-gradient(135deg, #062416, #0f5132, #166534);
-      color: #fff; border-radius: 22px; padding: 20px 18px; margin-bottom: 14px;
-      border: 2px solid #facc15; text-align: center;
-      box-shadow: 0 8px 24px rgba(6, 36, 22, 0.22);
+    /* MAIN FEATURED ONLINE TEST & TOPPER ZONE BANNER */
+    .online-exam-hero {
+      display: block;
+      text-decoration: none;
+      background: linear-gradient(135deg, #062416 0%, #0f5132 55%, #15803d 100%);
+      color: #fff;
+      border-radius: 22px;
+      padding: 18px 16px;
+      margin-bottom: 14px;
+      border: 2.5px solid #facc15;
+      box-shadow: 0 10px 26px rgba(6, 36, 22, 0.26);
+      transition: transform 0.12s;
     }
-    .hero-banner h2 { font-size: 21px; font-weight: 800; color: #fff; }
-    .hero-banner p { font-size: 12.5px; color: #dcfce7; margin-top: 3px; font-weight: 600; }
-    .hero-pills { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin-top: 12px; }
-    .hpill {
-      background: rgba(255,255,255,0.14); border: 1px solid rgba(250,204,21,0.45);
-      color: #fde047; font-size: 10.5px; font-weight: 800; padding: 3px 10px; border-radius: 20px;
+    .online-exam-hero:active { transform: scale(0.98); }
+    .oeh-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .oeh-badge {
+      display: inline-block; background: #facc15; color: #0f172a;
+      font-size: 10.5px; font-weight: 900; padding: 3px 10px; border-radius: 20px;
+      margin-bottom: 6px;
+    }
+    .online-exam-hero h2 { font-size: 19px; font-weight: 800; color: #fff; line-height: 1.25; }
+    .online-exam-hero p { font-size: 12px; color: #dcfce7; margin-top: 4px; font-weight: 600; }
+    .oeh-pills { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
+    .oeh-pill {
+      background: rgba(255,255,255,0.14); border: 1px solid rgba(250,204,21,0.4);
+      color: #fef08a; font-size: 10.5px; font-weight: 700; padding: 3px 9px; border-radius: 14px;
+    }
+    .oeh-cta {
+      margin-top: 12px; background: linear-gradient(135deg, #fde047, #f59e0b);
+      color: #0f172a; text-align: center; padding: 10px; border-radius: 13px;
+      font-size: 14px; font-weight: 900;
     }
 
+    /* SECONDARY LAUNCHER TILES (STUDY BATCHES & OFFLINE TEST) */
     .launcher-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
     .launch-tile {
-      background: #fff; border-radius: 20px; padding: 18px 14px; text-align: center;
+      background: #fff; border-radius: 20px; padding: 16px 12px; text-align: center;
       border: 2px solid #d6e2db; cursor: pointer;
       box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
       transition: transform 0.12s;
@@ -100,20 +119,20 @@
     .launch-tile.tile-study { border-color: #16a34a; background: linear-gradient(180deg, #f0fdf4 0%, #ffffff 100%); }
     .launch-tile.tile-test  { border-color: #f59e0b; background: linear-gradient(180deg, #fffbeb 0%, #ffffff 100%); }
     .tile-ico {
-      width: 54px; height: 54px; border-radius: 16px; margin: 0 auto 10px;
-      display: flex; align-items: center; justify-content: center; font-size: 26px;
+      width: 48px; height: 48px; border-radius: 14px; margin: 0 auto 8px;
+      display: flex; align-items: center; justify-content: center; font-size: 24px;
     }
     .tile-study .tile-ico { background: #0f5132; color: #fff; }
     .tile-test  .tile-ico { background: #d97706; color: #fff; }
-    .launch-tile h3 { font-size: 15.5px; font-weight: 800; color: #0f172a; }
-    .launch-tile p { font-size: 11.5px; color: #475569; margin-top: 4px; font-weight: 600; }
+    .launch-tile h3 { font-size: 14.5px; font-weight: 800; color: #0f172a; }
+    .launch-tile p { font-size: 11px; color: #475569; margin-top: 3px; font-weight: 600; }
 
     .vault-shortcuts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
     .v-chip {
       background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 14px;
-      padding: 12px 6px; text-align: center; cursor: pointer; font-weight: 800; font-size: 12px; color: #1e293b;
+      padding: 11px 6px; text-align: center; cursor: pointer; font-weight: 800; font-size: 11.5px; color: #1e293b;
     }
-    .v-chip span { display: block; font-size: 20px; margin-bottom: 4px; }
+    .v-chip span { display: block; font-size: 19px; margin-bottom: 3px; }
 
     .input-group { margin-bottom: 12px; }
     .input-group label { display: block; font-size: 12.5px; font-weight: 700; color: #334155; margin-bottom: 5px; }
@@ -133,60 +152,26 @@
     .btn:active { opacity: 0.85; }
     .btn-primary { background: linear-gradient(135deg, #0f5132, #15803d); color: #fff; }
     .btn-amber { background: linear-gradient(135deg, #f59e0b, #d97706); color: #fff; }
-    .btn-indigo { background: linear-gradient(135deg, #312e81, #4338ca); color: #fff; }
     .btn-soft { background: var(--primary-soft); color: var(--primary); border: 1.5px solid #b5dec7; }
-    .btn-danger { background: #fee2e2; color: #b91c1c; border: 1px solid #fecaca; }
     .btn-block { width: 100%; }
     .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 
-    /* CATEGORY FILTER PILLS */
-    .cat-scroller {
-      display: flex; gap: 7px; overflow-x: auto; padding-bottom: 6px; margin-bottom: 12px;
-      scrollbar-width: none;
-    }
+    .cat-scroller { display: flex; gap: 7px; overflow-x: auto; padding-bottom: 6px; margin-bottom: 12px; scrollbar-width: none; }
     .cat-scroller::-webkit-scrollbar { display: none; }
-    .cat-pill {
-      white-space: nowrap; padding: 8px 13px; border-radius: 20px;
-      border: 1.5px solid #cbd5e1; background: #fff; color: #334155;
-      font-size: 12px; font-weight: 800; cursor: pointer; flex-shrink: 0;
-    }
+    .cat-pill { white-space: nowrap; padding: 8px 13px; border-radius: 20px; border: 1.5px solid #cbd5e1; background: #fff; color: #334155; font-size: 12px; font-weight: 800; cursor: pointer; flex-shrink: 0; }
     .cat-pill.active { background: var(--primary); color: #fff; border-color: var(--primary); }
 
-    .mode-switch {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 6px;
-      background: #dce7e1; padding: 5px; border-radius: 14px; margin-bottom: 12px;
-    }
-    .ms-btn {
-      min-height: 40px; border: none; border-radius: 10px; background: transparent;
-      font-size: 13.5px; font-weight: 800; color: #334155; cursor: pointer;
-    }
+    .mode-switch { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; background: #dce7e1; padding: 5px; border-radius: 14px; margin-bottom: 12px; }
+    .ms-btn { min-height: 40px; border: none; border-radius: 10px; background: transparent; font-size: 13.5px; font-weight: 800; color: #334155; cursor: pointer; }
     .ms-btn.active { background: var(--primary); color: #fff; }
 
-    /* PW-STYLE BATCH CARD WITH TEACHER PORTRAIT */
-    .batch-card {
-      background: #fff; border-radius: 22px; overflow: hidden;
-      border: 1.5px solid #e2e8f0; margin-bottom: 16px;
-      box-shadow: 0 8px 22px rgba(15, 23, 42, 0.07);
-    }
-    .batch-banner {
-      color: #fff; padding: 16px 14px 16px 16px;
-      display: flex; align-items: center; justify-content: space-between; gap: 10px;
-    }
+    .batch-card { background: #fff; border-radius: 22px; overflow: hidden; border: 1.5px solid #e2e8f0; margin-bottom: 16px; box-shadow: 0 8px 22px rgba(15, 23, 42, 0.07); }
+    .batch-banner { color: #fff; padding: 16px 14px 16px 16px; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
     .banner-left { flex: 1; min-width: 0; }
     .banner-right { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; width: 86px; text-align: center; }
-    .teacher-avatar-frame {
-      width: 72px; height: 72px; border-radius: 50%;
-      border: 3px solid #facc15; background: #ffffff;
-      overflow: hidden; display: flex; align-items: center; justify-content: center;
-      font-weight: 900; font-size: 20px; color: #0f5132;
-    }
+    .teacher-avatar-frame { width: 72px; height: 72px; border-radius: 50%; border: 3px solid #facc15; background: #fff; overflow: hidden; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 20px; color: #0f5132; }
     .teacher-avatar-frame img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
-    .teacher-name-chip {
-      margin-top: 6px; background: rgba(0, 0, 0, 0.45);
-      border: 1px solid rgba(250, 204, 21, 0.55); color: #fde047;
-      font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 12px;
-      max-width: 86px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-    }
+    .teacher-name-chip { margin-top: 6px; background: rgba(0, 0, 0, 0.45); border: 1px solid rgba(250, 204, 21, 0.55); color: #fde047; font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 12px; max-width: 86px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
     .theme-emerald { background: linear-gradient(135deg, #062c1b 0%, #0f5132 55%, #166534 100%); border-bottom: 4px solid #facc15; }
     .theme-crimson { background: linear-gradient(135deg, #450a0a 0%, #991b1b 55%, #dc2626 100%); border-bottom: 4px solid #fbbf24; }
@@ -205,17 +190,12 @@
     .batch-banner .meta { font-size: 11.5px; color: rgba(255,255,255,0.9); margin-top: 6px; font-weight: 600; }
     .batch-body { padding: 14px 16px; }
     .batch-desc { font-size: 13px; color: #475569; line-height: 1.5; margin-bottom: 12px; }
-    .feature-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
-    .ftag { background: #f1f5f9; color: #334155; font-size: 11px; font-weight: 700; padding: 4px 9px; border-radius: 8px; border: 1px solid #e2e8f0; }
-
     .price-row { display: flex; align-items: center; justify-content: space-between; padding-top: 12px; border-top: 1.5px dashed #e2e8f0; }
     .price-tag-box .lbl { font-size: 10px; color: #64748b; font-weight: 700; display: block; }
     .price-val { font-size: 20px; font-weight: 900; color: #0f172a; }
     .price-val.is-free { color: #15803d; }
     .price-mrp { font-size: 12.5px; color: #94a3b8; text-decoration: line-through; margin-left: 5px; }
-    .off-badge { background: #dcfce7; color: #15803d; font-size: 10px; font-weight: 800; padding: 2px 6px; border-radius: 6px; margin-left: 4px; }
 
-    /* CLASSROOM & VAULT */
     .nav-crumb { display: flex; align-items: center; gap: 10px; background: #fff; padding: 10px 14px; border-radius: 14px; border: 1.5px solid var(--border); margin-bottom: 14px; }
     .back-pill { background: var(--primary-soft); color: var(--primary); border: none; padding: 7px 12px; border-radius: 10px; font-weight: 800; font-size: 13px; cursor: pointer; }
     .crumb-title { font-size: 14px; font-weight: 700; color: #0f172a; }
@@ -228,10 +208,8 @@
     .chap-num { width: 38px; height: 38px; border-radius: 10px; background: var(--primary); color: #fff; font-weight: 800; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 
     .lec-card { background: #fff; border: 1.5px solid var(--border); border-radius: 16px; padding: 14px; margin-bottom: 12px; }
-    .lec-top { display: flex; gap: 11px; align-items: flex-start; margin-bottom: 10px; cursor: pointer; }
+    .lec-top { display: flex; gap: 11px; align-items: flex-start; cursor: pointer; }
     .lec-play-badge { width: 44px; height: 44px; border-radius: 12px; background: linear-gradient(135deg, #0f5132, #16a34a); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
-    .lec-actions { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 7px; }
-    .lec-actions .btn { min-height: 38px; padding: 6px 8px; font-size: 12px; border-radius: 10px; }
 
     .player-shell { background: #000; border-radius: 16px; overflow: hidden; border: 2.5px solid #0f5132; margin-bottom: 10px; position: relative; }
     .video-aspect { position: relative; width: 100%; padding-top: 56.25%; background: #000; }
@@ -246,19 +224,12 @@
     .ctab { min-height: 38px; border: none; border-radius: 10px; background: transparent; font-size: 12.5px; font-weight: 700; color: #334155; cursor: pointer; }
     .ctab.active { background: var(--primary); color: #fff; }
 
-    .filter-strip { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
-    .filter-strip select { min-height: 40px; font-size: 13px; padding: 6px 10px; }
     .mat-card { background: #fff; border: 1.5px solid #e2e8f0; border-radius: 18px; padding: 14px; margin-bottom: 12px; }
     .mat-top { display: flex; gap: 11px; align-items: flex-start; margin-bottom: 10px; }
-    .mat-badge-ico { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; font-weight: 800; }
-    .ico-test { background: #fef3c7; color: #b45309; }
-    .ico-pyq  { background: #e0e7ff; color: #3730a3; }
-    .ico-note { background: #dcfce7; color: #15803d; }
+    .mat-badge-ico { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; font-weight: 800; background: #dcfce7; color: #15803d; }
     .mat-pills { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 4px; }
     .mpill { font-size: 10.5px; font-weight: 800; padding: 2px 8px; border-radius: 6px; background: #f1f5f9; color: #334155; }
-    .mpill.yr { background: #fef9c3; color: #854d0e; }
 
-    /* OFFLINE TEST, OMR SCANNER & REPORT CARD STYLES */
     .test-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 13px; background: #f8fbf9; border: 1.5px solid var(--border); border-radius: 16px; margin-bottom: 10px; cursor: pointer; }
     .date-pill { background: var(--primary); color: #fff; padding: 8px 10px; border-radius: 12px; font-size: 11.5px; font-weight: 700; text-align: center; min-width: 78px; line-height: 1.25; }
     .score-tag { background: #fef3c7; color: #92400e; padding: 7px 11px; border-radius: 20px; font-size: 13px; font-weight: 800; white-space: nowrap; }
@@ -303,27 +274,15 @@
     .rc-signs { display: flex; justify-content: space-between; margin-top: 26px; font-size: 11.5px; font-weight: 700; color: #0f172a; gap: 10px; }
     .sign-line { border-top: 2px solid #0f5132; width: 135px; text-align: center; padding-top: 5px; }
 
-    .omr-print-sheet { width: 100%; background: #fff; border: 3px solid #000; padding: 14px; margin-top: 12px; }
-    .omr-p-head { text-align: center; border-bottom: 2px solid #000; padding-bottom: 8px; margin-bottom: 10px; }
-    .omr-p-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; font-size: 12px; font-weight: 700; margin-bottom: 10px; border: 1px solid #000; padding: 8px; }
-    .omr-p-cols { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
-    .omr-p-col { border: 1px solid #000; padding: 4px; }
-    .omr-p-row { display: flex; align-items: center; justify-content: space-between; font-size: 10.5px; font-weight: 700; padding: 2px 1px; border-bottom: 1px dotted #cbd5e1; }
-    .omr-bub { display: inline-block; width: 14px; height: 14px; border: 1.3px solid #000; border-radius: 50%; text-align: center; line-height: 12px; font-size: 8.5px; }
-
-    /* ADMIN TABS */
     .admin-tabs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; background: #dce7e1; padding: 5px; border-radius: 14px; margin-bottom: 14px; }
     .atab { min-height: 38px; border: none; border-radius: 10px; background: transparent; font-size: 11px; font-weight: 800; color: #334155; cursor: pointer; padding: 4px 2px; }
     .atab.active { background: var(--primary); color: #fff; }
-    .doubt-item { background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 12px; padding: 10px 12px; margin-bottom: 8px; font-size: 13px; }
-    .teacher-ans { margin-top: 6px; padding: 7px 10px; background: #dcfce7; border-left: 3.5px solid #15803d; border-radius: 6px; color: #0f5132; font-weight: 600; }
 
     .modal-backdrop { position: fixed; inset: 0; background: rgba(6, 36, 22, 0.85); z-index: 999; display: flex; align-items: center; justify-content: center; padding: 16px; }
     .modal-card { background: #fff; width: 100%; max-width: 380px; border-radius: 24px; padding: 22px 18px; box-shadow: 0 24px 50px rgba(0,0,0,0.38); border: 2.5px solid #facc15; max-height: 92vh; overflow-y: auto; }
     .pin-box-input { text-align: center; font-size: 26px; font-weight: 800; letter-spacing: 12px; margin: 12px 0; border: 2px solid var(--primary); min-height: 52px; }
     .upi-box { background: #f0fdf4; border: 1.5px dashed #16a34a; border-radius: 14px; padding: 12px; text-align: center; margin-bottom: 12px; }
 
-    /* UNIFIED BOTTOM 5-TAB BAR */
     .bottom-bar {
       position: fixed; bottom: 0; left: 0; right: 0; height: 70px;
       background: #fff; border-top: 1.5px solid #d6e2db;
@@ -335,6 +294,7 @@
       flex: 1; height: 100%; border: none; background: none;
       display: flex; flex-direction: column; align-items: center; justify-content: center;
       gap: 2px; font-size: 10px; font-weight: 800; color: #64748b; cursor: pointer;
+      text-decoration: none;
     }
     .tab-btn.active { color: var(--primary); }
     .tab-btn .ico { font-size: 18px; padding: 2px 11px; border-radius: 12px; }
@@ -348,7 +308,7 @@
       body { background: #fff !important; padding: 0 !important; }
       .appbar, .bottom-bar, .no-print, .modal-backdrop { display: none !important; }
       .container { max-width: 100% !important; padding: 0 !important; }
-      .report-sheet, .omr-print-sheet { box-shadow: none !important; margin: 0 !important; }
+      .report-sheet { box-shadow: none !important; margin: 0 !important; }
     }
   </style>
 </head>
@@ -363,7 +323,6 @@
         <div style="font-size:12px; font-weight:800; color:#166534;">💳 BATCH FEE PAYMENT</div>
         <div id="paidAmountTag" style="font-size:24px; font-weight:900; color:#0f172a; margin:4px 0;">₹499</div>
         <div id="paidUpiDisplay" style="font-size:13px; font-weight:700; color:#0f5132; background:#fff; padding:6px 10px; border-radius:8px; border:1px solid #86efac; margin:6px 0;"></div>
-        <a id="upiPayDeepLink" href="#" class="btn btn-amber btn-block" style="min-height:40px; font-size:13px; margin-top:6px;">📲 UPI App से Pay करें</a>
         <div class="input-group" style="margin-top:10px; margin-bottom:0; text-align:left;">
           <label>Payment Transaction ID / UTR No.</label>
           <input type="text" id="enrPaymentRef" placeholder="जैसे: 432891045612" />
@@ -417,33 +376,45 @@
   <div id="toast" class="toast hidden"></div>
 
   <!-- =======================================================
-       VIEW 0: MAIN HOME PORTAL (INSTANT 0-SECOND SWITCH)
+       VIEW 0: COMPLETE 3-IN-1 HOME PORTAL
        ======================================================= -->
   <main id="view-home" class="container">
-    <div class="hero-banner">
-      <h2>Concept Math Hub</h2>
-      <p>Shahalipur Kotra, Nagina, Bijnor (U.P.) — 246724</p>
-      <div class="hero-pills">
-        <span class="hpill">🏫 School 1–12</span>
-        <span class="hpill">🏆 Navodaya / Olympiad</span>
-        <span class="hpill">🎯 SSC / B.Sc.</span>
-        <span class="hpill">📊 CA Hub</span>
-      </div>
-    </div>
 
+    <!-- 1. FEATURED: ONLINE TEST & TOPPER ZONE PORTAL -->
+    <a href="https://script.google.com/macros/s/AKfycbysrq8zQvvvT9JMZCJtx7Zvzwk7nfG5m_lBYSSHCj-EOOPlgFkINpCnSWbUxdE4SYyT/exec" class="online-exam-hero">
+      <div class="oeh-top">
+        <div>
+          <span class="oeh-badge">★ MAIN ONLINE EXAM PORTAL ★</span>
+          <h2>Online Test &amp; Topper Zone</h2>
+          <p>Short Notes • Analysis • Revision • Mistakes • Student Login</p>
+        </div>
+        <div style="font-size:34px;">🏆</div>
+      </div>
+      <div class="oeh-pills">
+        <span class="oeh-pill">Junior &amp; Middle</span>
+        <span class="oeh-pill">Class 9th–12th</span>
+        <span class="oeh-pill">Navodaya</span>
+        <span class="oeh-pill">SSC / CGL</span>
+        <span class="oeh-pill">IIT-JEE / NDA</span>
+      </div>
+      <div class="oeh-cta">🚀 Online Test &amp; Topper Zone खोलें →</div>
+    </a>
+
+    <!-- 2. INSTANT 0-SECOND IN-APP SECTIONS -->
     <div class="launcher-grid">
       <div class="launch-tile tile-study" data-act="nav" data-val="batches">
         <div class="tile-ico">📚</div>
         <h3>Study &amp; Batches</h3>
-        <p>Online Video Classes, Notes &amp; DPP</p>
+        <p>Video Classes, Notes &amp; DPP</p>
       </div>
       <div class="launch-tile tile-test" data-act="nav" data-val="offline">
         <div class="tile-ico">📋</div>
         <h3>Offline Test</h3>
-        <p>Roll No. Result, Rank &amp; Report Card</p>
+        <p>Roll No. Result &amp; Report Card</p>
       </div>
     </div>
 
+    <!-- 3. FREE STUDY VAULT -->
     <div class="card">
       <div style="font-size:14px; font-weight:800; color:var(--primary); margin-bottom:10px;">📂 Free Study Vault (PDF Downloads)</div>
       <div class="vault-shortcuts">
@@ -453,6 +424,7 @@
       </div>
     </div>
 
+    <!-- 4. TEACHER STUDIO -->
     <div class="card" style="background:linear-gradient(135deg, #f0fdf4, #ffffff); text-align:center;">
       <p style="font-size:12.5px; color:#334155; font-weight:700; margin-bottom:8px;">👨‍🏫 Teacher Evaluation &amp; Batch Management</p>
       <button type="button" class="btn btn-primary btn-block" data-act="openPin">🔐 Open Teacher Studio (OMR Scan • Marks • Batches)</button>
@@ -610,7 +582,7 @@
   </main>
 
   <!-- =======================================================
-       VIEW 4: UNIFIED TEACHER MASTER STUDIO (OMR + THEORY + BATCHES + PDF)
+       VIEW 4: UNIFIED TEACHER MASTER STUDIO
        ======================================================= -->
   <main id="view-admin" class="container hidden">
     <div class="card no-print">
@@ -630,7 +602,7 @@
       <div id="apane-omr">
         <div class="input-group">
           <label>1. Offline Test चुनें</label>
-          <select id="omrTestSelect" data-change="omrTest"></select>
+          <select id="omrTestSelect"></select>
         </div>
         <div id="omrModeBadge" style="font-size:12px; font-weight:700; color:#0f5132; background:#e6f4ed; padding:8px 12px; border-radius:10px; margin-bottom:12px;">
           ✅ Self-Calibrating Auto-Grid OMR Engine
@@ -766,10 +738,7 @@
         </div>
         <label id="akLabel" style="font-size:12.5px; font-weight:700; display:block; margin-bottom:6px;">30 MCQ Answer Key:</label>
         <div id="akGrid" class="ak-grid"></div>
-        <div class="grid-2" style="margin-bottom:16px;">
-          <button type="button" class="btn btn-primary" data-act="createOfflineTest">✅ Test Save करें</button>
-          <button type="button" class="btn btn-soft" data-act="print100Omr">🖨️ 100-MCQ Sheet</button>
-        </div>
+        <button type="button" class="btn btn-primary btn-block" style="margin-bottom:16px;" data-act="createOfflineTest">✅ Test Save करें</button>
 
         <hr style="border:0; border-top:1px solid #cbd5e1; margin-bottom:14px;" />
         <h4 style="color:var(--primary); font-size:14.5px; margin-bottom:8px;">👤 Offline Student जोड़ें</h4>
@@ -799,19 +768,19 @@
     <div id="teacherCardMount"></div>
   </main>
 
-  <!-- UNIFIED BOTTOM 5-TAB BAR (INSTANT SWITCHING) -->
+  <!-- UNIFIED BOTTOM 5-TAB BAR -->
   <nav class="bottom-bar no-print">
     <button type="button" class="tab-btn active" id="nav-home" data-act="nav" data-val="home">
       <span class="ico">🏠</span><span>Home</span>
     </button>
+    <a href="https://script.google.com/macros/s/AKfycbysrq8zQvvvT9JMZCJtx7Zvzwk7nfG5m_lBYSSHCj-EOOPlgFkINpCnSWbUxdE4SYyT/exec" class="tab-btn">
+      <span class="ico">🏆</span><span>Online Test</span>
+    </a>
     <button type="button" class="tab-btn" id="nav-batches" data-act="nav" data-val="batches">
       <span class="ico">📚</span><span>Study</span>
     </button>
     <button type="button" class="tab-btn" id="nav-offline" data-act="nav" data-val="offline">
-      <span class="ico">📋</span><span>Offline Test</span>
-    </button>
-    <button type="button" class="tab-btn" id="nav-vault" data-act="nav" data-val="vault" data-sub="TEST_PAPER">
-      <span class="ico">📄</span><span>PDF Vault</span>
+      <span class="ico">📋</span><span>Offline</span>
     </button>
     <button type="button" class="tab-btn" id="nav-admin" data-act="openPin">
       <span class="ico">🔐</span><span>Studio</span>
@@ -846,29 +815,15 @@
         setTimeout(function () { t.classList.add("hidden"); }, 3000);
       }
 
-      // API HELPERS (CORS-SAFE FOR GITHUB PAGES + APPS SCRIPT)
-      function getBatchApi(params) {
-        return fetch(BATCH_API_URL + "?" + params).then(function (r) { return r.json(); });
-      }
+      function getBatchApi(params) { return fetch(BATCH_API_URL + "?" + params).then(function (r) { return r.json(); }); }
       function postBatchApi(payload) {
-        return fetch(BATCH_API_URL, {
-          method: "POST",
-          headers: { "Content-Type": "text/plain;charset=utf-8" },
-          body: JSON.stringify(payload)
-        }).then(function (r) { return r.json(); });
+        return fetch(BATCH_API_URL, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(payload) }).then(function (r) { return r.json(); });
       }
-      function getOfflineApi(params) {
-        return fetch(OFFLINE_API_URL + "?" + params).then(function (r) { return r.json(); });
-      }
+      function getOfflineApi(params) { return fetch(OFFLINE_API_URL + "?" + params).then(function (r) { return r.json(); }); }
       function postOfflineApi(payload) {
-        return fetch(OFFLINE_API_URL, {
-          method: "POST",
-          headers: { "Content-Type": "text/plain;charset=utf-8" },
-          body: JSON.stringify(payload)
-        }).then(function (r) { return r.json(); });
+        return fetch(OFFLINE_API_URL, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(payload) }).then(function (r) { return r.json(); });
       }
 
-      // STATE VARIABLES
       var adminUnlocked = false;
       var portalData = {
         batches: [{
@@ -884,19 +839,13 @@
       var studentProfile = null;
       try { studentProfile = JSON.parse(safeGet("cmh_batch_student") || "null"); } catch (e) {}
 
-      var activeBatchIds = [];
-      var pendingBatchIds = [];
-      var activeCatFilter = "ALL";
-      var activeVaultCat = "TEST_PAPER";
-      var targetBatchObj = null;
-      var selBatchId = "", selSubject = "", selChapter = "", selLecture = null;
+      var activeBatchIds = [], pendingBatchIds = [], activeCatFilter = "ALL", activeVaultCat = "TEST_PAPER";
+      var targetBatchObj = null, selBatchId = "", selSubject = "", selChapter = "", selLecture = null;
       var ytPlayer = null, ytApiReady = false;
       window.onYouTubeIframeAPIReady = function () { ytApiReady = true; };
 
-      var activeOfflineStudent = null;
-      var scannedOMR = null, currentScanState = [], camStream = null, lastScanCanvas = null;
+      var activeOfflineStudent = null, scannedOMR = null, currentScanState = [], camStream = null, lastScanCanvas = null;
 
-      // NAVIGATION (0-SECOND INSTANT SWITCH, ZERO RELOAD!)
       function switchNav(viewId, subCat) {
         stopInAppVideo();
         stopCamera();
@@ -917,27 +866,17 @@
         window.scrollTo(0, 0);
       }
 
-      // SYNC BOTH DATABASES SILENTLY IN BACKGROUND
       function syncBothDatabases() {
         getBatchApi("action=getPortalData").then(function (res) {
           if (res && res.status === "success") {
             if (res.batches && res.batches.length > 0) portalData = res;
-            else {
-              portalData.lectures = res.lectures || [];
-              portalData.materials = res.materials || [];
-              portalData.doubts = res.doubts || [];
-            }
+            else { portalData.lectures = res.lectures || []; portalData.materials = res.materials || []; portalData.doubts = res.doubts || []; }
             if (studentProfile && studentProfile.studentId) {
               getBatchApi("action=getStudentEnrollments&studentId=" + encodeURIComponent(studentProfile.studentId)).then(function (er) {
-                if (er && er.status === "success") {
-                  activeBatchIds = er.activeBatchIds || [];
-                  pendingBatchIds = er.pendingBatchIds || [];
-                }
+                if (er && er.status === "success") { activeBatchIds = er.activeBatchIds || []; pendingBatchIds = er.pendingBatchIds || []; }
                 renderBatchesUI();
               });
-            } else {
-              renderBatchesUI();
-            }
+            } else renderBatchesUI();
           }
         }).catch(function () {});
 
@@ -954,120 +893,71 @@
         }).catch(function () {});
       }
 
-      // =========================================================
-      // BATCHES & CLASSROOM RENDERING
-      // =========================================================
       function renderBatchesUI() {
-        if (studentProfile && studentProfile.studentId) {
-          document.getElementById("welcomeStudentTag").textContent = "👋 " + studentProfile.studentName;
-        }
-        renderExploreBatches();
-        renderMyBatches();
-        renderVaultList();
-        var s1 = document.getElementById("admBatchSelect");
-        s1.textContent = "";
-        (portalData.batches || []).forEach(function (b) {
-          var o = el("option", "", b.batchName);
-          o.value = b.batchId;
-          s1.appendChild(o);
-        });
+        if (studentProfile && studentProfile.studentId) document.getElementById("welcomeStudentTag").textContent = "👋 " + studentProfile.studentName;
+        renderExploreBatches(); renderMyBatches(); renderVaultList();
+        var s1 = document.getElementById("admBatchSelect"); s1.textContent = "";
+        (portalData.batches || []).forEach(function (b) { var o = el("option", "", b.batchName); o.value = b.batchId; s1.appendChild(o); });
       }
 
       function buildTeacherAvatarBox(teacherName, teacherPhoto) {
-        var right = el("div", "banner-right");
-        var frame = el("div", "teacher-avatar-frame");
-        var tName = teacherName || "Anuj Sir";
+        var right = el("div", "banner-right"), frame = el("div", "teacher-avatar-frame"), tName = teacherName || "Anuj Sir";
         if (teacherPhoto && teacherPhoto.trim() !== "") {
-          var pic = document.createElement("img");
-          pic.src = teacherPhoto.trim();
-          pic.alt = tName;
+          var pic = document.createElement("img"); pic.src = teacherPhoto.trim(); pic.alt = tName;
           pic.onerror = function () { frame.textContent = tName.slice(0, 2).toUpperCase(); };
           frame.appendChild(pic);
-        } else {
-          frame.textContent = tName.slice(0, 2).toUpperCase();
-        }
-        right.appendChild(frame);
-        right.appendChild(el("div", "teacher-name-chip", tName));
+        } else frame.textContent = tName.slice(0, 2).toUpperCase();
+        right.appendChild(frame); right.appendChild(el("div", "teacher-name-chip", tName));
         return right;
       }
 
       function renderExploreBatches() {
-        var mount = document.getElementById("allBatchesList");
-        mount.textContent = "";
+        var mount = document.getElementById("allBatchesList"); mount.textContent = "";
         var list = (portalData.batches || []).filter(function (b) {
           if (activeCatFilter === "ALL") return true;
           return (b.category || "School").toLowerCase().indexOf(activeCatFilter.toLowerCase()) !== -1;
         });
-        if (!list.length) {
-          mount.appendChild(el("div", "card", "इस कैटेगरी में जल्द नया बैच लॉन्च होगा।"));
-          return;
-        }
+        if (!list.length) { mount.appendChild(el("div", "card", "इस कैटेगरी में जल्द नया बैच लॉन्च होगा।")); return; }
         list.forEach(function (b) {
-          var isJoined = activeBatchIds.indexOf(b.batchId) !== -1;
-          var isPending = pendingBatchIds.indexOf(b.batchId) !== -1;
+          var isJoined = activeBatchIds.indexOf(b.batchId) !== -1, isPending = pendingBatchIds.indexOf(b.batchId) !== -1;
           var isPaid = b.priceType === "PAID" && b.price > 0;
           var lecCount = (portalData.lectures || []).filter(function (l) { return l.batchId === b.batchId; }).length;
-
-          var card = el("div", "batch-card");
-          var banner = el("div", "batch-banner theme-" + (b.theme || "emerald"));
-          var left = el("div", "banner-left");
+          var card = el("div", "batch-card"), banner = el("div", "batch-banner theme-" + (b.theme || "emerald")), left = el("div", "banner-left");
           var strips = el("div", "badge-strip");
           strips.appendChild(el("span", "live-pill", "● " + (b.category || "Batch")));
-          strips.appendChild(el("span", "price-ribbon " + (isJoined ? "ribbon-joined" : (isPaid ? "ribbon-paid" : "ribbon-free")),
-            isJoined ? "✓ ENROLLED" : (isPaid ? "PREMIUM" : "100% FREE")));
-          left.appendChild(strips);
-          left.appendChild(el("h3", "", b.batchName));
+          strips.appendChild(el("span", "price-ribbon " + (isJoined ? "ribbon-joined" : (isPaid ? "ribbon-paid" : "ribbon-free")), isJoined ? "✓ ENROLLED" : (isPaid ? "PREMIUM" : "100% FREE")));
+          left.appendChild(strips); left.appendChild(el("h3", "", b.batchName));
           left.appendChild(el("div", "meta", "🎯 " + b.className + "  •  🎬 " + lecCount + " Classes"));
-          banner.appendChild(left);
-          banner.appendChild(buildTeacherAvatarBox(b.teacherName, b.teacherPhoto));
-          card.appendChild(banner);
+          banner.appendChild(left); banner.appendChild(buildTeacherAvatarBox(b.teacherName, b.teacherPhoto)); card.appendChild(banner);
 
           var body = el("div", "batch-body");
           body.appendChild(el("p", "batch-desc", b.description || "संपूर्ण सिलेबस, A4 नोट्स, DPP व साप्ताहिक टेस्ट के साथ।"));
-          var prow = el("div", "price-row");
-          var pbox = el("div", "price-tag-box");
+          var prow = el("div", "price-row"), pbox = el("div", "price-tag-box");
           pbox.appendChild(el("span", "lbl", isPaid ? "SPECIAL FEE" : "LIMITED OFFER"));
           var pval = el("div", "price-val" + (isPaid ? "" : " is-free"), isPaid ? ("₹" + b.price + " ") : "FREE ");
-          pval.appendChild(el("span", "price-mrp", "₹" + b.originalPrice));
-          pbox.appendChild(pval);
-          prow.appendChild(pbox);
+          pval.appendChild(el("span", "price-mrp", "₹" + b.originalPrice)); pbox.appendChild(pval); prow.appendChild(pbox);
 
           var btn = el("button", "btn " + (isPending ? "btn-soft" : (isPaid && !isJoined ? "btn-amber" : "btn-primary")),
             isJoined ? "▶ Let's Study" : (isPending ? "⏳ Pending" : (isPaid ? ("⚡ Buy ₹" + b.price) : "🚀 Join Free")));
-          btn.type = "button";
-          btn.setAttribute("data-act", isJoined ? "studyBatch" : (isPending ? "pendingMsg" : "joinBatch"));
-          btn.setAttribute("data-val", b.batchId);
-          prow.appendChild(btn);
-
-          body.appendChild(prow);
-          card.appendChild(body);
-          mount.appendChild(card);
+          btn.type = "button"; btn.setAttribute("data-act", isJoined ? "studyBatch" : (isPending ? "pendingMsg" : "joinBatch")); btn.setAttribute("data-val", b.batchId);
+          prow.appendChild(btn); body.appendChild(prow); card.appendChild(body); mount.appendChild(card);
         });
       }
 
       function renderMyBatches() {
-        var mount = document.getElementById("myBatchesMount");
-        mount.textContent = "";
+        var mount = document.getElementById("myBatchesMount"); mount.textContent = "";
         var myList = (portalData.batches || []).filter(function (b) { return activeBatchIds.indexOf(b.batchId) !== -1; });
         if (!myList.length) {
           var emp = el("div", "card", "आपने अभी तक कोई बैच जॉइन नहीं किया है। All Batches से जॉइन करें।");
-          emp.style.textAlign = "center";
-          mount.appendChild(emp);
-          return;
+          emp.style.textAlign = "center"; mount.appendChild(emp); return;
         }
         myList.forEach(function (b) {
-          var card = el("div", "batch-card");
-          card.style.cursor = "pointer";
-          card.setAttribute("data-act", "openBatch");
-          card.setAttribute("data-val", b.batchId);
-          var banner = el("div", "batch-banner theme-" + (b.theme || "emerald"));
-          var left = el("div", "banner-left");
-          left.appendChild(el("h3", "", b.batchName));
-          left.appendChild(el("div", "meta", "Study खोलने के लिए टैप करें →"));
-          banner.appendChild(left);
-          banner.appendChild(buildTeacherAvatarBox(b.teacherName, b.teacherPhoto));
-          card.appendChild(banner);
-          mount.appendChild(card);
+          var card = el("div", "batch-card"); card.style.cursor = "pointer";
+          card.setAttribute("data-act", "openBatch"); card.setAttribute("data-val", b.batchId);
+          var banner = el("div", "batch-banner theme-" + (b.theme || "emerald")), left = el("div", "banner-left");
+          left.appendChild(el("h3", "", b.batchName)); left.appendChild(el("div", "meta", "Study खोलने के लिए टैप करें →"));
+          banner.appendChild(left); banner.appendChild(buildTeacherAvatarBox(b.teacherName, b.teacherPhoto));
+          card.appendChild(banner); mount.appendChild(card);
         });
       }
 
@@ -1082,67 +972,40 @@
         var b = portalData.batches.find(function (x) { return x.batchId === batchId; });
         document.getElementById("crumbBatchName").textContent = b ? b.batchName : "Subjects";
         var lecs = (portalData.lectures || []).filter(function (l) { return l.batchId === batchId; });
-        var subs = [];
-        lecs.forEach(function (l) { if (subs.indexOf(l.subject) === -1) subs.push(l.subject); });
-        var mount = document.getElementById("subjectsGridMount");
-        mount.textContent = "";
-        if (!subs.length) {
-          mount.appendChild(el("div", "card", "इस बैच में जल्द ही क्लास अपलोड होंगी।"));
-        } else {
-          subs.forEach(function (s) {
-            var card = el("div", "subj-card");
-            card.setAttribute("data-act", "openSubject");
-            card.setAttribute("data-val", s);
-            card.appendChild(el("div", "subj-ico", "📘"));
-            card.appendChild(el("h4", "", s));
-            mount.appendChild(card);
-          });
-        }
+        var subs = []; lecs.forEach(function (l) { if (subs.indexOf(l.subject) === -1) subs.push(l.subject); });
+        var mount = document.getElementById("subjectsGridMount"); mount.textContent = "";
+        if (!subs.length) mount.appendChild(el("div", "card", "इस बैच में जल्द ही क्लास अपलोड होंगी।"));
+        else subs.forEach(function (s) {
+          var card = el("div", "subj-card"); card.setAttribute("data-act", "openSubject"); card.setAttribute("data-val", s);
+          card.appendChild(el("div", "subj-ico", "📘")); card.appendChild(el("h4", "", s)); mount.appendChild(card);
+        });
         showMyBatchesSubView("mb-subjects-level");
       }
 
       function openSubjectChapters(sub) {
-        selSubject = sub;
-        document.getElementById("crumbSubjectName").textContent = sub;
+        selSubject = sub; document.getElementById("crumbSubjectName").textContent = sub;
         var lecs = (portalData.lectures || []).filter(function (l) { return l.batchId === selBatchId && l.subject === sub; });
-        var chaps = [];
-        lecs.forEach(function (l) { if (chaps.indexOf(l.chapterName) === -1) chaps.push(l.chapterName); });
-        var mount = document.getElementById("chaptersListMount");
-        mount.textContent = "";
+        var chaps = []; lecs.forEach(function (l) { if (chaps.indexOf(l.chapterName) === -1) chaps.push(l.chapterName); });
+        var mount = document.getElementById("chaptersListMount"); mount.textContent = "";
         chaps.forEach(function (ch, idx) {
-          var row = el("div", "chap-row");
-          row.setAttribute("data-act", "openChapter");
-          row.setAttribute("data-val", ch);
-          var left = el("div");
-          left.style.display = "flex"; left.style.alignItems = "center"; left.style.gap = "10px";
-          left.appendChild(el("div", "chap-num", String(idx + 1)));
-          left.appendChild(el("div", "", ch));
-          row.appendChild(left);
-          row.appendChild(el("span", "", "›"));
-          mount.appendChild(row);
+          var row = el("div", "chap-row"); row.setAttribute("data-act", "openChapter"); row.setAttribute("data-val", ch);
+          var left = el("div"); left.style.display = "flex"; left.style.alignItems = "center"; left.style.gap = "10px";
+          left.appendChild(el("div", "chap-num", String(idx + 1))); left.appendChild(el("div", "", ch));
+          row.appendChild(left); row.appendChild(el("span", "", "›")); mount.appendChild(row);
         });
         showMyBatchesSubView("mb-chapters-level");
       }
 
       function openChapterLectures(ch) {
-        selChapter = ch;
-        document.getElementById("crumbChapterName").textContent = ch;
-        var lecs = (portalData.lectures || []).filter(function (l) {
-          return l.batchId === selBatchId && l.subject === selSubject && l.chapterName === ch;
-        }).sort(function (a, b) { return a.lectureNo - b.lectureNo; });
-        var mount = document.getElementById("lecturesListMount");
-        mount.textContent = "";
+        selChapter = ch; document.getElementById("crumbChapterName").textContent = ch;
+        var lecs = (portalData.lectures || []).filter(function (l) { return l.batchId === selBatchId && l.subject === selSubject && l.chapterName === ch; }).sort(function (a, b) { return a.lectureNo - b.lectureNo; });
+        var mount = document.getElementById("lecturesListMount"); mount.textContent = "";
         lecs.forEach(function (lec) {
-          var card = el("div", "lec-card");
-          var top = el("div", "lec-top");
-          top.setAttribute("data-act", "playLec");
-          top.setAttribute("data-val", lec.lectureId);
+          var card = el("div", "lec-card"), top = el("div", "lec-top");
+          top.setAttribute("data-act", "playLec"); top.setAttribute("data-val", lec.lectureId);
           top.appendChild(el("div", "lec-play-badge", "▶"));
-          var info = el("div");
-          info.appendChild(el("div", "", "Lec " + lec.lectureNo + " • " + lec.lectureTitle));
-          top.appendChild(info);
-          card.appendChild(top);
-          mount.appendChild(card);
+          var info = el("div"); info.appendChild(el("div", "", "Lec " + lec.lectureNo + " • " + lec.lectureTitle));
+          top.appendChild(info); card.appendChild(top); mount.appendChild(card);
         });
         showMyBatchesSubView("mb-lectures-level");
       }
@@ -1155,31 +1018,24 @@
         document.getElementById("playerWatermark").textContent = studentProfile ? studentProfile.studentName : "Concept Math Hub";
 
         var nMount = document.getElementById("notesActionMount"); nMount.textContent = "";
-        if (lec.notesUrl) {
-          var a1 = el("a", "btn btn-primary btn-block", "📥 Class Notes PDF डाउनलोड करें");
-          a1.href = lec.notesUrl; a1.target = "_blank"; nMount.appendChild(a1);
-        } else nMount.appendChild(el("p", "", "Notes जल्द उपलब्ध होंगे।"));
+        if (lec.notesUrl) { var a1 = el("a", "btn btn-primary btn-block", "📥 Class Notes PDF डाउनलोड करें"); a1.href = lec.notesUrl; a1.target = "_blank"; nMount.appendChild(a1); }
+        else nMount.appendChild(el("p", "", "Notes जल्द उपलब्ध होंगे।"));
 
         var dMount = document.getElementById("dppActionMount"); dMount.textContent = "";
-        if (lec.dppUrl) {
-          var a2 = el("a", "btn btn-amber btn-block", "📝 DPP Sheet खोलें");
-          a2.href = lec.dppUrl; a2.target = "_blank"; dMount.appendChild(a2);
-        } else dMount.appendChild(el("p", "", "DPP जल्द उपलब्ध होगी।"));
+        if (lec.dppUrl) { var a2 = el("a", "btn btn-amber btn-block", "📝 DPP Sheet खोलें"); a2.href = lec.dppUrl; a2.target = "_blank"; dMount.appendChild(a2); }
+        else dMount.appendChild(el("p", "", "DPP जल्द उपलब्ध होगी।"));
 
         showMyBatchesSubView("mb-player-level");
         var reg = /(?:youtube\.com\/(?:watch\?v=|embed\/|live\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
-        var m = (lec.videoUrl || "").match(reg);
-        var vidId = m ? m[1] : "";
-        var container = document.getElementById("ytPlayerContainer");
-        stopInAppVideo();
+        var m = (lec.videoUrl || "").match(reg), vidId = m ? m[1] : "";
+        var container = document.getElementById("ytPlayerContainer"); stopInAppVideo();
         if (vidId && ytApiReady && window.YT && YT.Player) {
           var inner = el("div"); inner.id = "ytInnerPlayer"; container.appendChild(inner);
           ytPlayer = new YT.Player("ytInnerPlayer", { videoId: vidId, playerVars: { autoplay: 1, rel: 0, playsinline: 1 } });
         } else if (vidId) {
           var ifr = document.createElement("iframe");
-          ifr.src = "https://www.youtube-nocookie.com/embed/" + vidId + "?autoplay=1&rel=0&playsinline=1";
-          ifr.allow = "autoplay; fullscreen"; ifr.allowFullscreen = true;
-          container.appendChild(ifr);
+          ifr.src = "https://www.youtube-nocookie.com/embed/" + vidId + "?autoplay=1&rel=0&playsinline:1";
+          ifr.allow = "autoplay; fullscreen"; ifr.allowFullscreen = true; container.appendChild(ifr);
         }
       }
 
@@ -1189,35 +1045,20 @@
       }
 
       function renderVaultList() {
-        var mount = document.getElementById("vaultListMount");
-        mount.textContent = "";
+        var mount = document.getElementById("vaultListMount"); mount.textContent = "";
         var list = (portalData.materials || []).filter(function (m) { return m.category === activeVaultCat; });
-        if (!list.length) {
-          mount.appendChild(el("div", "card", "इस सेक्शन में जल्द नई PDF अपलोड होंगी।"));
-          return;
-        }
+        if (!list.length) { mount.appendChild(el("div", "card", "इस सेक्शन में जल्द नई PDF अपलोड होंगी।")); return; }
         list.forEach(function (m) {
-          var card = el("div", "mat-card");
-          var top = el("div", "mat-top");
-          top.appendChild(el("div", "mat-badge-ico ico-note", "📄"));
-          var info = el("div");
-          info.appendChild(el("div", "", m.title));
-          var pills = el("div", "mat-pills");
-          pills.appendChild(el("span", "mpill", m.className));
-          pills.appendChild(el("span", "mpill", m.subject));
-          info.appendChild(pills);
-          top.appendChild(info);
-          card.appendChild(top);
-          var a = el("a", "btn btn-primary btn-block", "📥 Open / Download PDF");
-          a.href = m.pdfUrl; a.target = "_blank";
-          card.appendChild(a);
-          mount.appendChild(card);
+          var card = el("div", "mat-card"), top = el("div", "mat-top");
+          top.appendChild(el("div", "mat-badge-ico", "📄"));
+          var info = el("div"); info.appendChild(el("div", "", m.title));
+          var pills = el("div", "mat-pills"); pills.appendChild(el("span", "mpill", m.className)); pills.appendChild(el("span", "mpill", m.subject));
+          info.appendChild(pills); top.appendChild(info); card.appendChild(top);
+          var a = el("a", "btn btn-primary btn-block", "📥 Open / Download PDF"); a.href = m.pdfUrl; a.target = "_blank";
+          card.appendChild(a); mount.appendChild(card);
         });
       }
 
-      // =========================================================
-      // OFFLINE TEST, SELF-CALIBRATING OMR & REPORT CARDS
-      // =========================================================
       function updateOMRModeBadge() {
         var testId = document.getElementById("omrTestSelect").value;
         var tObj = (offlineData.tests || []).find(function (t) { return t.testId === testId; });
@@ -1229,8 +1070,7 @@
         var count = parseInt(document.getElementById("newMaxMcq").value, 10) || 30;
         if (count < 1) count = 1; if (count > 100) count = 100;
         document.getElementById("akLabel").textContent = count + " MCQ Answer Key:";
-        var grid = document.getElementById("akGrid");
-        grid.innerHTML = "";
+        var grid = document.getElementById("akGrid"); grid.innerHTML = "";
         for (var i = 1; i <= count; i++) {
           grid.innerHTML += '<div class="ak-cell"><span>Q' + i + '</span><select id="ak_' + i + '"><option>A</option><option>B</option><option>C</option><option>D</option></select></div>';
         }
@@ -1241,24 +1081,17 @@
       function startCamera() {
         stopCamera();
         navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment", width: { ideal: 1920 }, height: { ideal: 1080 } } })
-          .then(function (st) {
-            camStream = st;
-            document.getElementById("omrVideo").srcObject = st;
-            document.getElementById("camContainer").classList.remove("hidden");
-          }).catch(function () { showToast("ऊपर वाले 'Mobile Camera से सीधी Photo' बटन का उपयोग करें!"); });
+          .then(function (st) { camStream = st; document.getElementById("omrVideo").srcObject = st; document.getElementById("camContainer").classList.remove("hidden"); })
+          .catch(function () { showToast("ऊपर वाले 'Mobile Camera से सीधी Photo' बटन का उपयोग करें!"); });
       }
       function stopCamera() {
         if (camStream) { camStream.getTracks().forEach(function (t) { t.stop(); }); camStream = null; }
         document.getElementById("camContainer").classList.add("hidden");
       }
       function captureFromVideo() {
-        var v = document.getElementById("omrVideo");
-        if (!v || !v.videoWidth) return;
-        var c = document.getElementById("omrCanvas");
-        c.width = v.videoWidth; c.height = v.videoHeight;
-        c.getContext("2d").drawImage(v, 0, 0);
-        stopCamera();
-        autoCalibrateAndGradeOMR(c);
+        var v = document.getElementById("omrVideo"); if (!v || !v.videoWidth) return;
+        var c = document.getElementById("omrCanvas"); c.width = v.videoWidth; c.height = v.videoHeight;
+        c.getContext("2d").drawImage(v, 0, 0); stopCamera(); autoCalibrateAndGradeOMR(c);
       }
       function handleScanFile(e) {
         var f = e.target.files[0]; if (!f) return;
@@ -1267,17 +1100,12 @@
           var c = document.getElementById("omrCanvas");
           if (img.height > img.width * 1.15) {
             c.width = img.height; c.height = img.width;
-            var rctx = c.getContext("2d");
-            rctx.translate(c.width / 2, c.height / 2); rctx.rotate(-Math.PI / 2);
+            var rctx = c.getContext("2d"); rctx.translate(c.width / 2, c.height / 2); rctx.rotate(-Math.PI / 2);
             rctx.drawImage(img, -img.width / 2, -img.height / 2);
-          } else {
-            c.width = img.width; c.height = img.height;
-            c.getContext("2d").drawImage(img, 0, 0);
-          }
+          } else { c.width = img.width; c.height = img.height; c.getContext("2d").drawImage(img, 0, 0); }
           autoCalibrateAndGradeOMR(c);
         };
-        img.src = URL.createObjectURL(f);
-        e.target.value = "";
+        img.src = URL.createObjectURL(f); e.target.value = "";
       }
       document.getElementById("camFileInput").addEventListener("change", handleScanFile);
       document.getElementById("galFileInput").addEventListener("change", handleScanFile);
@@ -1302,42 +1130,28 @@
         var testId = document.getElementById("omrTestSelect").value;
         var tObj = (offlineData.tests || []).find(function (t) { return t.testId === testId; }) || { maxMcq: 30 };
         var totalQuestions = Math.min(100, Math.max(1, Number(tObj.maxMcq) || 30));
-        var key = {};
-        try { key = JSON.parse(tObj.answerKey || "{}"); } catch (e) {}
+        var key = {}; try { key = JSON.parse(tObj.answerKey || "{}"); } catch (e) {}
 
-        var W = 1200;
-        var H = Math.max(500, Math.round(W * (srcCanvas.height / Math.max(1, srcCanvas.width))));
-        lastScanCanvas = document.createElement("canvas");
-        lastScanCanvas.width = W; lastScanCanvas.height = H;
-        var ctx = lastScanCanvas.getContext("2d");
-        ctx.drawImage(srcCanvas, 0, 0, W, H);
-
-        var imgData = ctx.getImageData(0, 0, W, H).data;
-        var gray = new Uint8Array(W * H);
-        for (var i = 0, p = 0; i < imgData.length; i += 4, p++) {
-          gray[p] = (imgData[i] * 77 + imgData[i + 1] * 150 + imgData[i + 2] * 29) >> 8;
-        }
+        var W = 1200, H = Math.max(500, Math.round(W * (srcCanvas.height / Math.max(1, srcCanvas.width))));
+        lastScanCanvas = document.createElement("canvas"); lastScanCanvas.width = W; lastScanCanvas.height = H;
+        var ctx = lastScanCanvas.getContext("2d"); ctx.drawImage(srcCanvas, 0, 0, W, H);
+        var imgData = ctx.getImageData(0, 0, W, H).data, gray = new Uint8Array(W * H);
+        for (var i = 0, p = 0; i < imgData.length; i += 4, p++) gray[p] = (imgData[i] * 77 + imgData[i + 1] * 150 + imgData[i + 2] * 29) >> 8;
 
         var integral = new Int32Array((W + 1) * (H + 1));
         for (var y = 0; y < H; y++) {
           var rSum = 0;
-          for (var x = 0; x < W; x++) {
-            rSum += gray[y * W + x];
-            integral[(y + 1) * (W + 1) + (x + 1)] = integral[y * (W + 1) + (x + 1)] + rSum;
-          }
+          for (var x = 0; x < W; x++) { rSum += gray[y * W + x]; integral[(y + 1) * (W + 1) + (x + 1)] = integral[y * (W + 1) + (x + 1)] + rSum; }
         }
-
         var bin = new Uint8Array(W * H), rad = 16;
         for (var y2 = 0; y2 < H; y2++) {
           var y0 = Math.max(0, y2 - rad), y1 = Math.min(H - 1, y2 + rad);
           for (var x2 = 0; x2 < W; x2++) {
-            var x0 = Math.max(0, x2 - rad), x1 = Math.min(W - 1, x2 + rad);
-            var cnt = (x1 - x0 + 1) * (y1 - y0 + 1);
+            var x0 = Math.max(0, x2 - rad), x1 = Math.min(W - 1, x2 + rad), cnt = (x1 - x0 + 1) * (y1 - y0 + 1);
             var sum = integral[(y1 + 1) * (W + 1) + (x1 + 1)] - integral[y0 * (W + 1) + (x1 + 1)] - integral[(y1 + 1) * (W + 1) + x0] + integral[y0 * (W + 1) + x0];
             if (gray[y2 * W + x2] < (sum / cnt) - 15 && gray[y2 * W + x2] < 190) bin[y2 * W + x2] = 1;
           }
         }
-
         var visited = new Uint8Array(W * H), queue = new Int32Array(W * H), rawCircles = [];
         for (var y3 = 4; y3 < H - 4; y3++) {
           for (var x3 = 4; x3 < W - 4; x3++) {
@@ -1346,10 +1160,8 @@
               var head = 0, tail = 0; queue[tail++] = start; visited[start] = 1;
               var minX = x3, maxX = x3, minY = y3, maxY = y3, area = 0;
               while (head < tail) {
-                var cur = queue[head++], cx = cur % W, cy = (cur / W) | 0;
-                area++;
-                if (cx < minX) minX = cx; if (cx > maxX) maxX = cx;
-                if (cy < minY) minY = cy; if (cy > maxY) maxY = cy;
+                var cur = queue[head++], cx = cur % W, cy = (cur / W) | 0; area++;
+                if (cx < minX) minX = cx; if (cx > maxX) maxX = cx; if (cy < minY) minY = cy; if (cy > maxY) maxY = cy;
                 var n1 = cur - 1, n2 = cur + 1, n3 = cur - W, n4 = cur + W;
                 if (cx > 0 && bin[n1] && !visited[n1]) { visited[n1] = 1; queue[tail++] = n1; }
                 if (cx < W - 1 && bin[n2] && !visited[n2]) { visited[n2] = 1; queue[tail++] = n2; }
@@ -1363,13 +1175,11 @@
             }
           }
         }
-
         var circles = [];
         rawCircles.sort(function (a, b) { return (b.rx * b.ry) - (a.rx * a.ry); });
         rawCircles.forEach(function (c) {
           if (!circles.some(function (u) { return Math.hypot(u.x - c.x, u.y - c.y) < Math.max(u.rx, c.rx) * 0.85; })) circles.push(c);
         });
-
         circles.sort(function (a, b) { return a.y - b.y || a.x - b.x; });
         var clusters = [], used = {};
         for (var i2 = 0; i2 < circles.length; i2++) {
@@ -1386,71 +1196,44 @@
             if (avgStep > r * 1.6 && avgStep < r * 4.8 && Math.abs(d1 - avgStep) < avgStep * 0.25 && Math.abs(d2 - avgStep) < avgStep * 0.25 && Math.abs(d3 - avgStep) < avgStep * 0.25) {
               four.forEach(function (it) { used[it.idx] = true; });
               clusters.push({
-                xA: four[0].c.x,
-                y: four.reduce(function (s, it) { return s + it.c.y; }, 0) / 4,
-                optStep: avgStep,
-                rx: four.reduce(function (s, it) { return s + it.c.rx; }, 0) / 4,
-                ry: four.reduce(function (s, it) { return s + it.c.ry; }, 0) / 4
+                xA: four[0].c.x, y: four.reduce(function (s, it) { return s + it.c.y; }, 0) / 4,
+                optStep: avgStep, rx: four.reduce(function (s, it) { return s + it.c.rx; }, 0) / 4, ry: four.reduce(function (s, it) { return s + it.c.ry; }, 0) / 4
               });
               k += 3;
             }
           }
         }
-
-        var is100Mode = totalQuestions > 30;
-        var numCols = is100Mode ? 4 : 3;
-        var rowsPerCol = is100Mode ? 25 : 10;
-        var answerClusters = clusters;
-        if (!is100Mode && clusters.length > 32) {
-          answerClusters = clusters.slice().sort(function (a, b) { return b.xA - a.xA; }).slice(0, 30);
-        }
-        if (answerClusters.length < 6) {
-          showToast("⚠️ गोले साफ़ नहीं दिखे! अच्छी रोशनी में साफ़ फ़ोटो लें।");
-          return;
-        }
+        var is100Mode = totalQuestions > 30, numCols = is100Mode ? 4 : 3, rowsPerCol = is100Mode ? 25 : 10, answerClusters = clusters;
+        if (!is100Mode && clusters.length > 32) answerClusters = clusters.slice().sort(function (a, b) { return b.xA - a.xA; }).slice(0, 30);
+        if (answerClusters.length < 6) { showToast("⚠️ गोले साफ़ नहीं दिखे!"); return; }
 
         answerClusters.sort(function (a, b) { return a.xA - b.xA; });
-        var colGroups = [], currentGroup = [answerClusters[0]];
-        var medianOptStep = median(answerClusters.map(function (c) { return c.optStep; }));
+        var colGroups = [], currentGroup = [answerClusters[0]], medianOptStep = median(answerClusters.map(function (c) { return c.optStep; }));
         for (var i3 = 1; i3 < answerClusters.length; i3++) {
-          if (answerClusters[i3].xA - currentGroup[currentGroup.length - 1].xA > medianOptStep * 3.2) {
-            colGroups.push(currentGroup); currentGroup = [answerClusters[i3]];
-          } else currentGroup.push(answerClusters[i3]);
+          if (answerClusters[i3].xA - currentGroup[currentGroup.length - 1].xA > medianOptStep * 3.2) { colGroups.push(currentGroup); currentGroup = [answerClusters[i3]]; }
+          else currentGroup.push(answerClusters[i3]);
         }
         colGroups.push(currentGroup);
-
         var activeCols = colGroups.slice(-numCols);
-        if (activeCols.length < numCols) {
-          showToast("⚠️ तीनों कॉलम साफ़ नहीं दिखे!");
-          return;
-        }
+        if (activeCols.length < numCols) { showToast("⚠️ तीनों कॉलम साफ़ नहीं दिखे!"); return; }
 
         var rowDiffs = [];
         activeCols.forEach(function (col) {
           col.sort(function (a, b) { return a.y - b.y; });
-          for (var i4 = 1; i4 < col.length; i4++) {
-            var dy = col[i4].y - col[i4 - 1].y;
-            if (dy > medianOptStep * 0.7 && dy < medianOptStep * 2.2) rowDiffs.push(dy);
-          }
+          for (var i4 = 1; i4 < col.length; i4++) { var dy = col[i4].y - col[i4 - 1].y; if (dy > medianOptStep * 0.7 && dy < medianOptStep * 2.2) rowDiffs.push(dy); }
         });
-        var globalRowStep = median(rowDiffs) || (medianOptStep * 1.15);
-        var globalOptStep = medianOptStep;
-        var globalRx = median(answerClusters.map(function (c) { return c.rx; }));
-        var globalRy = median(answerClusters.map(function (c) { return c.ry; }));
+        var globalRowStep = median(rowDiffs) || (medianOptStep * 1.15), globalOptStep = medianOptStep;
+        var globalRx = median(answerClusters.map(function (c) { return c.rx; })), globalRy = median(answerClusters.map(function (c) { return c.ry; }));
 
         var gridModels = activeCols.map(function (col) {
           col.sort(function (a, b) { return a.y - b.y; });
-          var minY = col[0].y, maxY = col[col.length - 1].y;
-          var spanRows = Math.round((maxY - minY) / globalRowStep);
+          var minY = col[0].y, maxY = col[col.length - 1].y, spanRows = Math.round((maxY - minY) / globalRowStep);
           var yPoints = [], xPoints = [];
           col.forEach(function (item) {
             var rIdx = Math.round((item.y - minY) / globalRowStep);
-            if (spanRows < rowsPerCol - 1 && maxY > H * 0.78) {
-              rIdx = (rowsPerCol - 1) - Math.round((maxY - item.y) / globalRowStep);
-            }
+            if (spanRows < rowsPerCol - 1 && maxY > H * 0.78) rIdx = (rowsPerCol - 1) - Math.round((maxY - item.y) / globalRowStep);
             rIdx = Math.max(0, Math.min(rowsPerCol - 1, rIdx));
-            yPoints.push({ idx: rIdx, val: item.y });
-            xPoints.push({ idx: rIdx, val: item.xA });
+            yPoints.push({ idx: rIdx, val: item.y }); xPoints.push({ idx: rIdx, val: item.xA });
           });
           var yLine = fitLine(yPoints), xLine = fitLine(xPoints);
           var stepY = (yPoints.length >= 3 && Math.abs(yLine.m - globalRowStep) < globalRowStep * 0.18) ? yLine.m : globalRowStep;
@@ -1461,52 +1244,34 @@
         });
 
         function measureBubbleInk(cx, cy, rx, ry) {
-          var irx = rx * 0.64, iry = ry * 0.64;
-          var x0 = Math.max(0, Math.floor(cx - irx)), x1 = Math.min(W - 1, Math.ceil(cx + irx));
-          var y0 = Math.max(0, Math.floor(cy - iry)), y1 = Math.min(H - 1, Math.ceil(cy + iry));
-          var bgSum = 0, bgCnt = 0;
+          var irx = rx * 0.64, iry = ry * 0.64, x0 = Math.max(0, Math.floor(cx - irx)), x1 = Math.min(W - 1, Math.ceil(cx + irx));
+          var y0 = Math.max(0, Math.floor(cy - iry)), y1 = Math.min(H - 1, Math.ceil(cy + iry)), bgSum = 0, bgCnt = 0;
           for (var a = 0; a < 16; a++) {
             var ang = (a / 16) * Math.PI * 2;
             var bx = Math.min(W - 1, Math.max(0, Math.round(cx + Math.cos(ang) * rx * 1.45)));
             var by = Math.min(H - 1, Math.max(0, Math.round(cy + Math.sin(ang) * ry * 1.45)));
             bgSum += gray[by * W + bx]; bgCnt++;
           }
-          var paperLum = bgCnt ? (bgSum / bgCnt) : 220;
-          var darkCutoff = Math.max(95, paperLum * 0.68);
-          var darkPx = 0, total = 0, lumSum = 0;
+          var paperLum = bgCnt ? (bgSum / bgCnt) : 220, darkCutoff = Math.max(95, paperLum * 0.68), darkPx = 0, total = 0, lumSum = 0;
           for (var yy = y0; yy <= y1; yy++) {
             for (var xx = x0; xx <= x1; xx++) {
               var nx = (xx - cx) / irx, ny = (yy - cy) / iry;
-              if (nx * nx + ny * ny <= 1.0) {
-                var lum = gray[yy * W + xx]; lumSum += lum;
-                if (lum < darkCutoff) darkPx++;
-                total++;
-              }
+              if (nx * nx + ny * ny <= 1.0) { var lum = gray[yy * W + xx]; lumSum += lum; if (lum < darkCutoff) darkPx++; total++; }
             }
           }
           if (!total) return 0;
           return ((darkPx / total) * 100) * 0.78 + Math.max(0, paperLum - (lumSum / total)) * 0.45;
         }
 
-        var opts = ["A", "B", "C", "D"];
-        currentScanState = [];
+        var opts = ["A", "B", "C", "D"]; currentScanState = [];
         for (var q = 1; q <= totalQuestions; q++) {
-          var ci = Math.floor((q - 1) / rowsPerCol), ri = (q - 1) % rowsPerCol;
-          var model = gridModels[ci];
+          var ci = Math.floor((q - 1) / rowsPerCol), ri = (q - 1) % rowsPerCol, model = gridModels[ci];
           var baseX = model.startX + ri * model.slopeX, cy = model.startY + ri * model.stepY;
-          var bubbles = opts.map(function (o, oi) {
-            var cx = baseX + oi * globalOptStep;
-            return { o: o, cx: cx, cy: cy, ink: measureBubbleInk(cx, cy, globalRx, globalRy) };
-          });
-          var sorted = bubbles.slice().sort(function (a, b) { return b.ink - a.ink; });
-          var top1 = sorted[0], top2 = sorted[1], marked = "-";
-          if (top1.ink > 62) {
-            if (top2.ink > 68 && (top1.ink - top2.ink) < 20) marked = "MULTI";
-            else if ((top1.ink - top2.ink) >= 20) marked = top1.o;
-          }
+          var bubbles = opts.map(function (o, oi) { var cx = baseX + oi * globalOptStep; return { o: o, cx: cx, cy: cy, ink: measureBubbleInk(cx, cy, globalRx, globalRy) }; });
+          var sorted = bubbles.slice().sort(function (a, b) { return b.ink - a.ink; }), top1 = sorted[0], top2 = sorted[1], marked = "-";
+          if (top1.ink > 62) { if (top2.ink > 68 && (top1.ink - top2.ink) < 20) marked = "MULTI"; else if ((top1.ink - top2.ink) >= 20) marked = top1.o; }
           currentScanState.push({ q: q, marked: marked, ans: key[q] || "A", bubbles: bubbles, rx: globalRx, ry: globalRy });
         }
-
         renderOMRVerification();
         document.getElementById("omrScanOutput").classList.remove("hidden");
         showToast("✅ Auto-Grid OMR Scan पूरा!");
@@ -1515,32 +1280,20 @@
       function renderOMRVerification() {
         var pCanvas = document.getElementById("omrPreviewCanvas");
         pCanvas.width = lastScanCanvas.width; pCanvas.height = lastScanCanvas.height;
-        var pCtx = pCanvas.getContext("2d");
-        pCtx.drawImage(lastScanCanvas, 0, 0);
-
+        var pCtx = pCanvas.getContext("2d"); pCtx.drawImage(lastScanCanvas, 0, 0);
         var correct = 0, wrong = 0, blank = 0, chips = "";
         currentScanState.forEach(function (item, idx) {
           var clr = "#64748b";
-          if (item.marked === "-") blank++;
-          else if (item.marked === item.ans) { correct++; clr = "#16a34a"; }
-          else { wrong++; clr = "#dc2626"; }
-
+          if (item.marked === "-") blank++; else if (item.marked === item.ans) { correct++; clr = "#16a34a"; } else { wrong++; clr = "#dc2626"; }
           item.bubbles.forEach(function (b) {
-            pCtx.beginPath();
-            pCtx.ellipse(b.cx, b.cy, item.rx * 1.1, item.ry * 1.1, 0, 0, Math.PI * 2);
-            if (b.o === item.marked || (item.marked === "MULTI" && b.ink > 68)) {
-              pCtx.strokeStyle = (item.marked === item.ans) ? "#16a34a" : "#dc2626";
-              pCtx.lineWidth = 4;
-            } else if (b.o === item.ans && item.marked !== item.ans) {
-              pCtx.strokeStyle = "#f59e0b"; pCtx.lineWidth = 2.5;
-            } else {
-              pCtx.strokeStyle = "rgba(14, 165, 233, 0.5)"; pCtx.lineWidth = 1.5;
-            }
+            pCtx.beginPath(); pCtx.ellipse(b.cx, b.cy, item.rx * 1.1, item.ry * 1.1, 0, 0, Math.PI * 2);
+            if (b.o === item.marked || (item.marked === "MULTI" && b.ink > 68)) { pCtx.strokeStyle = (item.marked === item.ans) ? "#16a34a" : "#dc2626"; pCtx.lineWidth = 4; }
+            else if (b.o === item.ans && item.marked !== item.ans) { pCtx.strokeStyle = "#f59e0b"; pCtx.lineWidth = 2.5; }
+            else { pCtx.strokeStyle = "rgba(14, 165, 233, 0.5)"; pCtx.lineWidth = 1.5; }
             pCtx.stroke();
           });
           chips += '<span class="q-chip" style="color:' + clr + ';" data-act="cycleQ" data-val="' + idx + '">Q' + item.q + ':' + item.marked + '(' + item.ans + ')</span>';
         });
-
         var tot = currentScanState.length;
         scannedOMR = { mcqObtained: correct, omrDetails: "Total:" + tot + ", Correct:" + correct + ", Wrong:" + wrong + ", Blank:" + blank };
         document.getElementById("omrSummaryText").textContent = "Marks: " + correct + " / " + tot + " (सही: " + correct + " • गलत: " + wrong + " • खाली: " + blank + ")";
@@ -1571,10 +1324,7 @@
           '<div class="rc-remarks"><strong>📌 Teacher Feedback:</strong> ' + (r.theoryFeedback ? r.theoryFeedback + "<br>" : "") + '<em>' + gi.msg + '</em></div>' +
           '<div class="rc-signs"><div class="sign-line">अभिभावक हस्ताक्षर<br>(Parent Sign)</div><div class="sign-line">निदेशक हस्ताक्षर<br>(Anuj Sir)</div></div>' +
           '</div></div>';
-        if (mountId === "studentCardMount") {
-          document.getElementById("studentCardSection").classList.remove("hidden");
-          document.getElementById("studentCardSection").scrollIntoView({ behavior: "smooth" });
-        }
+        if (mountId === "studentCardMount") { document.getElementById("studentCardSection").classList.remove("hidden"); document.getElementById("studentCardSection").scrollIntoView({ behavior: "smooth" }); }
       }
 
       function buildCombinedCard(count, mountId) {
@@ -1596,31 +1346,20 @@
           '<div class="rc-remarks"><strong>📌 Parent Feedback:</strong> कुल ' + slice.length + ' टेस्ट में औसत प्रतिशत <strong>' + pct + '% (Grade ' + gi.g + ')</strong> रहा। ' + gi.msg + '</div>' +
           '<div class="rc-signs"><div class="sign-line">अभिभावक हस्ताक्षर<br>(Parent Sign)</div><div class="sign-line">निदेशक हस्ताक्षर<br>(Anuj Sir)</div></div>' +
           '</div></div>';
-        if (mountId === "studentCardMount") {
-          document.getElementById("studentCardSection").classList.remove("hidden");
-          document.getElementById("studentCardSection").scrollIntoView({ behavior: "smooth" });
-        }
+        if (mountId === "studentCardMount") { document.getElementById("studentCardSection").classList.remove("hidden"); document.getElementById("studentCardSection").scrollIntoView({ behavior: "smooth" }); }
       }
 
-      // =========================================================
-      // UNIVERSAL CLICK EVENT ROUTER (100% RELIABLE)
-      // =========================================================
       document.addEventListener("click", function (e) {
         var target = e.target;
         while (target && target !== document && !target.getAttribute("data-act")) target = target.parentNode;
         if (!target || target === document) return;
 
-        var act = target.getAttribute("data-act");
-        var val = target.getAttribute("data-val") || "";
-        var sub = target.getAttribute("data-sub") || "";
-
+        var act = target.getAttribute("data-act"), val = target.getAttribute("data-val") || "", sub = target.getAttribute("data-sub") || "";
         if (act === "nav") switchNav(val, sub);
         else if (act === "printPage") window.print();
         else if (act === "vaultTab") {
           activeVaultCat = val;
-          ["TEST_PAPER", "PYQ", "NOTES_FORMULA"].forEach(function (c) {
-            document.getElementById("vtab-" + c).classList.toggle("active", c === val);
-          });
+          ["TEST_PAPER", "PYQ", "NOTES_FORMULA"].forEach(function (c) { document.getElementById("vtab-" + c).classList.toggle("active", c === val); });
           renderVaultList();
         }
         else if (act === "subMode") {
@@ -1637,55 +1376,34 @@
           for (var i = 0; i < pills.length; i++) pills[i].classList.toggle("active", pills[i].getAttribute("data-val") === val);
           renderExploreBatches();
         }
-        else if (act === "switchLogin") {
-          targetBatchObj = null;
-          document.getElementById("enrollModalHeading").textContent = "👤 Student Login";
-          document.getElementById("paidPaymentSection").classList.add("hidden");
-          document.getElementById("enrollModal").classList.remove("hidden");
-        }
+        else if (act === "switchLogin") { targetBatchObj = null; document.getElementById("enrollModalHeading").textContent = "👤 Student Login"; document.getElementById("paidPaymentSection").classList.add("hidden"); document.getElementById("enrollModal").classList.remove("hidden"); }
         else if (act === "closeEnroll") document.getElementById("enrollModal").classList.add("hidden");
         else if (act === "joinBatch") {
-          var b = portalData.batches.find(function (x) { return x.batchId === val; });
-          if (!b) return;
-          targetBatchObj = b;
-          var isPaid = b.priceType === "PAID" && b.price > 0;
+          var b = portalData.batches.find(function (x) { return x.batchId === val; }); if (!b) return;
+          targetBatchObj = b; var isPaid = b.priceType === "PAID" && b.price > 0;
           document.getElementById("enrollModalHeading").textContent = isPaid ? "💳 Paid Batch Enroll" : "🎓 Free Batch Join";
           document.getElementById("enrollBatchTitle").textContent = b.batchName;
           document.getElementById("paidPaymentSection").classList.toggle("hidden", !isPaid);
-          if (isPaid) {
-            document.getElementById("paidAmountTag").textContent = "₹" + b.price;
-            document.getElementById("paidUpiDisplay").textContent = "UPI ID: " + (b.upiId || "Concept Math Hub");
-          }
+          if (isPaid) { document.getElementById("paidAmountTag").textContent = "₹" + b.price; document.getElementById("paidUpiDisplay").textContent = "UPI ID: " + (b.upiId || "Concept Math Hub"); }
           document.getElementById("enrollModal").classList.remove("hidden");
         }
         else if (act === "confirmEnroll") {
-          var name = document.getElementById("enrName").value.trim();
-          var id = document.getElementById("enrId").value.trim();
-          var cls = document.getElementById("enrClass").value;
+          var name = document.getElementById("enrName").value.trim(), id = document.getElementById("enrId").value.trim(), cls = document.getElementById("enrClass").value;
           if (!name || !id) return showToast("नाम और Mobile/Roll No. भरें!");
           studentProfile = { studentName: name, studentId: id, className: cls };
           safeSet("cmh_batch_student", JSON.stringify(studentProfile));
           document.getElementById("enrollModal").classList.add("hidden");
           if (targetBatchObj) {
-            var bId = targetBatchObj.batchId;
-            var isPaid = targetBatchObj.priceType === "PAID" && targetBatchObj.price > 0;
+            var bId = targetBatchObj.batchId, isPaid = targetBatchObj.priceType === "PAID" && targetBatchObj.price > 0;
             if (!isPaid && activeBatchIds.indexOf(bId) === -1) activeBatchIds.push(bId);
             renderBatchesUI();
-            postBatchApi({
-              action: "enrollStudent", studentId: id, studentName: name, className: cls,
-              batchId: bId, priceType: isPaid ? "PAID" : "FREE", amountPaid: targetBatchObj.price,
-              paymentRef: document.getElementById("enrPaymentRef").value.trim() || "FREE"
-            }).then(function (r) { showToast(r.message || "Enrolled!"); syncBothDatabases(); });
-          } else {
-            showToast("✅ प्रोफ़ाइल सेव हो गई!");
-            syncBothDatabases();
-          }
+            postBatchApi({ action: "enrollStudent", studentId: id, studentName: name, className: cls, batchId: bId, priceType: isPaid ? "PAID" : "FREE", amountPaid: targetBatchObj.price, paymentRef: document.getElementById("enrPaymentRef").value.trim() || "FREE" })
+              .then(function (r) { showToast(r.message || "Enrolled!"); syncBothDatabases(); });
+          } else { showToast("✅ प्रोफ़ाइल सेव हो गई!"); syncBothDatabases(); }
         }
         else if (act === "studyBatch" || act === "openBatch") {
-          document.getElementById("ms-explore").classList.remove("active");
-          document.getElementById("ms-my").classList.add("active");
-          document.getElementById("sub-explore").classList.add("hidden");
-          document.getElementById("sub-my").classList.remove("hidden");
+          document.getElementById("ms-explore").classList.remove("active"); document.getElementById("ms-my").classList.add("active");
+          document.getElementById("sub-explore").classList.add("hidden"); document.getElementById("sub-my").classList.remove("hidden");
           openBatchSubjects(val);
         }
         else if (act === "backBatches") { stopInAppVideo(); showMyBatchesSubView("mb-batches-level"); }
@@ -1696,17 +1414,13 @@
         else if (act === "playLec") openClassroomPlayer(val);
         else if (act === "closePlayer") { stopInAppVideo(); openChapterLectures(selChapter); }
         else if (act === "clsTab") {
-          ["notes", "dpp", "doubt"].forEach(function (t) {
-            document.getElementById("cpane-" + t).classList.toggle("hidden", t !== val);
-            document.getElementById("ctab-" + t).classList.toggle("active", t === val);
-          });
+          ["notes", "dpp", "doubt"].forEach(function (t) { document.getElementById("cpane-" + t).classList.toggle("hidden", t !== val); document.getElementById("ctab-" + t).classList.toggle("active", t === val); });
         }
         else if (act === "seek" && ytPlayer && ytPlayer.getCurrentTime) ytPlayer.seekTo(Math.max(0, ytPlayer.getCurrentTime() + Number(val)), true);
         else if (act === "playPause" && ytPlayer && ytPlayer.getPlayerState) { ytPlayer.getPlayerState() === 1 ? ytPlayer.pauseVideo() : ytPlayer.playVideo(); }
         else if (act === "speed" && ytPlayer && ytPlayer.setPlaybackRate) { ytPlayer.setPlaybackRate(Number(val)); showToast("Speed: " + val + "x"); }
         else if (act === "loadOfflineRes") {
-          var roll = document.getElementById("stuRollInput").value.trim();
-          if (!roll) return showToast("Roll No. डालें!");
+          var roll = document.getElementById("stuRollInput").value.trim(); if (!roll) return showToast("Roll No. डालें!");
           showToast("Result लोड हो रहा है...");
           getOfflineApi("action=getStudentResults&rollNo=" + encodeURIComponent(roll)).then(function (res) {
             if (res.status !== "success" || !res.results.length) return showToast("इस Roll No. का कोई टेस्ट नहीं मिला।");
@@ -1716,8 +1430,7 @@
             document.getElementById("stuTestList").innerHTML = res.results.map(function (r, i) {
               return '<div class="test-row" data-act="singleCard" data-val="' + i + '"><div style="display:flex; align-items:center; gap:10px;"><div class="date-pill">' + r.testDate + '</div><div><div style="font-weight:700; font-size:14px;">' + r.subject + ' — ' + r.testName + '</div><div style="font-size:12px; color:#64748b;">OMR: ' + r.mcqObtained + '/' + r.mcqMax + ' • Theory: ' + r.theoryObtained + '/' + r.theoryMax + ' • Rank #' + r.rank + '</div></div></div><div class="score-tag">' + r.totalObtained + '/' + r.totalMax + ' (' + r.percentage + '%)</div></div>';
             }).join("");
-            document.getElementById("studentDataBox").classList.remove("hidden");
-            document.getElementById("studentCardSection").classList.add("hidden");
+            document.getElementById("studentDataBox").classList.remove("hidden"); document.getElementById("studentCardSection").classList.add("hidden");
           });
         }
         else if (act === "singleCard") buildSingleCard(Number(val), "studentCardMount");
@@ -1728,16 +1441,11 @@
         }
         else if (act === "closePin") document.getElementById("pinModal").classList.add("hidden");
         else if (act === "verifyPin") {
-          if (document.getElementById("pinField").value.trim() === TEACHER_PIN) {
-            adminUnlocked = true; document.getElementById("pinModal").classList.add("hidden");
-            showToast("🔓 Master Studio Unlocked!"); switchNav("admin");
-          } else showToast("❌ गलत PIN!");
+          if (document.getElementById("pinField").value.trim() === TEACHER_PIN) { adminUnlocked = true; document.getElementById("pinModal").classList.add("hidden"); showToast("🔓 Master Studio Unlocked!"); switchNav("admin"); }
+          else showToast("❌ गलत PIN!");
         }
         else if (act === "admTab") {
-          ["omr", "theory", "batch", "setup"].forEach(function (t) {
-            document.getElementById("apane-" + t).classList.toggle("hidden", t !== val);
-            document.getElementById("atab-" + t).classList.toggle("active", t === val);
-          });
+          ["omr", "theory", "batch", "setup"].forEach(function (t) { document.getElementById("apane-" + t).classList.toggle("hidden", t !== val); document.getElementById("atab-" + t).classList.toggle("active", t === val); });
         }
         else if (act === "startCam") startCamera();
         else if (act === "capVideo") captureFromVideo();
@@ -1750,8 +1458,7 @@
           var rNo = document.getElementById("omrRollNo").value.trim(), tId = document.getElementById("omrTestSelect").value;
           if (!rNo || !tId || !scannedOMR) return showToast("Roll No. और Test डालें!");
           showToast("Saving OMR...");
-          postOfflineApi({ action: "saveOMRResult", rollNo: rNo, testId: tId, mcqObtained: scannedOMR.mcqObtained, omrDetails: scannedOMR.omrDetails })
-            .then(function (r) { showToast(r.message || "OMR Saved!"); });
+          postOfflineApi({ action: "saveOMRResult", rollNo: rNo, testId: tId, mcqObtained: scannedOMR.mcqObtained, omrDetails: scannedOMR.omrDetails }).then(function (r) { showToast(r.message || "OMR Saved!"); });
         }
         else if (act === "copyPrompt") {
           var r = document.getElementById("theoryRollNo").value.trim() || "101";
@@ -1762,17 +1469,14 @@
           navigator.clipboard.readText().then(function (txt) {
             var m = txt.match(/(\d+)\s*\|\s*([\d.]+)\s*\|\s*(.+)/);
             if (!m) return showToast("⚠️ सही फॉर्मेट कॉपी नहीं हुआ!");
-            document.getElementById("theoryRollNo").value = m[1].trim();
-            document.getElementById("theoryMarksInput").value = m[2].trim();
-            document.getElementById("theoryFeedbackInput").value = m[3].trim();
+            document.getElementById("theoryRollNo").value = m[1].trim(); document.getElementById("theoryMarksInput").value = m[2].trim(); document.getElementById("theoryFeedbackInput").value = m[3].trim();
             showToast("✅ Paste हो गया! Save पर क्लिक करें।");
           }).catch(function () { showToast("नीचे बॉक्स में Paste करें।"); });
         }
         else if (act === "saveTheory") {
           var rNo2 = document.getElementById("theoryRollNo").value.trim(), tId2 = document.getElementById("theoryTestSelect").value, mk = document.getElementById("theoryMarksInput").value;
           if (!rNo2 || !tId2 || mk === "") return showToast("Roll No, Test और Marks भरें!");
-          postOfflineApi({ action: "saveTheoryResult", rollNo: rNo2, testId: tId2, theoryObtained: mk, theoryFeedback: document.getElementById("theoryFeedbackInput").value })
-            .then(function (r) { showToast(r.message || "Theory Saved!"); });
+          postOfflineApi({ action: "saveTheoryResult", rollNo: rNo2, testId: tId2, theoryObtained: mk, theoryFeedback: document.getElementById("theoryFeedbackInput").value }).then(function (r) { showToast(r.message || "Theory Saved!"); });
         }
         else if (act === "genTeacherRep") {
           var rNo3 = document.getElementById("repRollNo").value.trim(), cnt = parseInt(document.getElementById("repCount").value, 10);
@@ -1784,53 +1488,31 @@
           });
         }
         else if (act === "createBatch") {
-          var bName = document.getElementById("newBatchName").value.trim();
-          if (!bName) return showToast("Batch Name लिखें!");
-          showToast("Batch लॉन्च हो रहा है...");
-          postBatchApi({
-            action: "createBatch", category: document.getElementById("newBatchCat").value,
-            batchName: bName, className: document.getElementById("newBatchClass").value || "All India",
-            teacherName: document.getElementById("newBatchTeacher").value || "Anuj Sir",
-            teacherPhoto: document.getElementById("newBatchTeacherPhoto").value.trim(),
-            theme: document.getElementById("newBatchTheme").value,
-            priceType: document.getElementById("newBatchPriceType").value,
-            price: document.getElementById("newBatchPrice").value,
-            upiId: document.getElementById("newBatchUpi").value.trim()
-          }).then(function (r) { showToast(r.message || "Batch Created!"); document.getElementById("newBatchName").value = ""; syncBothDatabases(); });
+          var bName = document.getElementById("newBatchName").value.trim(); if (!bName) return showToast("Batch Name लिखें!");
+          postBatchApi({ action: "createBatch", category: document.getElementById("newBatchCat").value, batchName: bName, className: document.getElementById("newBatchClass").value || "All India", teacherName: document.getElementById("newBatchTeacher").value || "Anuj Sir", teacherPhoto: document.getElementById("newBatchTeacherPhoto").value.trim(), theme: document.getElementById("newBatchTheme").value, priceType: document.getElementById("newBatchPriceType").value, price: document.getElementById("newBatchPrice").value, upiId: document.getElementById("newBatchUpi").value.trim() })
+            .then(function (r) { showToast(r.message || "Batch Created!"); document.getElementById("newBatchName").value = ""; syncBothDatabases(); });
         }
         else if (act === "pubLec") {
           var bid = document.getElementById("admBatchSelect").value, ch = document.getElementById("admChapter").value.trim(), lt = document.getElementById("admTitle").value.trim(), vu = document.getElementById("admVideoUrl").value.trim();
           if (!bid || !ch || !lt || !vu) return showToast("सभी फ़ील्ड भरें!");
-          postBatchApi({
-            action: "addLecture", batchId: bid, subject: document.getElementById("admSubject").value,
-            chapterName: ch, lectureNo: document.getElementById("admLecNo").value, lectureTitle: lt,
-            videoUrl: vu, notesUrl: document.getElementById("admNotesUrl").value.trim(), dppUrl: document.getElementById("admDppUrl").value.trim()
-          }).then(function (r) { showToast(r.message || "Lecture Published!"); syncBothDatabases(); });
+          postBatchApi({ action: "addLecture", batchId: bid, subject: document.getElementById("admSubject").value, chapterName: ch, lectureNo: document.getElementById("admLecNo").value, lectureTitle: lt, videoUrl: vu, notesUrl: document.getElementById("admNotesUrl").value.trim(), dppUrl: document.getElementById("admDppUrl").value.trim() })
+            .then(function (r) { showToast(r.message || "Lecture Published!"); syncBothDatabases(); });
         }
         else if (act === "createOfflineTest") {
           var c = Math.min(100, Math.max(1, parseInt(document.getElementById("newMaxMcq").value, 10) || 30));
           var ak = {}; for (var q = 1; q <= c; q++) ak[q] = document.getElementById("ak_" + q).value;
-          postOfflineApi({
-            action: "createTest", testDate: document.getElementById("newTestDate").value,
-            subject: document.getElementById("newTestSub").value, testName: document.getElementById("newTestName").value || "Practice Test",
-            maxMcq: c, maxTheory: document.getElementById("newMaxTheory").value, answerKey: ak
-          }).then(function (r) { showToast("✅ Test Save हो गया!"); syncBothDatabases(); });
+          postOfflineApi({ action: "createTest", testDate: document.getElementById("newTestDate").value, subject: document.getElementById("newTestSub").value, testName: document.getElementById("newTestName").value || "Practice Test", maxMcq: c, maxTheory: document.getElementById("newMaxTheory").value, answerKey: ak })
+            .then(function (r) { showToast("✅ Test Save हो गया!"); syncBothDatabases(); });
         }
         else if (act === "saveOfflineStu") {
-          postOfflineApi({
-            action: "saveStudent", rollNo: document.getElementById("stRoll").value,
-            name: document.getElementById("stName").value, fatherName: document.getElementById("stFather").value,
-            className: document.getElementById("stClass").value
-          }).then(function (r) { showToast(r.message || "Student Saved!"); });
+          postOfflineApi({ action: "saveStudent", rollNo: document.getElementById("stRoll").value, name: document.getElementById("stName").value, fatherName: document.getElementById("stFather").value, className: document.getElementById("stClass").value })
+            .then(function (r) { showToast(r.message || "Student Saved!"); });
         }
         else if (act === "pubMat") {
           var mt = document.getElementById("matTitle").value.trim(), mp = document.getElementById("matPdfUrl").value.trim();
           if (!mt || !mp) return showToast("Title और PDF Link भरें!");
-          postBatchApi({
-            action: "addMaterial", category: document.getElementById("matCategory").value,
-            className: document.getElementById("matClass").value, subject: document.getElementById("matSubject").value,
-            title: mt, pdfUrl: mp
-          }).then(function (r) { showToast(r.message || "PDF Published!"); syncBothDatabases(); });
+          postBatchApi({ action: "addMaterial", category: document.getElementById("matCategory").value, className: document.getElementById("matClass").value, subject: document.getElementById("matSubject").value, title: mt, pdfUrl: mp })
+            .then(function (r) { showToast(r.message || "PDF Published!"); syncBothDatabases(); });
         }
       });
 
@@ -1851,4 +1533,3 @@
   </script>
 </body>
 </html>
-
