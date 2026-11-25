@@ -3,1533 +3,1161 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <meta name="theme-color" content="#0f5132" />
-  <title>Concept Math Hub — Complete Portal</title>
+  <meta name="theme-color" content="#047857" />
+  <title>Concept Math Hub — Complete Unified Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
   <style>
     :root {
-      --primary: #0f5132;
-      --primary-dark: #062416;
-      --primary-soft: #e6f4ed;
-      --gold: #facc15;
-      --bg: #eef3f0;
+      --primary: #047857;
+      --primary-dark: #064e3b;
+      --primary-soft: #d1fae5;
+      --bg: #f1f5f9;
       --card: #ffffff;
       --text: #0f172a;
       --muted: #64748b;
-      --border: #d6e2db;
+      --border: #e2e8f0;
+      --danger: #ef4444;
+      --warning: #f59e0b;
+      --success: #10b981;
+      --review-color: #8b5cf6;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-      -webkit-tap-highlight-color: transparent;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', system-ui, sans-serif; -webkit-tap-highlight-color: transparent; }
+    html, body { width: 100%; max-width: 100vw; overflow-x: hidden; background: var(--bg); color: var(--text); font-size: 14.5px; padding-bottom: 84px; }
+    .katex { font-size: 1.2em !important; }
+    .hidden { display: none !important; }
 
-    html, body {
-      width: 100%;
-      max-width: 100vw;
-      overflow-x: hidden;
-      background: var(--bg);
-      color: var(--text);
-      font-size: 15px;
-      padding-bottom: 86px;
+    /* CINEMATIC INTRO SCREEN */
+    #opening-intro-screen {
+      position: fixed; inset: 0; width: 100vw; height: 100vh;
+      background: radial-gradient(circle at center, #064e3b 0%, #022c22 70%, #011812 100%);
+      z-index: 999999; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 20px; color: #fff; transition: opacity 0.5s;
     }
+    #opening-intro-screen.hide-intro { opacity: 0; pointer-events: none; }
+    .intro-logo-box img { width: 104px; height: 104px; border-radius: 50%; object-fit: cover; background: #fff; padding: 4px; border: 4px solid #34d399; box-shadow: 0 0 30px rgba(52,211,153,0.6); margin-bottom: 16px; }
+    .intro-brand-title { font-size: 28px; font-weight: 900; letter-spacing: 1.5px; background: linear-gradient(135deg, #fff 30%, #a7f3d0 70%, #fde047 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 8px; }
+    .intro-tagline { font-size: 14.5px; font-weight: 700; color: #facc15; margin-bottom: 4px; }
+    .intro-location { font-size: 10.5px; color: #a7f3d0; letter-spacing: 2.5px; }
+    .intro-progress-container { width: 240px; height: 6px; background: rgba(255,255,255,0.15); border-radius: 20px; margin-top: 26px; overflow: hidden; }
+    .intro-progress-bar { height: 100%; width: 0%; background: linear-gradient(90deg, #10b981, #facc15); transition: width 0.1s linear; }
+    .intro-skip-btn { margin-top: 20px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.3); color: #fff; padding: 7px 18px; border-radius: 20px; font-size: 11.5px; font-weight: 700; cursor: pointer; }
 
+    /* UNIFIED APP HEADER */
     .appbar {
-      background: linear-gradient(135deg, #062416 0%, #0f5132 60%, #14532d 100%);
-      color: #fff;
-      padding: 13px 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 4px 16px rgba(6, 36, 22, 0.28);
-      border-bottom: 2px solid #facc15;
+      background: linear-gradient(135deg, #043d2e, #064e3b 55%, #047857);
+      color: #fff; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center;
+      position: sticky; top: 0; z-index: 2100; border-bottom: 2px solid #facc15;
+      box-shadow: 0 6px 20px rgba(6,78,59,0.22);
     }
-    .brand-row { display: flex; align-items: center; gap: 10px; cursor: pointer; }
-    .logo-circle {
-      width: 42px; height: 42px; border-radius: 50%; background: #fff; color: var(--primary);
-      display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px;
-      border: 2.5px solid #facc15; flex-shrink: 0; overflow: hidden;
-    }
-    .logo-circle img, .rc-emblem img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .brand-text h1 { font-size: 16.5px; font-weight: 800; line-height: 1.2; }
-    .brand-text p { font-size: 10px; color: #fde047; font-weight: 700; }
+    .brand-row { display: flex; align-items: center; gap: 9px; cursor: pointer; }
+    .brand-row img { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; background: #fff; padding: 2px; border: 2px solid #facc15; }
+    .brand-text h1 { font-size: 15.5px; font-weight: 800; line-height: 1.15; }
+    .brand-text p { font-size: 9px; color: #fde047; font-weight: 700; letter-spacing: 0.4px; }
+    .header-actions { display: flex; align-items: center; gap: 6px; }
+    .hdr-pill-btn { background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.28); color: #fff; padding: 7px 10px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; }
+    .studio-btn { background: linear-gradient(135deg, #fde047, #f59e0b); color: #0f172a; border: none; padding: 7px 12px; border-radius: 18px; font-size: 12px; font-weight: 800; cursor: pointer; }
 
-    .lock-chip {
-      background: linear-gradient(135deg, #fde047, #f59e0b);
-      color: #0f172a; border: none; padding: 8px 13px; border-radius: 22px;
-      font-size: 12.5px; font-weight: 800; display: flex; align-items: center; gap: 4px;
-      cursor: pointer;
-    }
+    .container { width: 100%; max-width: 680px; margin: 0 auto; padding: 12px; }
+    .card { background: var(--card); border-radius: 20px; padding: 16px; margin-bottom: 14px; border: 1px solid var(--border); box-shadow: 0 6px 20px rgba(15,23,42,0.05); }
 
-    .container { width: 100%; max-width: 540px; margin: 0 auto; padding: 14px; }
+    /* QUICK MODE SWITCHER BAR AT TOP OF HOME */
+    .mode-switcher-ribbon {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px;
+      background: #e2e8f0; padding: 5px; border-radius: 16px; margin-bottom: 14px;
+    }
+    .msb-item {
+      border: none; background: transparent; padding: 9px 4px; border-radius: 12px;
+      font-size: 11.5px; font-weight: 800; color: #334155; cursor: pointer; text-align: center;
+    }
+    .msb-item.active { background: #047857; color: #fff; box-shadow: 0 3px 10px rgba(4,120,87,0.25); }
 
-    .card {
-      background: var(--card); border-radius: 20px; padding: 16px;
-      margin-bottom: 14px; box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05);
-      border: 1px solid var(--border);
+    /* V115 ONLINE TEST PORTAL STYLES */
+    .platform-banner {
+      background: linear-gradient(135deg, #064e3b, #047857); color: #fff; padding: 14px 16px;
+      border-radius: 20px; text-align: center; font-size: 14px; font-weight: 800;
+      margin-bottom: 12px; display: flex; align-items: center; justify-content: center; gap: 10px;
+      border: 1.5px solid #34d399;
     }
+    .daily-challenge-box {
+      background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #fff; padding: 13px 15px;
+      border-radius: 18px; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center; gap: 10px;
+    }
+    .quick-actions-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 16px; }
+    .quick-action-card {
+      background: #fff; border: 1px solid var(--border); border-radius: 16px; min-height: 78px;
+      padding: 9px 4px; text-align: center; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px;
+      box-shadow: 0 4px 12px rgba(15,23,42,0.04);
+    }
+    .quick-action-icon { width: 36px; height: 36px; border-radius: 11px; display: flex; align-items: center; justify-content: center; font-size: 15px; }
+    .quick-action-card span { font-size: 9.5px; font-weight: 700; color: var(--text); line-height: 1.15; }
 
-    /* MAIN FEATURED ONLINE TEST & TOPPER ZONE BANNER */
-    .online-exam-hero {
-      display: block;
-      text-decoration: none;
-      background: linear-gradient(135deg, #062416 0%, #0f5132 55%, #15803d 100%);
-      color: #fff;
-      border-radius: 22px;
-      padding: 18px 16px;
-      margin-bottom: 14px;
-      border: 2.5px solid #facc15;
-      box-shadow: 0 10px 26px rgba(6, 36, 22, 0.26);
-      transition: transform 0.12s;
-    }
-    .online-exam-hero:active { transform: scale(0.98); }
-    .oeh-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-    .oeh-badge {
-      display: inline-block; background: #facc15; color: #0f172a;
-      font-size: 10.5px; font-weight: 900; padding: 3px 10px; border-radius: 20px;
-      margin-bottom: 6px;
-    }
-    .online-exam-hero h2 { font-size: 19px; font-weight: 800; color: #fff; line-height: 1.25; }
-    .online-exam-hero p { font-size: 12px; color: #dcfce7; margin-top: 4px; font-weight: 600; }
-    .oeh-pills { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
-    .oeh-pill {
-      background: rgba(255,255,255,0.14); border: 1px solid rgba(250,204,21,0.4);
-      color: #fef08a; font-size: 10.5px; font-weight: 700; padding: 3px 9px; border-radius: 14px;
-    }
-    .oeh-cta {
-      margin-top: 12px; background: linear-gradient(135deg, #fde047, #f59e0b);
-      color: #0f172a; text-align: center; padding: 10px; border-radius: 13px;
-      font-size: 14px; font-weight: 900;
-    }
+    .form-group { margin-bottom: 14px; }
+    .form-group label { display: block; margin-bottom: 6px; font-weight: 700; font-size: 12.5px; color: #334155; }
+    input, select, textarea { width: 100%; padding: 11px 13px; border: 1.5px solid #cbd5e1; border-radius: 12px; font-size: 14px; background: #f8fafc; outline: none; }
+    input:focus, select:focus { border-color: var(--primary); background: #fff; }
 
-    /* SECONDARY LAUNCHER TILES (STUDY BATCHES & OFFLINE TEST) */
-    .launcher-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
-    .launch-tile {
-      background: #fff; border-radius: 20px; padding: 16px 12px; text-align: center;
-      border: 2px solid #d6e2db; cursor: pointer;
-      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
-      transition: transform 0.12s;
+    .class-btn-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; }
+    .class-option-btn {
+      background: #f8fafc; border: 1.5px solid var(--border); color: var(--text); padding: 9px 5px;
+      border-radius: 12px; min-height: 44px; font-size: 11px; font-weight: 700; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 4px;
     }
-    .launch-tile:active { transform: scale(0.97); }
-    .launch-tile.tile-study { border-color: #16a34a; background: linear-gradient(180deg, #f0fdf4 0%, #ffffff 100%); }
-    .launch-tile.tile-test  { border-color: #f59e0b; background: linear-gradient(180deg, #fffbeb 0%, #ffffff 100%); }
-    .tile-ico {
-      width: 48px; height: 48px; border-radius: 14px; margin: 0 auto 8px;
-      display: flex; align-items: center; justify-content: center; font-size: 24px;
-    }
-    .tile-study .tile-ico { background: #0f5132; color: #fff; }
-    .tile-test  .tile-ico { background: #d97706; color: #fff; }
-    .launch-tile h3 { font-size: 14.5px; font-weight: 800; color: #0f172a; }
-    .launch-tile p { font-size: 11px; color: #475569; margin-top: 3px; font-weight: 600; }
+    .class-option-btn.selected { background: var(--primary) !important; color: #fff !important; border-color: var(--primary-dark) !important; }
 
-    .vault-shortcuts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-    .v-chip {
-      background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 14px;
-      padding: 11px 6px; text-align: center; cursor: pointer; font-weight: 800; font-size: 11.5px; color: #1e293b;
-    }
-    .v-chip span { display: block; font-size: 19px; margin-bottom: 3px; }
-
-    .input-group { margin-bottom: 12px; }
-    .input-group label { display: block; font-size: 12.5px; font-weight: 700; color: #334155; margin-bottom: 5px; }
-    input, select, textarea {
-      width: 100%; min-height: 46px; padding: 10px 13px;
-      border: 1.5px solid #cbd5e1; border-radius: 12px;
-      font-size: 14.5px; background: #f8fafc; color: var(--text); outline: none;
-    }
-    input:focus, select:focus, textarea:focus { border-color: var(--primary); background: #fff; }
+    .custom-dropdown-header { background: #fff; border: 2px solid var(--border); border-radius: 13px; padding: 11px 13px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; min-height: 48px; }
+    .custom-dropdown-header.active-glow { border-color: #047857; background: #f0fdf4; }
+    .custom-dropdown-list { display: none; flex-direction: column; gap: 10px; margin-top: 8px; max-height: 250px; overflow-y: auto; background: #fff; border: 1px solid var(--border); border-radius: 13px; padding: 10px 8px; }
+    .custom-chap-option { position: relative; background: #f8fafc; border: 1.5px solid var(--border); border-radius: 13px; padding: 10px 12px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+    .custom-chap-option.viral-glow { border: 2px dashed #f59e0b !important; background: #fffdf5 !important; }
+    .chap-badge { font-size: 9.5px; font-weight: 800; padding: 2px 7px; border-radius: 10px; color: #fff; margin-left: 5px; }
+    .badge-most { background: #dc2626; } .badge-pyq { background: #d97706; } .badge-up { background: #0284c7; } .badge-new { background: #7c3aed; }
 
     .btn {
-      min-height: 44px; padding: 10px 15px; border: none; border-radius: 13px;
-      font-size: 13.5px; font-weight: 700; cursor: pointer;
-      display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-      text-decoration: none;
+      background: var(--primary); color: #fff; border: none; padding: 12px 15px; font-size: 13.5px;
+      font-weight: 700; border-radius: 13px; cursor: pointer; width: 100%; display: inline-flex;
+      align-items: center; justify-content: center; gap: 7px; text-decoration: none;
     }
-    .btn:active { opacity: 0.85; }
-    .btn-primary { background: linear-gradient(135deg, #0f5132, #15803d); color: #fff; }
-    .btn-amber { background: linear-gradient(135deg, #f59e0b, #d97706); color: #fff; }
-    .btn-soft { background: var(--primary-soft); color: var(--primary); border: 1.5px solid #b5dec7; }
-    .btn-block { width: 100%; }
+    .btn-amber { background: #d97706; color: #fff; }
+    .btn-soft { background: #e6f4ed; color: #047857; border: 1.5px solid #a7f3d0; }
+    .btn-outline { background: transparent; border: 2px solid var(--primary); color: var(--primary); }
     .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 
-    .cat-scroller { display: flex; gap: 7px; overflow-x: auto; padding-bottom: 6px; margin-bottom: 12px; scrollbar-width: none; }
-    .cat-scroller::-webkit-scrollbar { display: none; }
-    .cat-pill { white-space: nowrap; padding: 8px 13px; border-radius: 20px; border: 1.5px solid #cbd5e1; background: #fff; color: #334155; font-size: 12px; font-weight: 800; cursor: pointer; flex-shrink: 0; }
-    .cat-pill.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+    /* EXAM ENGINE STYLES */
+    .exam-header { background: #fff; padding: 13px 15px; border-radius: 16px; border: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .timer-box { background: #ecfdf5; color: #047857; font-weight: 800; font-size: 15px; padding: 7px 13px; border-radius: 11px; border: 1.5px solid #a7f3d0; }
+    .timer-box.warning { background: #fef2f2; color: #dc2626; border-color: #fca5a5; }
+    .progress-bar-container { width: 100%; height: 6px; background: #e2e8f0; border-radius: 10px; margin-bottom: 12px; overflow: hidden; }
+    .progress-bar-fill { height: 100%; width: 0%; background: var(--primary); transition: width 0.2s; }
+    .question-text { font-size: 15.5px; font-weight: 600; line-height: 1.65; margin-bottom: 16px; }
+    .question-text img { display: block; margin: 12px auto; max-width: 90%; max-height: 210px; border-radius: 10px; border: 1px solid #e2e8f0; }
+    .options-list { display: flex; flex-direction: column; gap: 9px; margin-bottom: 16px; }
+    .option-item { background: #f8fafc; border: 1.5px solid var(--border); padding: 11px 13px; border-radius: 12px; cursor: pointer; display: flex; align-items: center; gap: 9px; font-size: 14px; }
+    .option-item.selected { border-color: var(--primary); background: var(--primary-soft); font-weight: 700; }
+    .exam-actions { display: grid; grid-template-columns: 1fr 1fr 1.2fr; gap: 8px; }
+    .palette-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; max-height: 160px; overflow-y: auto; margin-top: 8px; }
+    .palette-btn { padding: 7px 0; border: 1px solid var(--border); background: #f8fafc; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; }
+    .palette-btn.answered { background: var(--primary); color: #fff; }
+    .palette-btn.review { background: var(--review-color); color: #fff; }
+    .palette-btn.current { outline: 2px solid #0f172a; }
 
-    .mode-switch { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; background: #dce7e1; padding: 5px; border-radius: 14px; margin-bottom: 12px; }
-    .ms-btn { min-height: 40px; border: none; border-radius: 10px; background: transparent; font-size: 13.5px; font-weight: 800; color: #334155; cursor: pointer; }
-    .ms-btn.active { background: var(--primary); color: #fff; }
+    /* RESULT & DASHBOARD */
+    .score-circle { width: 125px; height: 125px; border-radius: 50%; background: linear-gradient(135deg, #ecfdf5, #d1fae5); color: var(--primary-dark); display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 12px auto 16px; border: 4px solid var(--primary); }
+    .score-circle span:first-child { font-size: 32px; font-weight: 900; }
+    .result-stats-supergrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 10px; }
+    .res-stat-card { background: #f8fafc; border: 1.5px solid var(--border); border-radius: 14px; padding: 10px 6px; text-align: center; }
+    .res-stat-card h4 { font-size: 10px; color: var(--muted); text-transform: uppercase; }
+    .res-stat-card p { font-size: 14.5px; font-weight: 800; }
+    .resource-btn-pair-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin-top: 9px; }
+    .img2-metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 7px; margin: 12px 0; }
+    .img2-metric-card { background: #f8fafc; border: 1px solid var(--border); border-radius: 13px; padding: 10px 4px; text-align: center; }
+    .img2-metric-card .m-val { font-size: 16px; font-weight: 800; }
+    .img2-metric-card .m-lbl { font-size: 9px; color: var(--muted); font-weight: 700; }
+    .img2-history-card { background: #fff; border: 1.5px solid var(--border); border-left: 5px solid #047857; border-radius: 14px; padding: 11px 13px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
 
-    .batch-card { background: #fff; border-radius: 22px; overflow: hidden; border: 1.5px solid #e2e8f0; margin-bottom: 16px; box-shadow: 0 8px 22px rgba(15, 23, 42, 0.07); }
-    .batch-banner { color: #fff; padding: 16px 14px 16px 16px; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-    .banner-left { flex: 1; min-width: 0; }
-    .banner-right { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; width: 86px; text-align: center; }
-    .teacher-avatar-frame { width: 72px; height: 72px; border-radius: 50%; border: 3px solid #facc15; background: #fff; overflow: hidden; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 20px; color: #0f5132; }
-    .teacher-avatar-frame img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
-    .teacher-name-chip { margin-top: 6px; background: rgba(0, 0, 0, 0.45); border: 1px solid rgba(250, 204, 21, 0.55); color: #fde047; font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 12px; max-width: 86px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-
-    .theme-emerald { background: linear-gradient(135deg, #062c1b 0%, #0f5132 55%, #166534 100%); border-bottom: 4px solid #facc15; }
-    .theme-crimson { background: linear-gradient(135deg, #450a0a 0%, #991b1b 55%, #dc2626 100%); border-bottom: 4px solid #fbbf24; }
-    .theme-indigo  { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 55%, #3730a3 100%); border-bottom: 4px solid #38bdf8; }
-    .theme-teal    { background: linear-gradient(135deg, #042f2e 0%, #115e59 55%, #0d9488 100%); border-bottom: 4px solid #a7f3d0; }
-    .theme-purple  { background: linear-gradient(135deg, #2e1065 0%, #581c87 55%, #7e22ce 100%); border-bottom: 4px solid #f472b6; }
-
-    .badge-strip { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 7px; }
-    .live-pill { background: rgba(0, 0, 0, 0.38); color: #fde047; font-size: 10px; font-weight: 800; padding: 3px 9px; border-radius: 20px; }
-    .price-ribbon { font-size: 10px; font-weight: 900; padding: 3px 9px; border-radius: 20px; }
-    .ribbon-free { background: #facc15; color: #0f172a; }
-    .ribbon-paid { background: #ffffff; color: #0f172a; }
-    .ribbon-joined { background: #22c55e; color: #ffffff; }
-
-    .batch-banner h3 { font-size: 17px; font-weight: 800; line-height: 1.3; }
-    .batch-banner .meta { font-size: 11.5px; color: rgba(255,255,255,0.9); margin-top: 6px; font-weight: 600; }
-    .batch-body { padding: 14px 16px; }
-    .batch-desc { font-size: 13px; color: #475569; line-height: 1.5; margin-bottom: 12px; }
-    .price-row { display: flex; align-items: center; justify-content: space-between; padding-top: 12px; border-top: 1.5px dashed #e2e8f0; }
-    .price-tag-box .lbl { font-size: 10px; color: #64748b; font-weight: 700; display: block; }
-    .price-val { font-size: 20px; font-weight: 900; color: #0f172a; }
-    .price-val.is-free { color: #15803d; }
-    .price-mrp { font-size: 12.5px; color: #94a3b8; text-decoration: line-through; margin-left: 5px; }
-
-    .nav-crumb { display: flex; align-items: center; gap: 10px; background: #fff; padding: 10px 14px; border-radius: 14px; border: 1.5px solid var(--border); margin-bottom: 14px; }
-    .back-pill { background: var(--primary-soft); color: var(--primary); border: none; padding: 7px 12px; border-radius: 10px; font-weight: 800; font-size: 13px; cursor: pointer; }
-    .crumb-title { font-size: 14px; font-weight: 700; color: #0f172a; }
-
-    .subj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .subj-card { background: #fff; border: 1.5px solid var(--border); border-radius: 18px; padding: 16px 14px; cursor: pointer; }
-    .subj-ico { width: 44px; height: 44px; border-radius: 12px; background: var(--primary-soft); color: var(--primary); font-size: 22px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; font-weight: 800; }
-
-    .chap-row { background: #fff; border: 1.5px solid var(--border); border-radius: 16px; padding: 14px; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; gap: 10px; cursor: pointer; }
-    .chap-num { width: 38px; height: 38px; border-radius: 10px; background: var(--primary); color: #fff; font-weight: 800; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-
-    .lec-card { background: #fff; border: 1.5px solid var(--border); border-radius: 16px; padding: 14px; margin-bottom: 12px; }
-    .lec-top { display: flex; gap: 11px; align-items: flex-start; cursor: pointer; }
-    .lec-play-badge { width: 44px; height: 44px; border-radius: 12px; background: linear-gradient(135deg, #0f5132, #16a34a); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
-
-    .player-shell { background: #000; border-radius: 16px; overflow: hidden; border: 2.5px solid #0f5132; margin-bottom: 10px; position: relative; }
-    .video-aspect { position: relative; width: 100%; padding-top: 56.25%; background: #000; }
+    /* ONLINE BATCHES & OFFLINE REPORT CARD STYLES */
+    .batch-card { background: #fff; border-radius: 20px; overflow: hidden; border: 1.5px solid var(--border); margin-bottom: 14px; }
+    .batch-banner { background: linear-gradient(135deg, #062c1b, #0f5132, #166534); color: #fff; padding: 15px; display: flex; justify-content: space-between; align-items: center; gap: 10px; border-bottom: 3px solid #facc15; }
+    .teacher-avatar-frame { width: 64px; height: 64px; border-radius: 50%; border: 2.5px solid #facc15; background: #fff; overflow: hidden; display: flex; align-items: center; justify-content: center; font-weight: 800; color: #0f5132; flex-shrink: 0; }
+    .teacher-avatar-frame img { width: 100%; height: 100%; object-fit: cover; }
+    .subj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .subj-card, .chap-row, .lec-card { background: #fff; border: 1.5px solid var(--border); border-radius: 15px; padding: 13px; margin-bottom: 10px; cursor: pointer; }
+    .video-aspect { position: relative; width: 100%; padding-top: 56.25%; background: #000; border-radius: 14px; overflow: hidden; margin-bottom: 10px; }
     .video-aspect iframe, #ytPlayerContainer { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-    .yt-top-shield { position: absolute; top: 0; left: 0; right: 0; height: 52px; z-index: 10; background: transparent; }
-    .student-watermark { position: absolute; bottom: 44px; right: 12px; z-index: 11; background: rgba(0,0,0,0.5); color: rgba(255,255,255,0.8); padding: 2px 8px; border-radius: 6px; font-size: 10.5px; font-weight: 700; pointer-events: none; }
-    .pw-controls-bar { background: #0f172a; color: #fff; padding: 8px 10px; display: flex; align-items: center; justify-content: space-between; gap: 6px; flex-wrap: wrap; }
-    .ctrl-btn { background: #1e293b; color: #fff; border: 1px solid #334155; padding: 6px 10px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; }
-    .ctrl-btn.active-spd { background: #facc15; color: #0f172a; border-color: #facc15; }
 
-    .cls-tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; background: #dce7e1; padding: 5px; border-radius: 14px; margin-bottom: 12px; }
-    .ctab { min-height: 38px; border: none; border-radius: 10px; background: transparent; font-size: 12.5px; font-weight: 700; color: #334155; cursor: pointer; }
-    .ctab.active { background: var(--primary); color: #fff; }
+    .test-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 12px; background: #f8fbf9; border: 1.5px solid var(--border); border-radius: 15px; margin-bottom: 9px; cursor: pointer; }
+    .date-pill { background: #0f5132; color: #fff; padding: 7px 9px; border-radius: 11px; font-size: 11px; font-weight: 700; text-align: center; min-width: 74px; }
+    .score-tag { background: #fef3c7; color: #92400e; padding: 6px 10px; border-radius: 18px; font-size: 12.5px; font-weight: 800; }
 
-    .mat-card { background: #fff; border: 1.5px solid #e2e8f0; border-radius: 18px; padding: 14px; margin-bottom: 12px; }
-    .mat-top { display: flex; gap: 11px; align-items: flex-start; margin-bottom: 10px; }
-    .mat-badge-ico { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; font-weight: 800; background: #dcfce7; color: #15803d; }
-    .mat-pills { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 4px; }
-    .mpill { font-size: 10.5px; font-weight: 800; padding: 2px 8px; border-radius: 6px; background: #f1f5f9; color: #334155; }
+    .report-sheet { width: 100%; background: #fff; border: 4px solid #0f5132; border-radius: 14px; padding: 6px; margin: 10px 0; }
+    .rc-inner { border: 2px solid #d97706; padding: 14px 12px; border-radius: 9px; }
+    .rc-header { background: linear-gradient(135deg, #0f5132, #15803d); color: #fff; text-align: center; padding: 12px 10px; border-radius: 8px; margin-bottom: 10px; border-bottom: 3px solid #f59e0b; }
+    .rc-student-box { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 10px; background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 10px; padding: 9px 11px; margin-bottom: 10px; font-size: 12px; }
+    .rc-table { width: 100%; border-collapse: collapse; margin-bottom: 10px; font-size: 11.5px; }
+    .rc-table th { background: #0f5132; color: #fff; padding: 7px 4px; border: 1px solid #0f5132; }
+    .rc-table td { padding: 7px 4px; border: 1px solid #cbd5e1; text-align: center; font-weight: 600; }
+    .rc-signs { display: flex; justify-content: space-between; margin-top: 22px; font-size: 11px; font-weight: 700; }
+    .sign-line { border-top: 2px solid #0f5132; width: 130px; text-align: center; padding-top: 4px; }
 
-    .test-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 13px; background: #f8fbf9; border: 1.5px solid var(--border); border-radius: 16px; margin-bottom: 10px; cursor: pointer; }
-    .date-pill { background: var(--primary); color: #fff; padding: 8px 10px; border-radius: 12px; font-size: 11.5px; font-weight: 700; text-align: center; min-width: 78px; line-height: 1.25; }
-    .score-tag { background: #fef3c7; color: #92400e; padding: 7px 11px; border-radius: 20px; font-size: 13px; font-weight: 800; white-space: nowrap; }
+    #omrPreviewCanvas { width: 100%; border-radius: 12px; border: 2px solid #0f5132; margin: 8px 0; display: block; }
+    .q-chip { display: inline-block; margin: 2px; padding: 4px 7px; background: #fff; border: 1px solid #cbd5e1; border-radius: 7px; font-size: 11.5px; font-weight: 700; cursor: pointer; }
+    .ak-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; max-height: 220px; overflow-y: auto; padding: 8px; background: #f1f5f9; border-radius: 12px; margin-bottom: 12px; }
+    .ak-cell { display: flex; align-items: center; justify-content: space-between; background: #fff; padding: 4px 7px; border-radius: 8px; font-size: 12px; font-weight: 700; }
+    .ak-cell select { min-height: 32px; width: 50px; padding: 2px; }
 
-    .cam-box { position: relative; width: 100%; border-radius: 16px; overflow: hidden; background: #000; border: 3px solid var(--primary); margin: 12px 0; }
-    video#omrVideo { width: 100%; display: block; max-height: 310px; object-fit: cover; }
-    .cam-target { position: absolute; inset: 7% 4%; border: 2.5px solid #22c55e; border-radius: 10px; box-shadow: 0 0 0 9999px rgba(0,0,0,0.38); pointer-events: none; }
-    .cam-hint { position: absolute; bottom: 8px; left: 8px; right: 8px; text-align: center; background: rgba(0,0,0,0.72); color: #fef08a; padding: 5px 8px; border-radius: 8px; font-size: 11.5px; font-weight: 700; }
-    #omrPreviewCanvas { width: 100%; border-radius: 12px; border: 2.5px solid #0f5132; margin: 10px 0; display: block; background: #fff; }
-    .q-chip { display: inline-block; margin: 3px; padding: 5px 8px; background: #fff; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 12.5px; font-weight: 700; cursor: pointer; user-select: none; }
+    /* MODALS & BOTTOM NAV */
+    .modal { display: none; position: fixed; inset: 0; background: rgba(2,20,14,0.75); backdrop-filter: blur(4px); z-index: 3500; justify-content: center; align-items: center; padding: 14px; }
+    .modal-content { background: #fff; width: 100%; max-width: 560px; max-height: 88vh; border-radius: 22px; padding: 20px; display: flex; flex-direction: column; overflow-y: auto; }
+    .modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-bottom: 12px; }
+    .close-btn { background: none; border: none; font-size: 24px; cursor: pointer; color: var(--muted); }
+    .subject-choice-btn { background: #fff; border: 1.5px solid var(--border); border-radius: 13px; padding: 13px 15px; display: flex; align-items: center; justify-content: space-between; font-size: 13.5px; font-weight: 700; cursor: pointer; width: 100%; }
+    .chapter-item-btn { display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; background: #f8fafc; border: 1px solid var(--border); border-radius: 12px; font-weight: 600; font-size: 13.5px; cursor: pointer; width: 100%; margin-bottom: 8px; }
+    .review-item { background: #f9fafb; border: 1px solid var(--border); border-radius: 12px; padding: 13px; margin-bottom: 12px; }
+    .solution-box { background: #e0f2fe; border-left: 4px solid #0284c7; padding: 10px; border-radius: 8px; font-size: 12.5px; margin-top: 6px; }
+    .formula-beauty-card { background: #fff; border: 1px solid var(--border); border-top: 4px solid #3b82f6; border-radius: 13px; padding: 14px; margin-bottom: 12px; }
+    .formula-content-box { background: #f8fafc; border: 1px solid var(--border); padding: 10px; border-radius: 9px; font-size: 13.5px; white-space: pre-line; margin-top: 6px; }
 
-    .ak-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; max-height: 240px; overflow-y: auto; padding: 10px; background: #f1f5f9; border-radius: 14px; margin-bottom: 14px; }
-    .ak-cell { display: flex; align-items: center; justify-content: space-between; background: #fff; padding: 5px 8px; border-radius: 10px; font-size: 12.5px; font-weight: 700; }
-    .ak-cell select { min-height: 36px; width: 54px; padding: 2px 5px; font-size: 13.5px; border-radius: 8px; }
-
-    .report-sheet, .report-sheet * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }
-    .report-sheet { width: 100%; background: #ffffff; border: 4px solid #0f5132; border-radius: 14px; padding: 6px; margin: 10px 0; box-shadow: 0 6px 20px rgba(15, 81, 50, 0.12); }
-    .rc-inner { background: #ffffff; border: 2px solid #d97706; padding: 16px 14px; border-radius: 9px; }
-    .rc-header { background: linear-gradient(135deg, #0f5132 0%, #15803d 100%); color: #ffffff; text-align: center; padding: 14px 10px; border-radius: 8px; margin-bottom: 12px; border-bottom: 4px solid #f59e0b; }
-    .rc-emblem { width: 56px; height: 56px; border-radius: 50%; background: #ffffff; color: #0f5132; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; border: 3px solid #facc15; margin: 0 auto 6px; overflow: hidden; }
-    .rc-header h2 { font-size: 19px; font-weight: 800; color: #ffffff; text-transform: uppercase; }
-    .rc-header .sub { font-size: 11px; color: #dcfce7; font-weight: 600; margin-top: 2px; }
-    .rc-badge-title { display: inline-block; margin-top: 8px; background: #facc15; color: #0f172a; padding: 4px 16px; border-radius: 20px; font-size: 11px; font-weight: 800; }
-    .rc-student-box { display: grid; grid-template-columns: 1fr 1fr; gap: 7px 12px; background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 10px; padding: 10px 12px; margin-bottom: 12px; font-size: 12.5px; color: #0f172a; }
-    .rc-student-box span { color: #166534; font-weight: 600; }
-    .rc-table { width: 100%; border-collapse: collapse; margin-bottom: 12px; font-size: 12px; }
-    .rc-table th { background: #0f5132; color: #ffffff; padding: 8px 5px; border: 1px solid #0f5132; font-weight: 700; }
-    .rc-table td { padding: 8px 5px; border: 1px solid #cbd5e1; text-align: center; color: #0f172a; font-weight: 600; }
-    .pill-omr { background: #e0f2fe; color: #0369a1; padding: 2px 6px; border-radius: 6px; font-weight: 700; }
-    .pill-th { background: #f3e8ff; color: #6b21a8; padding: 2px 6px; border-radius: 6px; font-weight: 700; }
-    .pill-pct { background: #dcfce7; color: #15803d; padding: 2px 7px; border-radius: 6px; font-weight: 800; }
-    .pill-rank { background: #fef3c7; color: #b45309; padding: 2px 7px; border-radius: 6px; font-weight: 800; }
-    .rc-summary-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 7px; margin-bottom: 12px; }
-    .rc-stat { border-radius: 10px; padding: 8px 4px; text-align: center; }
-    .rc-stat.s1 { background: #ecfdf5; border: 1.5px solid #6ee7b7; }
-    .rc-stat.s2 { background: #eff6ff; border: 1.5px solid #93c5fd; }
-    .rc-stat.s3 { background: #fffbeb; border: 1.5px solid #fcd34d; }
-    .rc-stat.s4 { background: #faf5ff; border: 1.5px solid #d8b4fe; }
-    .rc-stat .lbl { font-size: 9.5px; color: #475569; font-weight: 800; }
-    .rc-stat .val { font-size: 14.5px; font-weight: 800; color: #0f172a; margin-top: 2px; }
-    .rc-remarks { background: #fffbeb; border: 1.5px solid #f59e0b; border-left: 5px solid #d97706; padding: 10px 12px; border-radius: 8px; font-size: 12px; margin-bottom: 18px; color: #1e293b; }
-    .rc-signs { display: flex; justify-content: space-between; margin-top: 26px; font-size: 11.5px; font-weight: 700; color: #0f172a; gap: 10px; }
-    .sign-line { border-top: 2px solid #0f5132; width: 135px; text-align: center; padding-top: 5px; }
-
-    .admin-tabs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; background: #dce7e1; padding: 5px; border-radius: 14px; margin-bottom: 14px; }
-    .atab { min-height: 38px; border: none; border-radius: 10px; background: transparent; font-size: 11px; font-weight: 800; color: #334155; cursor: pointer; padding: 4px 2px; }
-    .atab.active { background: var(--primary); color: #fff; }
-
-    .modal-backdrop { position: fixed; inset: 0; background: rgba(6, 36, 22, 0.85); z-index: 999; display: flex; align-items: center; justify-content: center; padding: 16px; }
-    .modal-card { background: #fff; width: 100%; max-width: 380px; border-radius: 24px; padding: 22px 18px; box-shadow: 0 24px 50px rgba(0,0,0,0.38); border: 2.5px solid #facc15; max-height: 92vh; overflow-y: auto; }
-    .pin-box-input { text-align: center; font-size: 26px; font-weight: 800; letter-spacing: 12px; margin: 12px 0; border: 2px solid var(--primary); min-height: 52px; }
-    .upi-box { background: #f0fdf4; border: 1.5px dashed #16a34a; border-radius: 14px; padding: 12px; text-align: center; margin-bottom: 12px; }
-
-    .bottom-bar {
-      position: fixed; bottom: 0; left: 0; right: 0; height: 70px;
-      background: #fff; border-top: 1.5px solid #d6e2db;
-      display: flex; align-items: center; justify-content: space-around;
-      z-index: 500; box-shadow: 0 -4px 16px rgba(0,0,0,0.08);
-      padding: 0 2px;
+    .bottom-nav-bar {
+      position: fixed; bottom: 0; left: 0; right: 0; height: 68px; background: #fff;
+      border-top: 1.5px solid var(--border); display: flex; justify-content: space-around; align-items: center;
+      z-index: 2500; box-shadow: 0 -4px 18px rgba(0,0,0,0.07);
     }
-    .tab-btn {
-      flex: 1; height: 100%; border: none; background: none;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      gap: 2px; font-size: 10px; font-weight: 800; color: #64748b; cursor: pointer;
-      text-decoration: none;
-    }
-    .tab-btn.active { color: var(--primary); }
-    .tab-btn .ico { font-size: 18px; padding: 2px 11px; border-radius: 12px; }
-    .tab-btn.active .ico { background: var(--primary-soft); }
+    .nav-item { flex: 1; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 10px; font-weight: 800; color: var(--muted); cursor: pointer; border: none; background: none; }
+    .nav-item i { font-size: 17px; }
+    .nav-item.active { color: var(--primary); }
 
-    .hidden { display: none !important; }
-    .toast { position: fixed; bottom: 84px; left: 50%; transform: translateX(-50%); background: #1e293b; color: #fff; padding: 10px 18px; border-radius: 24px; font-size: 13px; font-weight: 600; z-index: 1000; max-width: 92vw; text-align: center; }
+    .toast { position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%); background: #0f172a; color: #fff; padding: 10px 18px; border-radius: 22px; font-size: 12.5px; font-weight: 700; z-index: 4000; max-width: 92vw; text-align: center; }
 
     @media print {
-      @page { size: A4 portrait; margin: 8mm; }
+      .appbar, .bottom-nav-bar, .no-print, .modal { display: none !important; }
       body { background: #fff !important; padding: 0 !important; }
-      .appbar, .bottom-bar, .no-print, .modal-backdrop { display: none !important; }
-      .container { max-width: 100% !important; padding: 0 !important; }
-      .report-sheet { box-shadow: none !important; margin: 0 !important; }
+      .report-sheet { border: 3px solid #0f5132 !important; }
     }
   </style>
 </head>
 <body>
 
-  <!-- STUDENT ENROLLMENT MODAL -->
-  <div id="enrollModal" class="modal-backdrop hidden no-print">
-    <div class="modal-card">
-      <h3 id="enrollModalHeading" style="color:var(--primary); font-size:18px; margin-bottom:4px;">🎓 Batch Join करें</h3>
-      <p id="enrollBatchTitle" style="font-size:13px; color:var(--muted); margin-bottom:12px; font-weight:600;"></p>
-      <div id="paidPaymentSection" class="upi-box hidden">
-        <div style="font-size:12px; font-weight:800; color:#166534;">💳 BATCH FEE PAYMENT</div>
-        <div id="paidAmountTag" style="font-size:24px; font-weight:900; color:#0f172a; margin:4px 0;">₹499</div>
-        <div id="paidUpiDisplay" style="font-size:13px; font-weight:700; color:#0f5132; background:#fff; padding:6px 10px; border-radius:8px; border:1px solid #86efac; margin:6px 0;"></div>
-        <div class="input-group" style="margin-top:10px; margin-bottom:0; text-align:left;">
-          <label>Payment Transaction ID / UTR No.</label>
-          <input type="text" id="enrPaymentRef" placeholder="जैसे: 432891045612" />
-        </div>
-      </div>
-      <div class="input-group"><label>आपका पूरा नाम</label><input type="text" id="enrName" placeholder="जैसे: अंकुर कुमार" /></div>
-      <div class="input-group"><label>Mobile No. या Roll No.</label><input type="text" id="enrId" placeholder="जैसे: 9876543210 या 101" inputmode="numeric" /></div>
-      <div class="input-group">
-        <label>Course / Class</label>
-        <input type="text" id="enrClass" list="courseOptionsList" value="Class 10th (UP Board)" />
-        <datalist id="courseOptionsList">
-          <option value="Class 10th (UP Board)"><option value="Class 12th (UP Board)">
-          <option value="Class 9th"><option value="Class 11th">
-          <option value="Navodaya / Olympiad"><option value="SSC CGL / Competition">
-          <option value="B.Sc. / M.Sc. Math"><option value="CA Foundation / Inter">
-        </datalist>
-      </div>
-      <div class="grid-2" style="margin-top:8px;">
-        <button type="button" class="btn btn-soft" data-act="closeEnroll">रद्द करें</button>
-        <button type="button" id="enrollSubmitBtn" class="btn btn-primary" data-act="confirmEnroll">🚀 Join Now</button>
-      </div>
+  <!-- OPENING INTRO SCREEN (AUTO-CLOSES OR SKIP IN 1 CLICK) -->
+  <div id="opening-intro-screen">
+    <div class="intro-logo-box">
+      <img src="https://i.ibb.co/svN65dH2/6a1db809-59e7-49c3-bf94-390f2d41a28d.png" alt="Concept Math Hub Logo">
     </div>
+    <div class="intro-brand-title">CONCEPT MATH HUB</div>
+    <div class="intro-tagline"><i class="fa-solid fa-trophy"></i> "गणित अब डर नहीं, हथियार बनेगा"</div>
+    <div class="intro-location">SHAHALIPUR KOTRA, 246724</div>
+    <div class="intro-progress-container"><div class="intro-progress-bar" id="intro-bar"></div></div>
+    <button type="button" class="intro-skip-btn" onclick="closeIntroScreen()">Skip Intro →</button>
   </div>
 
-  <!-- TEACHER PIN MODAL -->
-  <div id="pinModal" class="modal-backdrop hidden no-print">
-    <div class="modal-card" style="text-align:center;">
-      <div style="font-size:32px; margin-bottom:6px;">🔐</div>
-      <h3 style="color:var(--primary); font-size:18px;">Teacher Master Studio</h3>
-      <p style="font-size:13px; color:var(--muted);">एडमिन पैनल खोलने के लिए PIN डालें</p>
-      <input type="password" id="pinField" class="pin-box-input" maxlength="4" inputmode="numeric" placeholder="••••" />
-      <div class="grid-2">
-        <button type="button" class="btn btn-soft" data-act="closePin">रद्द करें</button>
-        <button type="button" class="btn btn-primary" data-act="verifyPin">🔓 Unlock</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- APP TOP BAR -->
+  <!-- UNIFIED TOP HEADER -->
   <header class="appbar no-print">
-    <div class="brand-row" data-act="nav" data-val="home">
-      <div class="logo-circle" id="headerLogoBox">CMH</div>
+    <div class="brand-row" onclick="switchMasterView('online')">
+      <img src="https://i.ibb.co/svN65dH2/6a1db809-59e7-49c3-bf94-390f2d41a28d.png" alt="Logo">
       <div class="brand-text">
         <h1>Concept Math Hub</h1>
-        <p>SHAHALIPUR KOTRA, BIJNOR (246724)</p>
+        <p>SHAHALIPUR KOTRA, 246724</p>
       </div>
     </div>
-    <button type="button" class="lock-chip" data-act="openPin">🔐 Studio</button>
+    <div class="header-actions">
+      <button type="button" class="hdr-pill-btn" onclick="openProfileModal()"><i class="fa-solid fa-user"></i></button>
+      <button type="button" class="studio-btn" onclick="openStudioPin()">🔐 Studio</button>
+    </div>
   </header>
 
   <div id="toast" class="toast hidden"></div>
 
-  <!-- =======================================================
-       VIEW 0: COMPLETE 3-IN-1 HOME PORTAL
-       ======================================================= -->
-  <main id="view-home" class="container">
+  <div class="container">
+    <!-- TOP 3-IN-1 INSTANT SWITCHER BAR (0-SECOND SWITCH, ZERO RELOAD!) -->
+    <div class="mode-switcher-ribbon no-print">
+      <button type="button" class="msb-item active" id="msb-online" onclick="switchMasterView('online')">🏆 Online Test</button>
+      <button type="button" class="msb-item" id="msb-batches" onclick="switchMasterView('batches')">📚 Study Batches</button>
+      <button type="button" class="msb-item" id="msb-offline" onclick="switchMasterView('offline')">📋 Offline Result</button>
+    </div>
 
-    <!-- 1. FEATURED: ONLINE TEST & TOPPER ZONE PORTAL -->
-    <a href="https://script.google.com/macros/s/AKfycbysrq8zQvvvT9JMZCJtx7Zvzwk7nfG5m_lBYSSHCj-EOOPlgFkINpCnSWbUxdE4SYyT/exec" class="online-exam-hero">
-      <div class="oeh-top">
-        <div>
-          <span class="oeh-badge">★ MAIN ONLINE EXAM PORTAL ★</span>
-          <h2>Online Test &amp; Topper Zone</h2>
-          <p>Short Notes • Analysis • Revision • Mistakes • Student Login</p>
+    <!-- ===============================================================
+         SECTION 1: ONLINE TEST & TOPPER ZONE (V115 FULL ENGINE)
+         =============================================================== -->
+    <div id="master-online">
+      <div id="login-screen">
+        <div class="platform-banner">
+          <i class="fa-solid fa-shield-halved" style="color:#34d399;"></i>
+          <span>MATHS &amp; COMPETITIVE EXAMS No. 1 Portal <i class="fa-solid fa-star" style="color:#fbbf24;"></i></span>
         </div>
-        <div style="font-size:34px;">🏆</div>
-      </div>
-      <div class="oeh-pills">
-        <span class="oeh-pill">Junior &amp; Middle</span>
-        <span class="oeh-pill">Class 9th–12th</span>
-        <span class="oeh-pill">Navodaya</span>
-        <span class="oeh-pill">SSC / CGL</span>
-        <span class="oeh-pill">IIT-JEE / NDA</span>
-      </div>
-      <div class="oeh-cta">🚀 Online Test &amp; Topper Zone खोलें →</div>
-    </a>
 
-    <!-- 2. INSTANT 0-SECOND IN-APP SECTIONS -->
-    <div class="launcher-grid">
-      <div class="launch-tile tile-study" data-act="nav" data-val="batches">
-        <div class="tile-ico">📚</div>
-        <h3>Study &amp; Batches</h3>
-        <p>Video Classes, Notes &amp; DPP</p>
-      </div>
-      <div class="launch-tile tile-test" data-act="nav" data-val="offline">
-        <div class="tile-ico">📋</div>
-        <h3>Offline Test</h3>
-        <p>Roll No. Result &amp; Report Card</p>
-      </div>
-    </div>
-
-    <!-- 3. FREE STUDY VAULT -->
-    <div class="card">
-      <div style="font-size:14px; font-weight:800; color:var(--primary); margin-bottom:10px;">📂 Free Study Vault (PDF Downloads)</div>
-      <div class="vault-shortcuts">
-        <div class="v-chip" data-act="nav" data-val="vault" data-sub="TEST_PAPER"><span>📝</span>Test Papers</div>
-        <div class="v-chip" data-act="nav" data-val="vault" data-sub="PYQ"><span>📚</span>PYQ Sheets</div>
-        <div class="v-chip" data-act="nav" data-val="vault" data-sub="NOTES_FORMULA"><span>📄</span>Notes &amp; Formula</div>
-      </div>
-    </div>
-
-    <!-- 4. TEACHER STUDIO -->
-    <div class="card" style="background:linear-gradient(135deg, #f0fdf4, #ffffff); text-align:center;">
-      <p style="font-size:12.5px; color:#334155; font-weight:700; margin-bottom:8px;">👨‍🏫 Teacher Evaluation &amp; Batch Management</p>
-      <button type="button" class="btn btn-primary btn-block" data-act="openPin">🔐 Open Teacher Studio (OMR Scan • Marks • Batches)</button>
-    </div>
-  </main>
-
-  <!-- =======================================================
-       VIEW 1: ONLINE BATCHES & CLASSROOM
-       ======================================================= -->
-  <main id="view-batches" class="container hidden">
-    <div class="nav-crumb">
-      <button type="button" class="back-pill" data-act="nav" data-val="home">← Home</button>
-      <div class="crumb-title" id="welcomeStudentTag">🎓 Online Batches</div>
-      <button type="button" class="btn btn-soft" style="margin-left:auto; min-height:32px; padding:4px 10px; font-size:11.5px;" data-act="switchLogin">👤 ID</button>
-    </div>
-
-    <div class="mode-switch">
-      <button type="button" class="ms-btn active" id="ms-explore" data-act="subMode" data-val="explore">🏫 All Batches</button>
-      <button type="button" class="ms-btn" id="ms-my" data-act="subMode" data-val="my">▶️ My Batches</button>
-    </div>
-
-    <div id="sub-explore">
-      <div class="cat-scroller">
-        <button type="button" class="cat-pill active" data-act="filterCat" data-val="ALL">🔥 All</button>
-        <button type="button" class="cat-pill" data-act="filterCat" data-val="School">🏫 School (1–12)</button>
-        <button type="button" class="cat-pill" data-act="filterCat" data-val="Olympiad">🏆 Navodaya / Olympiad</button>
-        <button type="button" class="cat-pill" data-act="filterCat" data-val="Competition">🎯 SSC / B.Sc.</button>
-        <button type="button" class="cat-pill" data-act="filterCat" data-val="CA">📊 CA Hub</button>
-      </div>
-      <div id="allBatchesList"></div>
-    </div>
-
-    <div id="sub-my" class="hidden">
-      <div id="mb-batches-level"><div id="myBatchesMount"></div></div>
-      <div id="mb-subjects-level" class="hidden">
-        <div class="nav-crumb">
-          <button type="button" class="back-pill" data-act="backBatches">← Batches</button>
-          <div class="crumb-title" id="crumbBatchName"></div>
-        </div>
-        <div id="subjectsGridMount" class="subj-grid"></div>
-      </div>
-      <div id="mb-chapters-level" class="hidden">
-        <div class="nav-crumb">
-          <button type="button" class="back-pill" data-act="backSubjects">← Subjects</button>
-          <div class="crumb-title" id="crumbSubjectName"></div>
-        </div>
-        <div id="chaptersListMount"></div>
-      </div>
-      <div id="mb-lectures-level" class="hidden">
-        <div class="nav-crumb">
-          <button type="button" class="back-pill" data-act="backChapters">← Chapters</button>
-          <div class="crumb-title" id="crumbChapterName"></div>
-        </div>
-        <div id="lecturesListMount"></div>
-      </div>
-      <div id="mb-player-level" class="hidden">
-        <div class="nav-crumb">
-          <button type="button" class="back-pill" data-act="closePlayer">← Lectures</button>
-          <div class="crumb-title" id="playerLectureTitle"></div>
-        </div>
-        <div class="player-shell">
-          <div class="video-aspect">
-            <div id="ytPlayerContainer"></div>
-            <div class="yt-top-shield"></div>
-            <div class="student-watermark" id="playerWatermark">CMH Student</div>
+        <div class="daily-challenge-box">
+          <div>
+            <strong style="display:block; font-size:13px; margin-bottom:2px;"><i class="fa-solid fa-bolt" style="color:#fde047;"></i> Challenge of the Day</strong>
+            <span id="daily-challenge-text" style="font-size:11.5px;">लोड हो रहा है...</span>
           </div>
-          <div class="pw-controls-bar">
-            <div style="display:flex; gap:5px;">
-              <button type="button" class="ctrl-btn" data-act="seek" data-val="-10">⏪ -10s</button>
-              <button type="button" class="ctrl-btn" data-act="playPause">⏯ Play/Pause</button>
-              <button type="button" class="ctrl-btn" data-act="seek" data-val="10">+10s ⏩</button>
-            </div>
-            <div style="display:flex; gap:4px; align-items:center;">
-              <button type="button" class="ctrl-btn active-spd" id="spd-1" data-act="speed" data-val="1">1x</button>
-              <button type="button" class="ctrl-btn" id="spd-1.25" data-act="speed" data-val="1.25">1.25x</button>
-              <button type="button" class="ctrl-btn" id="spd-1.5" data-act="speed" data-val="1.5">1.5x</button>
-              <button type="button" class="ctrl-btn" id="spd-2" data-act="speed" data-val="2">2x</button>
-            </div>
+          <button type="button" class="btn" style="background:#fff; color:#1d4ed8; padding:7px 12px; font-size:11.5px; width:auto;" onclick="openDailyChallenge()">Solve</button>
+        </div>
+
+        <div class="quick-actions-grid">
+          <div class="quick-action-card" onclick="openChapterSelector('notes')">
+            <div class="quick-action-icon" style="background:#e0f2fe; color:#0284c7;"><i class="fa-solid fa-file-lines"></i></div>
+            <span>Short Notes</span>
+          </div>
+          <div class="quick-action-card" onclick="openChapterSelector('analysis')">
+            <div class="quick-action-icon" style="background:#ede9fe; color:#8b5cf6;"><i class="fa-solid fa-chart-pie"></i></div>
+            <span>Analysis</span>
+          </div>
+          <div class="quick-action-card" onclick="openChapterSelector('revision')">
+            <div class="quick-action-icon" style="background:#fef3c7; color:#d97706;"><i class="fa-solid fa-pen-to-square"></i></div>
+            <span>Revision</span>
+          </div>
+          <div class="quick-action-card" onclick="openChapterSelector('video')">
+            <div class="quick-action-icon" style="background:#fee2e2; color:#dc2626;"><i class="fa-brands fa-youtube"></i></div>
+            <span>Video Class</span>
+          </div>
+          <div class="quick-action-card" onclick="openFormulaMaster()">
+            <div class="quick-action-icon" style="background:#f3e8ff; color:#7c3aed;"><i class="fa-solid fa-square-root-variable"></i></div>
+            <span>Formula Vault</span>
+          </div>
+          <div class="quick-action-card" onclick="openDoubtBox()">
+            <div class="quick-action-icon" style="background:#dcfce7; color:#16a34a;"><i class="fa-brands fa-whatsapp"></i></div>
+            <span>Ask Doubt</span>
+          </div>
+          <div class="quick-action-card" onclick="openAnnouncements()">
+            <div class="quick-action-icon" style="background:#ffedd5; color:#c2410c;"><i class="fa-solid fa-bullhorn"></i></div>
+            <span>Notices</span>
+          </div>
+          <div class="quick-action-card" onclick="openLeaderboardModal()">
+            <div class="quick-action-icon" style="background:#fef9c3; color:#ca8a04;"><i class="fa-solid fa-trophy"></i></div>
+            <span>Topper Zone</span>
           </div>
         </div>
-        <div class="cls-tabs">
-          <button type="button" class="ctab active" id="ctab-notes" data-act="clsTab" data-val="notes">📄 Notes</button>
-          <button type="button" class="ctab" id="ctab-dpp" data-act="clsTab" data-val="dpp">📝 DPP</button>
-          <button type="button" class="ctab" id="ctab-doubt" data-act="clsTab" data-val="doubt">💬 Doubt</button>
+
+        <div class="card">
+          <h2 style="color:var(--primary-dark); font-size:18px; text-align:center; margin-bottom:4px;"><i class="fa-solid fa-graduation-cap" style="color:var(--primary);"></i> Student Portal Login</h2>
+          <p style="color:var(--muted); font-size:12px; text-align:center; margin-bottom:14px;">Select category &amp; enter details to start your test</p>
+
+          <form id="login-form" onsubmit="startExam(event)">
+            <div class="form-group">
+              <label><i class="fa-solid fa-book-open"></i> 1. Select Class / Exam Category</label>
+              <div class="class-btn-grid">
+                <button type="button" class="class-option-btn" id="cls-junior" onclick="selectClassBtn('Junior (Class 2-5)')">Junior (2-5)</button>
+                <button type="button" class="class-option-btn" id="cls-middle" onclick="selectClassBtn('Middle (Class 6-8)')">Middle (6-8)</button>
+                <button type="button" class="class-option-btn" id="cls-navodaya" onclick="selectClassBtn('Navodaya & Entrance')">Navodaya</button>
+                <button type="button" class="class-option-btn" id="cls-9" onclick="selectClassBtn('Class 9th Math')">Class 9th</button>
+                <button type="button" class="class-option-btn" id="cls-10" onclick="selectClassBtn('Class 10th Math')">Class 10th</button>
+                <button type="button" class="class-option-btn" id="cls-11-12" onclick="handleClass11_12Click()">Class 11-12</button>
+                <button type="button" class="class-option-btn" id="cls-ssc" onclick="selectClassBtn('SSC & CGL Exam')">SSC / CGL</button>
+                <button type="button" class="class-option-btn" id="cls-iit" onclick="selectClassBtn('IIT-JEE Math')">IIT-JEE</button>
+                <button type="button" class="class-option-btn" id="cls-nda" onclick="selectClassBtn('NDA Exam')">NDA Exam</button>
+                <button type="button" class="class-option-btn" id="cls-railway" onclick="selectClassBtn('Railway Exam')">Railway</button>
+                <button type="button" class="class-option-btn" id="cls-police" onclick="selectClassBtn('Police / SI Exam')">Police Exam</button>
+                <button type="button" class="class-option-btn" id="cls-adv" onclick="selectClassBtn('Advanced Batch')">Advanced</button>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label><i class="fa-solid fa-list-check"></i> 2. Select Chapter / Test</label>
+              <input type="hidden" id="selected-chapter" value="">
+              <div class="custom-dropdown-header" id="custom-dropdown-header" onclick="toggleChapterDropdown()">
+                <span id="selected-chap-display" style="font-size:13px; font-weight:600; color:#64748b;">-- Choose Active Chapter --</span>
+                <i class="fa-solid fa-chevron-down" id="chap-dropdown-icon" style="color:#64748b;"></i>
+              </div>
+              <div class="custom-dropdown-list" id="custom-dropdown-list"></div>
+            </div>
+
+            <div class="form-group">
+              <label>3. Student Full Name</label>
+              <input type="text" id="student-name" required placeholder="e.g. Sima">
+            </div>
+
+            <div class="form-group">
+              <label>4. Roll Number / ID</label>
+              <div style="display:flex; gap:8px;">
+                <input type="text" id="student-roll" required placeholder="e.g. 145" style="flex:1;">
+                <button type="button" class="btn" style="width:auto; padding:0 14px; font-size:12.5px; background:#0284c7;" onclick="checkHistoryManual()"><i class="fa-solid fa-search"></i> History</button>
+              </div>
+            </div>
+
+            <button type="submit" class="btn"><i class="fa-solid fa-rocket"></i> Start Test Now</button>
+          </form>
         </div>
-        <div id="cpane-notes" class="card"><div id="notesActionMount"></div></div>
-        <div id="cpane-dpp" class="card hidden"><div id="dppActionMount"></div></div>
-        <div id="cpane-doubt" class="card hidden">
-          <div class="input-group"><textarea id="doubtInputText" rows="2" placeholder="अपना प्रश्न लिखें..."></textarea></div>
-          <button type="button" class="btn btn-primary btn-block" style="margin-bottom:12px;" data-act="postDoubt">📤 Doubt भेजें</button>
-          <div id="lectureDoubtsMount"></div>
+
+        <!-- STUDENT V115 DASHBOARD -->
+        <div id="student-dashboard-area" class="card hidden">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <h3 style="font-size:16px; font-weight:800;">Student's Dashboard</h3>
+              <p style="font-size:11.5px; color:var(--muted);"><span id="img2-dash-roll">Roll --</span> • <span id="img2-dash-class">Class --</span></p>
+            </div>
+            <span style="background:#e6f7f0; color:#047857; font-size:10px; font-weight:800; padding:4px 10px; border-radius:16px;">V115 LIVE</span>
+          </div>
+          <div class="img2-metrics-grid">
+            <div class="img2-metric-card"><div class="m-val" id="dash-stat-tests">0</div><div class="m-lbl">TESTS</div></div>
+            <div class="img2-metric-card"><div class="m-val" id="dash-stat-avg">0%</div><div class="m-lbl">AVG</div></div>
+            <div class="img2-metric-card"><div class="m-val" id="dash-stat-best">0%</div><div class="m-lbl">BEST</div></div>
+            <div class="img2-metric-card"><div class="m-val" id="dash-stat-days">0</div><div class="m-lbl">DAYS</div></div>
+          </div>
+          <div id="dash-history-summary"></div>
+        </div>
+      </div>
+
+      <!-- EXAM RUNNING SCREEN -->
+      <div id="exam-screen" class="hidden">
+        <div class="exam-header">
+          <div>
+            <h3 id="active-chapter-title" style="font-size:14.5px; font-weight:800; color:var(--primary-dark);">Test</h3>
+            <p style="font-size:11px; color:var(--muted);">-0.25 Negative Marking</p>
+          </div>
+          <div class="timer-box" id="timer-display"><i class="fa-regular fa-clock"></i> <span id="time-left">15:00</span></div>
+        </div>
+        <div class="card">
+          <div class="progress-bar-container"><div class="progress-bar-fill" id="progress-fill"></div></div>
+          <div style="display:flex; justify-content:space-between; font-size:11px; font-weight:700; color:var(--muted); margin-bottom:10px;">
+            <span id="q-number-label">Question 1</span>
+            <span>+1 | -0.25</span>
+          </div>
+          <div class="question-text" id="question-text">Loading...</div>
+          <div class="options-list" id="options-list"></div>
+          <div class="exam-actions">
+            <button type="button" class="btn btn-outline" onclick="prevQuestion()">Prev</button>
+            <button type="button" class="btn" style="background:var(--review-color);" onclick="markForReview()">Review</button>
+            <button type="button" class="btn" onclick="nextQuestion()" id="next-btn">Next</button>
+          </div>
+        </div>
+        <div class="card">
+          <div style="display:flex; justify-content:space-between; font-size:12.5px; font-weight:700;">
+            <span>Question Palette</span><span id="answered-count" style="color:var(--primary);">0 Answered</span>
+          </div>
+          <div class="palette-grid" id="palette-grid"></div>
+          <button type="button" class="btn" style="background:var(--danger); margin-top:10px;" onclick="confirmSubmit()">Submit Exam</button>
+        </div>
+      </div>
+
+      <!-- EXAM RESULT SCREEN -->
+      <div id="result-screen" class="hidden">
+        <div class="card" style="text-align:center;">
+          <h2 style="color:var(--primary-dark); font-size:20px;">Assessment Completed!</h2>
+          <div class="score-circle"><span id="final-score-val">0</span><span id="total-q-label" style="font-size:11px;">Marks</span></div>
+          <div id="ai-behavior-feedback" style="background:#fff0f2; border:1.5px solid #fda4af; border-radius:14px; padding:12px; margin-bottom:14px; text-align:left; display:none;">
+            <strong style="color:#e11d48; font-size:13.5px;">🤖 अनुज भैया का स्मार्ट एनालिसिस</strong>
+            <div id="behavior-alerts-content" style="font-size:12.5px; margin-top:6px;"></div>
+          </div>
+          <div class="result-stats-supergrid">
+            <div class="res-stat-card" onclick="openReviewModal('correct')"><h4>Correct</h4><p id="stat-correct" style="color:var(--success);">0</p></div>
+            <div class="res-stat-card" onclick="openReviewModal('wrong')"><h4>Wrong</h4><p id="stat-wrong" style="color:var(--danger);">0</p></div>
+            <div class="res-stat-card"><h4>Time</h4><p id="stat-time">0m</p></div>
+          </div>
+          <div class="result-stats-supergrid">
+            <div class="res-stat-card"><h4>Accuracy</h4><p id="stat-accuracy">0%</p></div>
+            <div class="res-stat-card"><h4>Speed</h4><p id="stat-speed">0s/Q</p></div>
+            <div class="res-stat-card"><h4>Attempt</h4><p id="stat-attempt">0%</p></div>
+          </div>
+          <div id="topic-diagnosis-box" style="background:#fffbeb; border:1.5px solid #f59e0b; border-radius:14px; padding:12px; margin:12px 0; text-align:left;">
+            <strong style="color:#b45309; font-size:13.5px;">📊 Topic Mastery Diagnosis</strong>
+            <div id="topic-diagnosis-content" style="margin-top:8px;"></div>
+          </div>
+          <div id="retest-wrong-container" style="display:none; margin-bottom:10px;">
+            <button type="button" class="btn" style="background:#dc2626;" onclick="startWrongQuestionsRetest()">🔄 Re-Test Wrong Questions (<span id="wrong-q-count">0</span>)</button>
+          </div>
+          <div class="resource-btn-pair-grid">
+            <button type="button" class="btn" style="background:#3b82f6;" onclick="openCertificateModal()">🏆 Certificate</button>
+            <button type="button" class="btn btn-amber" onclick="openLeaderboardModal()">🥇 Top 3 Rank</button>
+          </div>
+          <button type="button" class="btn btn-outline" style="margin-top:10px;" onclick="backToOnlineHome()">← Take Another Test</button>
         </div>
       </div>
     </div>
-  </main>
 
-  <!-- =======================================================
-       VIEW 2: OFFLINE TEST & REPORT CARD (STUDENT PORTAL)
-       ======================================================= -->
-  <main id="view-offline" class="container hidden">
-    <div class="nav-crumb no-print">
-      <button type="button" class="back-pill" data-act="nav" data-val="home">← Home</button>
-      <div class="crumb-title">📋 Offline Test &amp; Report Card</div>
-    </div>
-
-    <div class="card no-print">
-      <p style="font-size:13px; color:var(--muted); margin-bottom:12px;">
-        अपना <strong>Roll No.</strong> डालें — आपके सभी ऑफ़लाइन टेस्ट की तारीख़वार सूची खुल जाएगी।
-      </p>
-      <div class="input-group" style="margin-bottom:10px;">
-        <input type="text" id="stuRollInput" placeholder="Roll No. डालें (जैसे: 101)" inputmode="numeric" />
+    <!-- ===============================================================
+         SECTION 2: ONLINE BATCHES & VIDEO CLASSROOM (0-SECOND SWITCH)
+         =============================================================== -->
+    <div id="master-batches" class="hidden">
+      <div class="card" style="display:flex; justify-content:space-between; align-items:center; padding:12px 14px;">
+        <strong id="welcomeStudentTag" style="color:var(--primary);">🎓 Online Batches &amp; Classes</strong>
+        <button type="button" class="btn btn-soft" style="width:auto; padding:6px 12px; font-size:12px;" onclick="openBatchLoginModal()">👤 Student ID</button>
       </div>
-      <button type="button" class="btn btn-primary btn-block" data-act="loadOfflineRes">🔍 Result &amp; Report Card देखें</button>
-    </div>
-
-    <div id="studentDataBox" class="hidden">
-      <div class="card no-print" style="background:linear-gradient(135deg, #f0fdf4, #ffffff);">
-        <h3 id="stuNameTitle" style="color:var(--primary); font-size:17px; margin-bottom:3px;"></h3>
-        <p id="stuSubTitle" style="font-size:13px; color:var(--muted); margin-bottom:14px;"></p>
-        <div class="grid-2">
-          <button type="button" class="btn btn-amber" data-act="combCard" data-val="5">📊 5 Tests Card</button>
-          <button type="button" class="btn btn-primary" data-act="combCard" data-val="10">📑 10 Tests Card</button>
+      <div class="grid-2" style="margin-bottom:12px;">
+        <button type="button" class="btn" id="ms-explore" onclick="switchBatchTab('explore')">🏫 All Batches</button>
+        <button type="button" class="btn btn-soft" id="ms-my" onclick="switchBatchTab('my')">▶️ My Batches</button>
+      </div>
+      <div id="sub-explore"><div id="allBatchesList"></div></div>
+      <div id="sub-my" class="hidden">
+        <div id="mb-batches-level"><div id="myBatchesMount"></div></div>
+        <div id="mb-subjects-level" class="hidden">
+          <button type="button" class="btn btn-soft" style="margin-bottom:10px;" onclick="showBatchSub('mb-batches-level')">← Back to Batches</button>
+          <div id="subjectsGridMount" class="subj-grid"></div>
+        </div>
+        <div id="mb-chapters-level" class="hidden">
+          <button type="button" class="btn btn-soft" style="margin-bottom:10px;" onclick="showBatchSub('mb-subjects-level')">← Back to Subjects</button>
+          <div id="chaptersListMount"></div>
+        </div>
+        <div id="mb-lectures-level" class="hidden">
+          <button type="button" class="btn btn-soft" style="margin-bottom:10px;" onclick="showBatchSub('mb-chapters-level')">← Back to Chapters</button>
+          <div id="lecturesListMount"></div>
+        </div>
+        <div id="mb-player-level" class="hidden">
+          <button type="button" class="btn btn-soft" style="margin-bottom:10px;" onclick="stopVideo(); showBatchSub('mb-lectures-level')">← Back to Lectures</button>
+          <div class="video-aspect"><div id="ytPlayerContainer"></div></div>
+          <div id="notesActionMount" style="margin-bottom:8px;"></div>
+          <div id="dppActionMount"></div>
         </div>
       </div>
+    </div>
 
+    <!-- ===============================================================
+         SECTION 3: OFFLINE TEST & REPORT CARD (0-SECOND SWITCH)
+         =============================================================== -->
+    <div id="master-offline" class="hidden">
       <div class="card no-print">
-        <div style="font-size:15px; font-weight:800; color:var(--primary); margin-bottom:10px;">📅 टेस्ट सूची (तारीख़ पर क्लिक करें)</div>
-        <div id="stuTestList"></div>
-      </div>
-
-      <div id="studentCardSection" class="hidden">
-        <div class="no-print" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-          <strong style="font-size:14px; color:var(--primary);">📄 Report Card Preview</strong>
-          <button type="button" class="btn btn-primary" style="min-height:40px; padding:8px 14px; font-size:13px;" data-act="printPage">🖨️ Print / PDF</button>
+        <h3 style="color:var(--primary); font-size:17px; margin-bottom:6px;">📋 Offline Test &amp; Report Card</h3>
+        <p style="font-size:12.5px; color:var(--muted); margin-bottom:12px;">अपना ऑफ़लाइन कोचिंग <strong>Roll No.</strong> डालें:</p>
+        <div class="form-group" style="margin-bottom:10px;">
+          <input type="text" id="stuRollInput" placeholder="Roll No. डालें (जैसे: 101)" inputmode="numeric" />
         </div>
-        <div id="studentCardMount"></div>
+        <button type="button" class="btn" onclick="loadOfflineResults()">🔍 Result &amp; Report Card देखें</button>
+      </div>
+      <div id="studentDataBox" class="hidden">
+        <div class="card no-print">
+          <h3 id="stuNameTitle" style="color:var(--primary); font-size:16px;"></h3>
+          <p id="stuSubTitle" style="font-size:12.5px; color:var(--muted); margin-bottom:12px;"></p>
+          <div class="grid-2">
+            <button type="button" class="btn btn-amber" onclick="buildCombinedCard(5, 'studentCardMount')">📊 5 Tests Card</button>
+            <button type="button" class="btn" onclick="buildCombinedCard(10, 'studentCardMount')">📑 10 Tests Card</button>
+          </div>
+        </div>
+        <div class="card no-print"><div id="stuTestList"></div></div>
+        <div id="studentCardSection" class="hidden">
+          <button type="button" class="btn no-print" style="margin-bottom:8px;" onclick="window.print()">🖨️ Print / Save PDF</button>
+          <div id="studentCardMount"></div>
+        </div>
       </div>
     </div>
-  </main>
 
-  <!-- =======================================================
-       VIEW 3: STUDY VAULT (TEST PAPERS, PYQ, NOTES PDF)
-       ======================================================= -->
-  <main id="view-vault" class="container hidden">
-    <div class="nav-crumb">
-      <button type="button" class="back-pill" data-act="nav" data-val="home">← Home</button>
-      <div class="crumb-title">📂 Study Vault (PDF)</div>
-    </div>
-    <div class="cls-tabs">
-      <button type="button" class="ctab active" id="vtab-TEST_PAPER" data-act="vaultTab" data-val="TEST_PAPER">📝 Test Paper</button>
-      <button type="button" class="ctab" id="vtab-PYQ" data-act="vaultTab" data-val="PYQ">📚 PYQ Sheet</button>
-      <button type="button" class="ctab" id="vtab-NOTES_FORMULA" data-act="vaultTab" data-val="NOTES_FORMULA">📄 Notes PDF</button>
-    </div>
-    <div id="vaultListMount"></div>
-  </main>
-
-  <!-- =======================================================
-       VIEW 4: UNIFIED TEACHER MASTER STUDIO
-       ======================================================= -->
-  <main id="view-admin" class="container hidden">
-    <div class="card no-print">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-        <h3 style="color:var(--primary); font-size:17px;">👨‍🏫 Teacher Master Studio</h3>
-        <button type="button" class="btn btn-soft" style="min-height:34px; padding:5px 11px; font-size:12px;" data-act="nav" data-val="home">← Home</button>
-      </div>
-
-      <div class="admin-tabs">
-        <button type="button" class="atab active" id="atab-omr" data-act="admTab" data-val="omr">📷 OMR Scan</button>
-        <button type="button" class="atab" id="atab-theory" data-act="admTab" data-val="theory">📝 Theory</button>
-        <button type="button" class="atab" id="atab-batch" data-act="admTab" data-val="batch">🎨 Batches</button>
-        <button type="button" class="atab" id="atab-setup" data-act="admTab" data-val="setup">⚙️ Setup/PDF</button>
-      </div>
-
-      <!-- ADMIN TAB 1: OMR SCANNER -->
-      <div id="apane-omr">
-        <div class="input-group">
-          <label>1. Offline Test चुनें</label>
-          <select id="omrTestSelect"></select>
+    <!-- ===============================================================
+         SECTION 4: TEACHER MASTER STUDIO (PIN: 9924)
+         =============================================================== -->
+    <div id="master-studio" class="hidden">
+      <div class="card no-print">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+          <h3 style="color:var(--primary);">👨‍🏫 Teacher Evaluation Studio</h3>
+          <button type="button" class="btn btn-soft" style="width:auto; padding:6px 12px;" onclick="switchMasterView('online')">← Exit</button>
         </div>
-        <div id="omrModeBadge" style="font-size:12px; font-weight:700; color:#0f5132; background:#e6f4ed; padding:8px 12px; border-radius:10px; margin-bottom:12px;">
-          ✅ Self-Calibrating Auto-Grid OMR Engine
-        </div>
-        <div class="input-group">
-          <label>2. Student Roll No.</label>
-          <input type="text" id="omrRollNo" placeholder="जैसे: 101" inputmode="numeric" />
-        </div>
-
-        <label class="btn btn-primary btn-block" style="margin-bottom:10px; font-size:15px;">
-          📷 Mobile Camera से सीधी Photo लेकर Scan करें
-          <input type="file" accept="image/*" capture="environment" hidden id="camFileInput" />
-        </label>
-
         <div class="grid-2" style="margin-bottom:12px;">
-          <label class="btn btn-soft">
-            🖼️ Gallery Photo चुनें
-            <input type="file" accept="image/*" hidden id="galFileInput" />
-          </label>
-          <button type="button" class="btn btn-amber" data-act="startCam">🎥 Live Camera</button>
+          <button type="button" class="btn" id="stab-omr" onclick="switchStudioTab('omr')">📷 OMR Scanner</button>
+          <button type="button" class="btn btn-soft" id="stab-theory" onclick="switchStudioTab('theory')">📝 Theory &amp; Card</button>
         </div>
-
-        <div id="camContainer" class="cam-box hidden">
-          <video id="omrVideo" autoplay playsinline></video>
-          <div class="cam-target"></div>
-          <div class="cam-hint">
-            <button type="button" class="btn btn-amber" style="min-height:36px; padding:4px 14px; font-size:12px;" data-act="capVideo">📸 Photo खींचें</button>
+        <div id="spane-omr">
+          <div class="form-group"><label>Offline Test चुनें</label><select id="omrTestSelect"></select></div>
+          <div class="form-group"><label>Student Roll No.</label><input type="text" id="omrRollNo" placeholder="101" inputmode="numeric" /></div>
+          <label class="btn" style="margin-bottom:10px;">📷 Camera Photo से OMR Scan करें<input type="file" accept="image/*" capture="environment" hidden id="camFileInput" /></label>
+          <label class="btn btn-soft" style="margin-bottom:10px;">🖼️ Gallery Photo चुनें<input type="file" accept="image/*" hidden id="galFileInput" /></label>
+          <canvas id="omrCanvas" class="hidden"></canvas>
+          <div id="omrScanOutput" class="hidden">
+            <p id="omrSummaryText" style="font-weight:800; margin:8px 0;"></p>
+            <canvas id="omrPreviewCanvas"></canvas>
+            <button type="button" class="btn" onclick="saveOMR()">💾 Sheet में Save करें</button>
+            <div id="omrDetailChips" style="margin-top:10px;"></div>
           </div>
         </div>
-        <canvas id="omrCanvas" class="hidden"></canvas>
-
-        <div id="omrScanOutput" class="hidden" style="background:#f0fdf4; border:1.5px solid #86efac; border-radius:16px; padding:14px;">
-          <h4 style="color:#166534; font-size:15px;">✅ Auto-Locked OMR Result</h4>
-          <p id="omrSummaryText" style="font-size:15px; font-weight:800; margin:6px 0 4px;"></p>
-          <canvas id="omrPreviewCanvas"></canvas>
-          <button type="button" class="btn btn-primary btn-block" data-act="saveOMR">💾 Google Sheet में Save करें</button>
-          <div id="omrDetailChips" style="margin-top:12px; line-height:1.9; max-height:220px; overflow-y:auto;"></div>
+        <div id="spane-theory" class="hidden">
+          <div class="form-group"><label>Offline Test चुनें</label><select id="theoryTestSelect"></select></div>
+          <div class="form-group"><label>Roll No.</label><input type="text" id="theoryRollNo" placeholder="101" /></div>
+          <div class="form-group"><label>Theory Marks</label><input type="number" step="0.5" id="theoryMarksInput" placeholder="24.5" /></div>
+          <div class="form-group"><label>Feedback</label><input type="text" id="theoryFeedbackInput" placeholder="अच्छा प्रयास" /></div>
+          <button type="button" class="btn" onclick="saveTheory()">💾 Theory Marks Save करें</button>
         </div>
-      </div>
-
-      <!-- ADMIN TAB 2: THEORY CHECK & COMBINED CARD -->
-      <div id="apane-theory" class="hidden">
-        <div class="input-group"><label>1. Offline Test चुनें</label><select id="theoryTestSelect"></select></div>
-        <div class="input-group"><label>2. Student Roll No.</label><input type="text" id="theoryRollNo" placeholder="जैसे: 101" inputmode="numeric" /></div>
-        <button type="button" class="btn btn-primary btn-block" style="margin-bottom:10px;" data-act="copyPrompt">📋 Step 1: Gemini Prompt Copy करें</button>
-        <button type="button" class="btn btn-amber btn-block" style="margin-bottom:14px;" data-act="pasteTheory">📥 Step 2: Gemini Result Paste &amp; Save</button>
-
-        <div style="background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:16px; padding:14px; margin-bottom:14px;">
-          <div class="input-group"><label>Theory Obtained Marks</label><input type="number" step="0.5" id="theoryMarksInput" placeholder="जैसे: 24.5" /></div>
-          <div class="input-group"><label>Teacher Feedback</label><input type="text" id="theoryFeedbackInput" placeholder="जैसे: सूत्र सही लिखा।" /></div>
-          <button type="button" class="btn btn-soft btn-block" data-act="saveTheory">💾 Manual Save करें</button>
-        </div>
-
-        <hr style="border:0; border-top:1px solid #cbd5e1; margin-bottom:14px;" />
-        <h4 style="color:var(--primary); font-size:14.5px; margin-bottom:8px;">🏆 Teacher Report Card Generator</h4>
-        <div class="grid-2" style="margin-bottom:8px;">
-          <input type="text" id="repRollNo" placeholder="Roll No." inputmode="numeric" />
-          <select id="repCount">
-            <option value="5">5 Tests Combined</option>
-            <option value="10">10 Tests Combined</option>
-            <option value="1">Latest 1 Test</option>
-          </select>
-        </div>
-        <div class="grid-2">
-          <button type="button" class="btn btn-primary" data-act="genTeacherRep">🎨 Card बनाएं</button>
-          <button type="button" class="btn btn-amber" data-act="printPage">🖨️ Print / PDF</button>
-        </div>
-      </div>
-
-      <!-- ADMIN TAB 3: BATCHES & LECTURES -->
-      <div id="apane-batch" class="hidden">
-        <h4 style="color:var(--primary); font-size:14.5px; margin-bottom:8px;">✨ नया Online Batch लॉन्च करें</h4>
-        <div class="grid-2">
-          <div class="input-group">
-            <label>Category</label>
-            <select id="newBatchCat">
-              <option value="School">🏫 School (1–12)</option>
-              <option value="Olympiad">🏆 Navodaya / Olympiad</option>
-              <option value="Competition">🎯 SSC / B.Sc.</option>
-              <option value="CA">📊 CA Hub</option>
-            </select>
-          </div>
-          <div class="input-group">
-            <label>Theme</label>
-            <select id="newBatchTheme">
-              <option value="emerald">👑 Emerald</option><option value="crimson">🔥 Crimson</option>
-              <option value="indigo">🌌 Indigo</option><option value="teal">⚡ Teal</option>
-              <option value="purple">🏆 Purple</option>
-            </select>
-          </div>
-        </div>
-        <div class="input-group"><label>Batch Name</label><input type="text" id="newBatchName" placeholder="जैसे: लक्ष्य UP Board Class 10th" /></div>
-        <div class="grid-2">
-          <div class="input-group"><label>Class / Exam</label><input type="text" id="newBatchClass" placeholder="Class 10th / SSC / CA" /></div>
-          <div class="input-group"><label>Teacher Name</label><input type="text" id="newBatchTeacher" value="Anuj Sir" /></div>
-        </div>
-        <div class="input-group"><label>🖼️ Teacher Photo URL</label><input type="url" id="newBatchTeacherPhoto" placeholder="https://i.ibb.co/..." /></div>
-        <div class="grid-2">
-          <div class="input-group"><label>Type</label><select id="newBatchPriceType"><option value="FREE">🆓 FREE</option><option value="PAID">💰 PAID</option></select></div>
-          <div class="input-group"><label>Price (₹)</label><input type="number" id="newBatchPrice" value="0" /></div>
-        </div>
-        <div class="input-group"><label>UPI ID (Paid बैच के लिए)</label><input type="text" id="newBatchUpi" placeholder="anuj@paytm" /></div>
-        <button type="button" class="btn btn-primary btn-block" style="margin-bottom:16px;" data-act="createBatch">🚀 Batch Launch करें</button>
-
-        <hr style="border:0; border-top:1px solid #cbd5e1; margin-bottom:14px;" />
-        <h4 style="color:var(--primary); font-size:14.5px; margin-bottom:8px;">🎬 Batch में Video Lecture जोड़ें</h4>
-        <div class="input-group"><label>Batch चुनें</label><select id="admBatchSelect"></select></div>
-        <div class="grid-2">
-          <div class="input-group"><label>Subject</label><input type="text" id="admSubject" value="Mathematics" /></div>
-          <div class="input-group"><label>Lec No.</label><input type="number" id="admLecNo" value="1" /></div>
-        </div>
-        <div class="input-group"><label>Chapter Name</label><input type="text" id="admChapter" placeholder="Ch-01: वास्तविक संख्याएँ" /></div>
-        <div class="input-group"><label>Lecture Title</label><input type="text" id="admTitle" placeholder="Part-1 Basic Concepts" /></div>
-        <div class="input-group"><label>YouTube Link</label><input type="url" id="admVideoUrl" placeholder="https://youtu.be/..." /></div>
-        <div class="grid-2">
-          <div class="input-group"><label>Notes PDF</label><input type="url" id="admNotesUrl" placeholder="Drive URL" /></div>
-          <div class="input-group"><label>DPP PDF</label><input type="url" id="admDppUrl" placeholder="Drive URL" /></div>
-        </div>
-        <button type="button" class="btn btn-primary btn-block" data-act="pubLec">🚀 Lecture Publish करें</button>
-      </div>
-
-      <!-- ADMIN TAB 4: OFFLINE TEST SETUP + STUDENTS + PDF VAULT -->
-      <div id="apane-setup" class="hidden">
-        <h4 style="color:var(--primary); font-size:14.5px; margin-bottom:8px;">➕ नया Offline Test बनाएं (OMR Key)</h4>
-        <div class="grid-2">
-          <div class="input-group"><label>Date</label><input type="date" id="newTestDate" /></div>
-          <div class="input-group"><label>Subject</label><input type="text" id="newTestSub" value="Mathematics" /></div>
-        </div>
-        <div class="input-group"><label>Test Name</label><input type="text" id="newTestName" placeholder="Weekly Test 01" /></div>
-        <div class="grid-2">
-          <div class="input-group"><label>Total MCQ (30 / 100)</label><input type="number" id="newMaxMcq" min="1" max="100" value="30" /></div>
-          <div class="input-group"><label>Max Theory</label><input type="number" id="newMaxTheory" value="40" /></div>
-        </div>
-        <label id="akLabel" style="font-size:12.5px; font-weight:700; display:block; margin-bottom:6px;">30 MCQ Answer Key:</label>
-        <div id="akGrid" class="ak-grid"></div>
-        <button type="button" class="btn btn-primary btn-block" style="margin-bottom:16px;" data-act="createOfflineTest">✅ Test Save करें</button>
-
-        <hr style="border:0; border-top:1px solid #cbd5e1; margin-bottom:14px;" />
-        <h4 style="color:var(--primary); font-size:14.5px; margin-bottom:8px;">👤 Offline Student जोड़ें</h4>
-        <div class="grid-2">
-          <div class="input-group"><label>Roll No.</label><input type="text" id="stRoll" placeholder="101" inputmode="numeric" /></div>
-          <div class="input-group"><label>Class</label><input type="text" id="stClass" value="Class 10th" /></div>
-        </div>
-        <div class="input-group"><label>Student Name</label><input type="text" id="stName" placeholder="अंकुर कुमार" /></div>
-        <div class="input-group"><label>Father's Name</label><input type="text" id="stFather" placeholder="श्री रामपाल सिंह" /></div>
-        <button type="button" class="btn btn-soft btn-block" style="margin-bottom:16px;" data-act="saveOfflineStu">💾 Student Save करें</button>
-
-        <hr style="border:0; border-top:1px solid #cbd5e1; margin-bottom:14px;" />
-        <h4 style="color:var(--primary); font-size:14.5px; margin-bottom:8px;">📄 Study Vault PDF अपलोड करें</h4>
-        <div class="grid-2">
-          <div class="input-group"><label>Category</label><select id="matCategory"><option value="TEST_PAPER">Test Paper</option><option value="PYQ">PYQ Sheet</option><option value="NOTES_FORMULA">Notes &amp; Formula</option></select></div>
-          <div class="input-group"><label>Class</label><input type="text" id="matClass" value="Class 10th" /></div>
-        </div>
-        <div class="grid-2">
-          <div class="input-group"><label>Subject</label><input type="text" id="matSubject" value="Mathematics" /></div>
-          <div class="input-group"><label>Title</label><input type="text" id="matTitle" placeholder="Paper / Notes Name" /></div>
-        </div>
-        <div class="input-group"><label>PDF Link (Google Drive)</label><input type="url" id="matPdfUrl" placeholder="https://drive.google.com/..." /></div>
-        <button type="button" class="btn btn-primary btn-block" data-act="pubMat">🚀 PDF Publish करें</button>
       </div>
     </div>
+  </div>
 
-    <div id="teacherCardMount"></div>
-  </main>
+  <!-- MODALS FOR V115 & BATCHES & PIN -->
+  <div id="subject-selector-modal" class="modal"><div class="modal-content" style="max-width:420px;">
+    <div class="modal-header"><h3>Class 11-12 Subject</h3><button type="button" class="close-btn" onclick="closeModal('subject-selector-modal')">&times;</button></div>
+    <div style="display:flex; flex-direction:column; gap:10px;">
+      <button type="button" class="subject-choice-btn" onclick="confirmClass11_12Subject('Math')"><span>📐 Mathematics (गणित)</span><span>›</span></button>
+      <button type="button" class="subject-choice-btn" onclick="confirmClass11_12Subject('Physics')"><span>⚡ Physics (भौतिक विज्ञान)</span><span>›</span></button>
+      <button type="button" class="subject-choice-btn" onclick="confirmClass11_12Subject('Chemistry')"><span>🧪 Chemistry (रसायन विज्ञान)</span><span>›</span></button>
+    </div>
+  </div></div>
 
-  <!-- UNIFIED BOTTOM 5-TAB BAR -->
-  <nav class="bottom-bar no-print">
-    <button type="button" class="tab-btn active" id="nav-home" data-act="nav" data-val="home">
-      <span class="ico">🏠</span><span>Home</span>
+  <div id="chapter-selector-modal" class="modal"><div class="modal-content">
+    <div class="modal-header"><h3 id="selector-modal-title">Select Chapter</h3><button type="button" class="close-btn" onclick="closeModal('chapter-selector-modal')">&times;</button></div>
+    <div id="chapter-selector-body"></div>
+  </div></div>
+
+  <div id="analysis-modal" class="modal"><div class="modal-content">
+    <div class="modal-header"><h3 id="analysis-modal-heading">Resource</h3><button type="button" class="close-btn" onclick="closeModal('analysis-modal')">&times;</button></div>
+    <div id="analysis-modal-body"></div>
+  </div></div>
+
+  <div id="formula-modal" class="modal"><div class="modal-content">
+    <div class="modal-header"><h3 id="formula-modal-title">Formula Vault</h3><button type="button" class="close-btn" onclick="closeModal('formula-modal')">&times;</button></div>
+    <div id="formula-modal-body"></div>
+  </div></div>
+
+  <div id="review-modal" class="modal"><div class="modal-content">
+    <div class="modal-header"><h3 id="review-modal-title">Review Solutions</h3><button type="button" class="close-btn" onclick="closeModal('review-modal')">&times;</button></div>
+    <div id="review-modal-body"></div>
+  </div></div>
+
+  <div id="certificate-modal" class="modal"><div class="modal-content" style="text-align:center;">
+    <div class="modal-header"><h3>Digital Certificate</h3><button type="button" class="close-btn" onclick="closeModal('certificate-modal')">&times;</button></div>
+    <div style="border:6px solid #064e3b; padding:20px; border-radius:14px; background:#fffdfa;">
+      <h2 style="color:#064e3b;">CONCEPT MATH HUB</h2>
+      <p style="font-size:12px; color:var(--muted);">Certificate of Excellence</p>
+      <h3 id="cert-student-name" style="margin:12px 0; border-bottom:2px dashed #047857; display:inline-block; padding:0 15px;">Student</h3>
+      <p style="font-size:13px;">Chapter: <strong id="cert-chapter-name"></strong> • Score: <strong id="cert-score-display"></strong></p>
+      <p style="font-size:11px; margin-top:20px; color:var(--muted);">Date: <span id="cert-date"></span> | Anuj Sir (Director)</p>
+    </div>
+    <button type="button" class="btn" style="margin-top:12px;" onclick="window.print()">🖨️ Print Certificate</button>
+  </div></div>
+
+  <div id="leaderboard-modal" class="modal"><div class="modal-content">
+    <div class="modal-header"><h3>🏆 Top 3 Leaderboard</h3><button type="button" class="close-btn" onclick="closeModal('leaderboard-modal')">&times;</button></div>
+    <div id="leaderboard-modal-body"></div>
+  </div></div>
+
+  <div id="doubt-modal" class="modal"><div class="modal-content" style="max-width:420px;">
+    <div class="modal-header"><h3>Ask Doubt to Anuj Bhaiya</h3><button type="button" class="close-btn" onclick="closeModal('doubt-modal')">&times;</button></div>
+    <div class="form-group"><label>आपका नाम</label><input type="text" id="doubt-student-name"></div>
+    <div class="form-group"><label>आपका डाउट</label><textarea id="doubt-text" rows="3"></textarea></div>
+    <button type="button" class="btn" style="background:#25d366;" onclick="sendDoubtToWhatsApp()">Send on WhatsApp</button>
+  </div></div>
+
+  <div id="profile-modal" class="modal"><div class="modal-content" style="max-width:420px;">
+    <div class="modal-header"><h3>Student Profile</h3><button type="button" class="close-btn" onclick="closeModal('profile-modal')">&times;</button></div>
+    <div class="form-group"><label>Full Name</label><input type="text" id="profile-input-name"></div>
+    <div class="form-group"><label>Roll No / ID</label><input type="text" id="profile-input-roll"></div>
+    <button type="button" class="btn" onclick="saveStudentProfile()">Save Profile</button>
+  </div></div>
+
+  <div id="batch-login-modal" class="modal"><div class="modal-content" style="max-width:420px;">
+    <div class="modal-header"><h3>Batch Enrollment</h3><button type="button" class="close-btn" onclick="closeModal('batch-login-modal')">&times;</button></div>
+    <div class="form-group"><label>Student Name</label><input type="text" id="enrName"></div>
+    <div class="form-group"><label>Mobile / Roll No.</label><input type="text" id="enrId"></div>
+    <button type="button" class="btn" onclick="confirmBatchEnroll()">Join / Save</button>
+  </div></div>
+
+  <div id="pin-modal" class="modal"><div class="modal-content" style="max-width:340px; text-align:center;">
+    <div class="modal-header"><h3>🔐 Teacher PIN</h3><button type="button" class="close-btn" onclick="closeModal('pin-modal')">&times;</button></div>
+    <input type="password" id="pinField" maxlength="4" inputmode="numeric" placeholder="••••" style="text-align:center; font-size:24px; letter-spacing:10px; margin-bottom:12px;">
+    <button type="button" class="btn" onclick="verifyStudioPin()">Unlock Studio</button>
+  </div></div>
+
+  <!-- UNIFIED BOTTOM 5-TAB BAR (ZERO RELOAD!) -->
+  <nav class="bottom-nav-bar no-print">
+    <button type="button" class="nav-item active" id="bnav-online" onclick="switchMasterView('online')">
+      <i class="fa-solid fa-trophy"></i><span>Online Test</span>
     </button>
-    <a href="https://script.google.com/macros/s/AKfycbysrq8zQvvvT9JMZCJtx7Zvzwk7nfG5m_lBYSSHCj-EOOPlgFkINpCnSWbUxdE4SYyT/exec" class="tab-btn">
-      <span class="ico">🏆</span><span>Online Test</span>
-    </a>
-    <button type="button" class="tab-btn" id="nav-batches" data-act="nav" data-val="batches">
-      <span class="ico">📚</span><span>Study</span>
+    <button type="button" class="nav-item" id="bnav-batches" onclick="switchMasterView('batches')">
+      <i class="fa-solid fa-book-open"></i><span>Batches</span>
     </button>
-    <button type="button" class="tab-btn" id="nav-offline" data-act="nav" data-val="offline">
-      <span class="ico">📋</span><span>Offline</span>
+    <button type="button" class="nav-item" id="bnav-offline" onclick="switchMasterView('offline')">
+      <i class="fa-solid fa-clipboard-check"></i><span>Offline Result</span>
     </button>
-    <button type="button" class="tab-btn" id="nav-admin" data-act="openPin">
-      <span class="ico">🔐</span><span>Studio</span>
+    <button type="button" class="nav-item" onclick="openFormulaMaster()">
+      <i class="fa-solid fa-square-root-variable"></i><span>Formulas</span>
+    </button>
+    <button type="button" class="nav-item" onclick="openStudioPin()">
+      <i class="fa-solid fa-lock"></i><span>Studio</span>
     </button>
   </nav>
 
   <script>
-    (function () {
-      var BATCH_API_URL = "https://script.google.com/macros/s/AKfycbw5wgRoltOdcbhb8L3fWCY-qAXQlwvCAkdtjfB7XTLzrzKoKqrW3u5HUqAsw01b7h8b-g/exec";
-      var OFFLINE_API_URL = "https://script.google.com/macros/s/AKfycbyslegHPFFpUyOMEN6msPbvNSYzWSQu9E1bNhkPfrusVdgDS7xzfDvO_5LxDmuBrqj-/exec";
-      var TEACHER_PIN = "9924";
-      var LOGO_URL = "https://i.ibb.co/Mkqz5Kcr/logo.png";
+    // ALL 3 BACKEND API ENDPOINTS
+    const ONLINE_API_URL  = "https://script.google.com/macros/s/AKfycbysrq8zQvvvT9JMZCJtx7Zvzwk7nfG5m_lBYSSHCj-EOOPlgFkINpCnSWbUxdE4SYyT/exec";
+    const BATCH_API_URL   = "https://script.google.com/macros/s/AKfycbw5wgRoltOdcbhb8L3fWCY-qAXQlwvCAkdtjfB7XTLzrzKoKqrW3u5HUqAsw01b7h8b-g/exec";
+    const OFFLINE_API_URL = "https://script.google.com/macros/s/AKfycbyslegHPFFpUyOMEN6msPbvNSYzWSQu9E1bNhkPfrusVdgDS7xzfDvO_5LxDmuBrqj-/exec";
+    const TEACHER_PIN     = "9924";
+    const LOGO_URL        = "https://i.ibb.co/svN65dH2/6a1db809-59e7-49c3-bf94-390f2d41a28d.png";
 
-      function getLogoHtml() {
-        return '<img src="' + LOGO_URL + '" alt="CMH" onerror="this.style.display=\'none\'; this.parentElement.textContent=\'CMH\';" />';
-      }
-      document.getElementById("headerLogoBox").innerHTML = getLogoHtml();
+    function toast(msg) {
+      const t = document.getElementById("toast");
+      t.textContent = msg; t.classList.remove("hidden");
+      setTimeout(() => t.classList.add("hidden"), 3000);
+    }
+    function closeModal(id) { document.getElementById(id).style.display = "none"; }
 
-      var memStore = {};
-      function safeGet(k) { try { return window.localStorage.getItem(k); } catch (e) { return memStore[k] || null; } }
-      function safeSet(k, v) { memStore[k] = v; try { window.localStorage.setItem(k, v); } catch (e) {} }
-      function el(tag, cls, text) {
-        var d = document.createElement(tag);
-        if (cls) d.className = cls;
-        if (text !== undefined && text !== null) d.textContent = text;
-        return d;
-      }
-      function showToast(msg) {
-        var t = document.getElementById("toast");
-        t.textContent = msg;
-        t.classList.remove("hidden");
-        setTimeout(function () { t.classList.add("hidden"); }, 3000);
-      }
+    // INTRO ANIMATION (3 SECONDS FAST)
+    let introStep = 0;
+    const introInt = setInterval(() => {
+      introStep += 5;
+      const b = document.getElementById("intro-bar");
+      if (b) b.style.width = introStep + "%";
+      if (introStep >= 100) closeIntroScreen();
+    }, 120);
+    function closeIntroScreen() {
+      clearInterval(introInt);
+      const s = document.getElementById("opening-intro-screen");
+      if (s) { s.classList.add("hide-intro"); setTimeout(() => s.remove(), 500); }
+    }
 
-      function getBatchApi(params) { return fetch(BATCH_API_URL + "?" + params).then(function (r) { return r.json(); }); }
-      function postBatchApi(payload) {
-        return fetch(BATCH_API_URL, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(payload) }).then(function (r) { return r.json(); });
-      }
-      function getOfflineApi(params) { return fetch(OFFLINE_API_URL + "?" + params).then(function (r) { return r.json(); }); }
-      function postOfflineApi(payload) {
-        return fetch(OFFLINE_API_URL, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(payload) }).then(function (r) { return r.json(); });
-      }
+    // 0-SECOND MASTER VIEW SWITCHER (NEVER RELOADS!)
+    function switchMasterView(view) {
+      ["online", "batches", "offline", "studio"].forEach(v => {
+        document.getElementById("master-" + v).classList.toggle("hidden", v !== view);
+        const topBtn = document.getElementById("msb-" + v);
+        if (topBtn) topBtn.classList.toggle("active", v === view);
+        const botBtn = document.getElementById("bnav-" + v);
+        if (botBtn) botBtn.classList.toggle("active", v === view);
+      });
+      window.scrollTo(0, 0);
+    }
 
-      var adminUnlocked = false;
-      var portalData = {
-        batches: [{
-          batchId: "BATCH_01", batchName: "लक्ष्य UP Board Class 10th (Topper Batch)",
-          className: "Class 10th (UP Board)", startDate: "25-11-2026",
-          description: "गणित, विज्ञान, हिंदी व अंग्रेज़ी के संपूर्ण अध्याय, वन-पेज A4 नोट्स, DPP व साप्ताहिक टेस्ट सहित।",
-          theme: "emerald", priceType: "FREE", price: 0, originalPrice: 999,
-          category: "School", teacherName: "Anuj Sir", teacherPhoto: LOGO_URL
-        }],
-        lectures: [], materials: [], doubts: [], enrollments: []
-      };
-      var offlineData = { students: [], tests: [] };
-      var studentProfile = null;
-      try { studentProfile = JSON.parse(safeGet("cmh_batch_student") || "null"); } catch (e) {}
+    // =========================================================
+    // 1. V115 ONLINE TEST ENGINE DATA & LOGIC
+    // =========================================================
+    let allQuestionsData = [], allResultsData = [], chapterNotesMap = {}, chapterAnalysisMap = {};
+    let chapterRevisionMap = {}, chapterVideoMap = {}, chapterMetaMap = {}, chaptersList = [];
+    let authorizedRolls = [], challengeQuestionsList = ["यदि दो संख्याओं का HCF 13 और उनका गुणनफल 2197 है, तो उनका LCM क्या होगा?"];
+    let sheetFormulas = [];
 
-      var activeBatchIds = [], pendingBatchIds = [], activeCatFilter = "ALL", activeVaultCat = "TEST_PAPER";
-      var targetBatchObj = null, selBatchId = "", selSubject = "", selChapter = "", selLecture = null;
-      var ytPlayer = null, ytApiReady = false;
-      window.onYouTubeIframeAPIReady = function () { ytApiReady = true; };
+    let questionsData = [], currentUser = { name: "", roll: "", studentClass: "", chapter: "" };
+    let currentQuestionIndex = 0, userAnswers = {}, reviewFlags = {}, wrongQuestionIndices = [];
+    let isRetestMode = false, timerInterval = null, totalTimeSeconds = 900, timeLeftSeconds = 900, finalComputedScore = 0;
 
-      var activeOfflineStudent = null, scannedOMR = null, currentScanState = [], camStream = null, lastScanCanvas = null;
-
-      function switchNav(viewId, subCat) {
-        stopInAppVideo();
-        stopCamera();
-        var views = ["home", "batches", "offline", "vault", "admin"];
-        for (var i = 0; i < views.length; i++) {
-          var v = document.getElementById("view-" + views[i]);
-          var n = document.getElementById("nav-" + views[i]);
-          if (v) v.classList.toggle("hidden", views[i] !== viewId);
-          if (n) n.classList.toggle("active", views[i] === viewId);
+    function loadAllBackendAPIs() {
+      // Load Online Test V115 Data
+      fetch(ONLINE_API_URL + "?action=getV115Data").then(r => r.json()).then(d => {
+        if (d && d.status === "success") {
+          allQuestionsData = d.questions || [];
+          allResultsData = d.allResultsData || [];
+          chapterNotesMap = d.chapterNotesMap || {};
+          chapterAnalysisMap = d.chapterAnalysisMap || {};
+          chapterRevisionMap = d.chapterRevisionMap || {};
+          chapterVideoMap = d.chapterVideoMap || {};
+          chapterMetaMap = d.chapterMetaMap || {};
+          chaptersList = d.chaptersList || [];
+          authorizedRolls = d.authorizedRolls || [];
+          if (d.challengeQuestionsList && d.challengeQuestionsList.length) challengeQuestionsList = d.challengeQuestionsList;
+          sheetFormulas = d.sheetFormulas || [];
+          document.getElementById("daily-challenge-text").textContent = challengeQuestionsList[new Date().getDate() % challengeQuestionsList.length];
         }
-        if (viewId === "vault" && subCat) {
-          activeVaultCat = subCat;
-          ["TEST_PAPER", "PYQ", "NOTES_FORMULA"].forEach(function (c) {
-            document.getElementById("vtab-" + c).classList.toggle("active", c === subCat);
-          });
-          renderVaultList();
+      }).catch(() => {});
+
+      // Load Batches Data
+      fetch(BATCH_API_URL + "?action=getPortalData").then(r => r.json()).then(d => {
+        if (d && d.status === "success") {
+          portalData = d;
+          renderBatches();
         }
-        window.scrollTo(0, 0);
-      }
+      }).catch(() => {});
 
-      function syncBothDatabases() {
-        getBatchApi("action=getPortalData").then(function (res) {
-          if (res && res.status === "success") {
-            if (res.batches && res.batches.length > 0) portalData = res;
-            else { portalData.lectures = res.lectures || []; portalData.materials = res.materials || []; portalData.doubts = res.doubts || []; }
-            if (studentProfile && studentProfile.studentId) {
-              getBatchApi("action=getStudentEnrollments&studentId=" + encodeURIComponent(studentProfile.studentId)).then(function (er) {
-                if (er && er.status === "success") { activeBatchIds = er.activeBatchIds || []; pendingBatchIds = er.pendingBatchIds || []; }
-                renderBatchesUI();
-              });
-            } else renderBatchesUI();
-          }
-        }).catch(function () {});
-
-        getOfflineApi("action=getInitialData").then(function (res) {
-          if (res && res.status === "success") {
-            offlineData = res;
-            var opts = (res.tests || []).map(function (t) {
-              return '<option value="' + t.testId + '">' + t.testDate + ' — ' + t.subject + ' (' + t.maxMcq + ' MCQ)</option>';
-            }).join("");
-            document.getElementById("omrTestSelect").innerHTML = opts || "<option>पहले Setup में Test बनाएं</option>";
-            document.getElementById("theoryTestSelect").innerHTML = opts || "<option>पहले Setup में Test बनाएं</option>";
-            updateOMRModeBadge();
-          }
-        }).catch(function () {});
-      }
-
-      function renderBatchesUI() {
-        if (studentProfile && studentProfile.studentId) document.getElementById("welcomeStudentTag").textContent = "👋 " + studentProfile.studentName;
-        renderExploreBatches(); renderMyBatches(); renderVaultList();
-        var s1 = document.getElementById("admBatchSelect"); s1.textContent = "";
-        (portalData.batches || []).forEach(function (b) { var o = el("option", "", b.batchName); o.value = b.batchId; s1.appendChild(o); });
-      }
-
-      function buildTeacherAvatarBox(teacherName, teacherPhoto) {
-        var right = el("div", "banner-right"), frame = el("div", "teacher-avatar-frame"), tName = teacherName || "Anuj Sir";
-        if (teacherPhoto && teacherPhoto.trim() !== "") {
-          var pic = document.createElement("img"); pic.src = teacherPhoto.trim(); pic.alt = tName;
-          pic.onerror = function () { frame.textContent = tName.slice(0, 2).toUpperCase(); };
-          frame.appendChild(pic);
-        } else frame.textContent = tName.slice(0, 2).toUpperCase();
-        right.appendChild(frame); right.appendChild(el("div", "teacher-name-chip", tName));
-        return right;
-      }
-
-      function renderExploreBatches() {
-        var mount = document.getElementById("allBatchesList"); mount.textContent = "";
-        var list = (portalData.batches || []).filter(function (b) {
-          if (activeCatFilter === "ALL") return true;
-          return (b.category || "School").toLowerCase().indexOf(activeCatFilter.toLowerCase()) !== -1;
-        });
-        if (!list.length) { mount.appendChild(el("div", "card", "इस कैटेगरी में जल्द नया बैच लॉन्च होगा।")); return; }
-        list.forEach(function (b) {
-          var isJoined = activeBatchIds.indexOf(b.batchId) !== -1, isPending = pendingBatchIds.indexOf(b.batchId) !== -1;
-          var isPaid = b.priceType === "PAID" && b.price > 0;
-          var lecCount = (portalData.lectures || []).filter(function (l) { return l.batchId === b.batchId; }).length;
-          var card = el("div", "batch-card"), banner = el("div", "batch-banner theme-" + (b.theme || "emerald")), left = el("div", "banner-left");
-          var strips = el("div", "badge-strip");
-          strips.appendChild(el("span", "live-pill", "● " + (b.category || "Batch")));
-          strips.appendChild(el("span", "price-ribbon " + (isJoined ? "ribbon-joined" : (isPaid ? "ribbon-paid" : "ribbon-free")), isJoined ? "✓ ENROLLED" : (isPaid ? "PREMIUM" : "100% FREE")));
-          left.appendChild(strips); left.appendChild(el("h3", "", b.batchName));
-          left.appendChild(el("div", "meta", "🎯 " + b.className + "  •  🎬 " + lecCount + " Classes"));
-          banner.appendChild(left); banner.appendChild(buildTeacherAvatarBox(b.teacherName, b.teacherPhoto)); card.appendChild(banner);
-
-          var body = el("div", "batch-body");
-          body.appendChild(el("p", "batch-desc", b.description || "संपूर्ण सिलेबस, A4 नोट्स, DPP व साप्ताहिक टेस्ट के साथ।"));
-          var prow = el("div", "price-row"), pbox = el("div", "price-tag-box");
-          pbox.appendChild(el("span", "lbl", isPaid ? "SPECIAL FEE" : "LIMITED OFFER"));
-          var pval = el("div", "price-val" + (isPaid ? "" : " is-free"), isPaid ? ("₹" + b.price + " ") : "FREE ");
-          pval.appendChild(el("span", "price-mrp", "₹" + b.originalPrice)); pbox.appendChild(pval); prow.appendChild(pbox);
-
-          var btn = el("button", "btn " + (isPending ? "btn-soft" : (isPaid && !isJoined ? "btn-amber" : "btn-primary")),
-            isJoined ? "▶ Let's Study" : (isPending ? "⏳ Pending" : (isPaid ? ("⚡ Buy ₹" + b.price) : "🚀 Join Free")));
-          btn.type = "button"; btn.setAttribute("data-act", isJoined ? "studyBatch" : (isPending ? "pendingMsg" : "joinBatch")); btn.setAttribute("data-val", b.batchId);
-          prow.appendChild(btn); body.appendChild(prow); card.appendChild(body); mount.appendChild(card);
-        });
-      }
-
-      function renderMyBatches() {
-        var mount = document.getElementById("myBatchesMount"); mount.textContent = "";
-        var myList = (portalData.batches || []).filter(function (b) { return activeBatchIds.indexOf(b.batchId) !== -1; });
-        if (!myList.length) {
-          var emp = el("div", "card", "आपने अभी तक कोई बैच जॉइन नहीं किया है। All Batches से जॉइन करें।");
-          emp.style.textAlign = "center"; mount.appendChild(emp); return;
+      // Load Offline Test Data
+      fetch(OFFLINE_API_URL + "?action=getInitialData").then(r => r.json()).then(d => {
+        if (d && d.status === "success") {
+          offlineData = d;
+          const opts = (d.tests || []).map(t => `<option value="${t.testId}">${t.testDate} — ${t.subject} (${t.maxMcq} MCQ)</option>`).join("");
+          document.getElementById("omrTestSelect").innerHTML = opts;
+          document.getElementById("theoryTestSelect").innerHTML = opts;
         }
-        myList.forEach(function (b) {
-          var card = el("div", "batch-card"); card.style.cursor = "pointer";
-          card.setAttribute("data-act", "openBatch"); card.setAttribute("data-val", b.batchId);
-          var banner = el("div", "batch-banner theme-" + (b.theme || "emerald")), left = el("div", "banner-left");
-          left.appendChild(el("h3", "", b.batchName)); left.appendChild(el("div", "meta", "Study खोलने के लिए टैप करें →"));
-          banner.appendChild(left); banner.appendChild(buildTeacherAvatarBox(b.teacherName, b.teacherPhoto));
-          card.appendChild(banner); mount.appendChild(card);
-        });
-      }
+      }).catch(() => {});
+    }
 
-      function showMyBatchesSubView(id) {
-        ["mb-batches-level", "mb-subjects-level", "mb-chapters-level", "mb-lectures-level", "mb-player-level"].forEach(function (v) {
-          document.getElementById(v).classList.toggle("hidden", v !== id);
-        });
+    function isChapterMatchForCategory(chapText, categoryName) {
+      if (!categoryName) return true;
+      let c = (chapText || "").toLowerCase(), cat = categoryName.toLowerCase();
+      if (cat.includes("junior")) return c.includes("junior") || c.includes("2-5") || c.includes("class 5");
+      if (cat.includes("middle")) return c.includes("middle") || c.includes("6-8") || c.includes("class 8");
+      if (cat.includes("navodaya")) return c.includes("navodaya") || c.includes("नवोदय");
+      if (cat.includes("9th")) return (c.includes("class 9") || c.includes("9th")) && !c.includes("class 1");
+      if (cat.includes("10th")) return c.includes("class 10") || c.includes("10th");
+      if (cat.includes("11-12")) {
+        let g = c.includes("11") || c.includes("12");
+        if (cat.includes("physics")) return g && (c.includes("physics") || c.includes("भौतिक"));
+        if (cat.includes("chemistry")) return g && (c.includes("chemistry") || c.includes("रसायन"));
+        return g && !c.includes("physics") && !c.includes("chemistry");
       }
+      if (cat.includes("ssc")) return c.includes("ssc") || c.includes("cgl");
+      if (cat.includes("iit")) return c.includes("iit") || c.includes("jee");
+      if (cat.includes("nda")) return c.includes("nda");
+      if (cat.includes("railway")) return c.includes("railway") || c.includes("rrb");
+      if (cat.includes("police")) return c.includes("police") || c.includes("si");
+      return true;
+    }
 
-      function openBatchSubjects(batchId) {
-        selBatchId = batchId;
-        var b = portalData.batches.find(function (x) { return x.batchId === batchId; });
-        document.getElementById("crumbBatchName").textContent = b ? b.batchName : "Subjects";
-        var lecs = (portalData.lectures || []).filter(function (l) { return l.batchId === batchId; });
-        var subs = []; lecs.forEach(function (l) { if (subs.indexOf(l.subject) === -1) subs.push(l.subject); });
-        var mount = document.getElementById("subjectsGridMount"); mount.textContent = "";
-        if (!subs.length) mount.appendChild(el("div", "card", "इस बैच में जल्द ही क्लास अपलोड होंगी।"));
-        else subs.forEach(function (s) {
-          var card = el("div", "subj-card"); card.setAttribute("data-act", "openSubject"); card.setAttribute("data-val", s);
-          card.appendChild(el("div", "subj-ico", "📘")); card.appendChild(el("h4", "", s)); mount.appendChild(card);
-        });
-        showMyBatchesSubView("mb-subjects-level");
+    function handleClass11_12Click() { document.getElementById("subject-selector-modal").style.display = "flex"; }
+    function confirmClass11_12Subject(sub) {
+      closeModal("subject-selector-modal");
+      selectClassBtn("Class 11-12 (" + sub + ")");
+      document.getElementById("cls-11-12").textContent = "11-12 (" + sub + ")";
+    }
+
+    function selectClassBtn(className) {
+      currentUser.studentClass = className;
+      currentUser.chapter = "";
+      document.getElementById("selected-chapter").value = "";
+      document.getElementById("selected-chap-display").textContent = "-- Choose Active Chapter --";
+      document.querySelectorAll(".class-option-btn").forEach(b => b.classList.remove("selected"));
+      const map = { "Junior": "cls-junior", "Middle": "cls-middle", "Navodaya": "cls-navodaya", "9th": "cls-9", "10th": "cls-10", "11-12": "cls-11-12", "SSC": "cls-ssc", "IIT": "cls-iit", "NDA": "cls-nda", "Railway": "cls-railway", "Police": "cls-police", "Advanced": "cls-adv" };
+      Object.keys(map).forEach(k => { if (className.includes(k)) document.getElementById(map[k]).classList.add("selected"); });
+      buildChapterDropdownList(className);
+    }
+
+    function buildChapterDropdownList(className) {
+      const list = document.getElementById("custom-dropdown-list");
+      const filtered = chaptersList.filter(ch => isChapterMatchForCategory(ch, className));
+      if (!filtered.length) {
+        list.innerHTML = '<p style="color:#dc2626; font-size:12px; text-align:center; padding:8px;">इस कैटेगरी के लिए चैप्टर लोड हो रहे हैं या सक्रिय नहीं हैं।</p>';
+        return;
       }
-
-      function openSubjectChapters(sub) {
-        selSubject = sub; document.getElementById("crumbSubjectName").textContent = sub;
-        var lecs = (portalData.lectures || []).filter(function (l) { return l.batchId === selBatchId && l.subject === sub; });
-        var chaps = []; lecs.forEach(function (l) { if (chaps.indexOf(l.chapterName) === -1) chaps.push(l.chapterName); });
-        var mount = document.getElementById("chaptersListMount"); mount.textContent = "";
-        chaps.forEach(function (ch, idx) {
-          var row = el("div", "chap-row"); row.setAttribute("data-act", "openChapter"); row.setAttribute("data-val", ch);
-          var left = el("div"); left.style.display = "flex"; left.style.alignItems = "center"; left.style.gap = "10px";
-          left.appendChild(el("div", "chap-num", String(idx + 1))); left.appendChild(el("div", "", ch));
-          row.appendChild(left); row.appendChild(el("span", "", "›")); mount.appendChild(row);
-        });
-        showMyBatchesSubView("mb-chapters-level");
-      }
-
-      function openChapterLectures(ch) {
-        selChapter = ch; document.getElementById("crumbChapterName").textContent = ch;
-        var lecs = (portalData.lectures || []).filter(function (l) { return l.batchId === selBatchId && l.subject === selSubject && l.chapterName === ch; }).sort(function (a, b) { return a.lectureNo - b.lectureNo; });
-        var mount = document.getElementById("lecturesListMount"); mount.textContent = "";
-        lecs.forEach(function (lec) {
-          var card = el("div", "lec-card"), top = el("div", "lec-top");
-          top.setAttribute("data-act", "playLec"); top.setAttribute("data-val", lec.lectureId);
-          top.appendChild(el("div", "lec-play-badge", "▶"));
-          var info = el("div"); info.appendChild(el("div", "", "Lec " + lec.lectureNo + " • " + lec.lectureTitle));
-          top.appendChild(info); card.appendChild(top); mount.appendChild(card);
-        });
-        showMyBatchesSubView("mb-lectures-level");
-      }
-
-      function openClassroomPlayer(lecId) {
-        var lec = portalData.lectures.find(function (l) { return l.lectureId === lecId; });
-        if (!lec) return;
-        selLecture = lec;
-        document.getElementById("playerLectureTitle").textContent = "Lec " + lec.lectureNo + ": " + lec.lectureTitle;
-        document.getElementById("playerWatermark").textContent = studentProfile ? studentProfile.studentName : "Concept Math Hub";
-
-        var nMount = document.getElementById("notesActionMount"); nMount.textContent = "";
-        if (lec.notesUrl) { var a1 = el("a", "btn btn-primary btn-block", "📥 Class Notes PDF डाउनलोड करें"); a1.href = lec.notesUrl; a1.target = "_blank"; nMount.appendChild(a1); }
-        else nMount.appendChild(el("p", "", "Notes जल्द उपलब्ध होंगे।"));
-
-        var dMount = document.getElementById("dppActionMount"); dMount.textContent = "";
-        if (lec.dppUrl) { var a2 = el("a", "btn btn-amber btn-block", "📝 DPP Sheet खोलें"); a2.href = lec.dppUrl; a2.target = "_blank"; dMount.appendChild(a2); }
-        else dMount.appendChild(el("p", "", "DPP जल्द उपलब्ध होगी।"));
-
-        showMyBatchesSubView("mb-player-level");
-        var reg = /(?:youtube\.com\/(?:watch\?v=|embed\/|live\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
-        var m = (lec.videoUrl || "").match(reg), vidId = m ? m[1] : "";
-        var container = document.getElementById("ytPlayerContainer"); stopInAppVideo();
-        if (vidId && ytApiReady && window.YT && YT.Player) {
-          var inner = el("div"); inner.id = "ytInnerPlayer"; container.appendChild(inner);
-          ytPlayer = new YT.Player("ytInnerPlayer", { videoId: vidId, playerVars: { autoplay: 1, rel: 0, playsinline: 1 } });
-        } else if (vidId) {
-          var ifr = document.createElement("iframe");
-          ifr.src = "https://www.youtube-nocookie.com/embed/" + vidId + "?autoplay=1&rel=0&playsinline:1";
-          ifr.allow = "autoplay; fullscreen"; ifr.allowFullscreen = true; container.appendChild(ifr);
-        }
-      }
-
-      function stopInAppVideo() {
-        if (ytPlayer && typeof ytPlayer.destroy === "function") { try { ytPlayer.destroy(); } catch (e) {} ytPlayer = null; }
-        var c = document.getElementById("ytPlayerContainer"); if (c) c.textContent = "";
-      }
-
-      function renderVaultList() {
-        var mount = document.getElementById("vaultListMount"); mount.textContent = "";
-        var list = (portalData.materials || []).filter(function (m) { return m.category === activeVaultCat; });
-        if (!list.length) { mount.appendChild(el("div", "card", "इस सेक्शन में जल्द नई PDF अपलोड होंगी।")); return; }
-        list.forEach(function (m) {
-          var card = el("div", "mat-card"), top = el("div", "mat-top");
-          top.appendChild(el("div", "mat-badge-ico", "📄"));
-          var info = el("div"); info.appendChild(el("div", "", m.title));
-          var pills = el("div", "mat-pills"); pills.appendChild(el("span", "mpill", m.className)); pills.appendChild(el("span", "mpill", m.subject));
-          info.appendChild(pills); top.appendChild(info); card.appendChild(top);
-          var a = el("a", "btn btn-primary btn-block", "📥 Open / Download PDF"); a.href = m.pdfUrl; a.target = "_blank";
-          card.appendChild(a); mount.appendChild(card);
-        });
-      }
-
-      function updateOMRModeBadge() {
-        var testId = document.getElementById("omrTestSelect").value;
-        var tObj = (offlineData.tests || []).find(function (t) { return t.testId === testId; });
-        var cnt = tObj ? (Number(tObj.maxMcq) || 30) : 30;
-        document.getElementById("omrModeBadge").textContent = "✅ Self-Calibrating Auto-Grid OMR Engine • " + cnt + " MCQ";
-      }
-
-      function renderAnswerKeyGrid() {
-        var count = parseInt(document.getElementById("newMaxMcq").value, 10) || 30;
-        if (count < 1) count = 1; if (count > 100) count = 100;
-        document.getElementById("akLabel").textContent = count + " MCQ Answer Key:";
-        var grid = document.getElementById("akGrid"); grid.innerHTML = "";
-        for (var i = 1; i <= count; i++) {
-          grid.innerHTML += '<div class="ak-cell"><span>Q' + i + '</span><select id="ak_' + i + '"><option>A</option><option>B</option><option>C</option><option>D</option></select></div>';
-        }
-      }
-      renderAnswerKeyGrid();
-      document.getElementById("newTestDate").valueAsDate = new Date();
-
-      function startCamera() {
-        stopCamera();
-        navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment", width: { ideal: 1920 }, height: { ideal: 1080 } } })
-          .then(function (st) { camStream = st; document.getElementById("omrVideo").srcObject = st; document.getElementById("camContainer").classList.remove("hidden"); })
-          .catch(function () { showToast("ऊपर वाले 'Mobile Camera से सीधी Photo' बटन का उपयोग करें!"); });
-      }
-      function stopCamera() {
-        if (camStream) { camStream.getTracks().forEach(function (t) { t.stop(); }); camStream = null; }
-        document.getElementById("camContainer").classList.add("hidden");
-      }
-      function captureFromVideo() {
-        var v = document.getElementById("omrVideo"); if (!v || !v.videoWidth) return;
-        var c = document.getElementById("omrCanvas"); c.width = v.videoWidth; c.height = v.videoHeight;
-        c.getContext("2d").drawImage(v, 0, 0); stopCamera(); autoCalibrateAndGradeOMR(c);
-      }
-      function handleScanFile(e) {
-        var f = e.target.files[0]; if (!f) return;
-        var img = new Image();
-        img.onload = function () {
-          var c = document.getElementById("omrCanvas");
-          if (img.height > img.width * 1.15) {
-            c.width = img.height; c.height = img.width;
-            var rctx = c.getContext("2d"); rctx.translate(c.width / 2, c.height / 2); rctx.rotate(-Math.PI / 2);
-            rctx.drawImage(img, -img.width / 2, -img.height / 2);
-          } else { c.width = img.width; c.height = img.height; c.getContext("2d").drawImage(img, 0, 0); }
-          autoCalibrateAndGradeOMR(c);
+      list.innerHTML = "";
+      filtered.forEach(chap => {
+        const cleanName = chap.replace(/\[MOST\]|\[PYQ\]|\[UP\]/gi, "").trim();
+        const div = document.createElement("div");
+        div.className = "custom-chap-option";
+        div.innerHTML = `<strong style="font-size:13px;">📘 ${cleanName}</strong><i class="fa-solid fa-circle-play" style="color:var(--primary);"></i>`;
+        div.onclick = () => {
+          currentUser.chapter = chap;
+          document.getElementById("selected-chapter").value = chap;
+          document.getElementById("selected-chap-display").textContent = "✅ " + cleanName;
+          document.getElementById("custom-dropdown-header").classList.add("active-glow");
+          list.style.display = "none";
         };
-        img.src = URL.createObjectURL(f); e.target.value = "";
-      }
-      document.getElementById("camFileInput").addEventListener("change", handleScanFile);
-      document.getElementById("galFileInput").addEventListener("change", handleScanFile);
+        list.appendChild(div);
+      });
+    }
 
-      function median(arr) {
-        if (!arr.length) return 0;
-        var s = arr.slice().sort(function (a, b) { return a - b; });
-        var mid = Math.floor(s.length / 2);
-        return s.length % 2 ? s[mid] : (s[mid - 1] + s[mid]) / 2;
-      }
-      function fitLine(points) {
-        if (points.length === 1) return { m: 0, c: points[0].val };
-        var sumX = 0, sumY = 0, sumXY = 0, sumXX = 0, n = points.length;
-        points.forEach(function (p) { sumX += p.idx; sumY += p.val; sumXY += p.idx * p.val; sumXX += p.idx * p.idx; });
-        var denom = (n * sumXX - sumX * sumX);
-        if (Math.abs(denom) < 1e-6) return { m: 0, c: sumY / n };
-        var m = (n * sumXY - sumX * sumY) / denom;
-        return { m: m, c: (sumY - m * sumX) / n };
-      }
+    function toggleChapterDropdown() {
+      if (!currentUser.studentClass) return toast("कृपया पहले अपनी Class चुनें!");
+      const l = document.getElementById("custom-dropdown-list");
+      l.style.display = l.style.display === "flex" ? "none" : "flex";
+    }
 
-      function autoCalibrateAndGradeOMR(srcCanvas) {
-        var testId = document.getElementById("omrTestSelect").value;
-        var tObj = (offlineData.tests || []).find(function (t) { return t.testId === testId; }) || { maxMcq: 30 };
-        var totalQuestions = Math.min(100, Math.max(1, Number(tObj.maxMcq) || 30));
-        var key = {}; try { key = JSON.parse(tObj.answerKey || "{}"); } catch (e) {}
+    function startExam(e) {
+      if (e && e.preventDefault) e.preventDefault();
+      if (!currentUser.studentClass) return toast("कृपया पहले Class चुनें!");
+      currentUser.chapter = document.getElementById("selected-chapter").value;
+      if (!currentUser.chapter) return toast("कृपया Chapter चुनें!");
 
-        var W = 1200, H = Math.max(500, Math.round(W * (srcCanvas.height / Math.max(1, srcCanvas.width))));
-        lastScanCanvas = document.createElement("canvas"); lastScanCanvas.width = W; lastScanCanvas.height = H;
-        var ctx = lastScanCanvas.getContext("2d"); ctx.drawImage(srcCanvas, 0, 0, W, H);
-        var imgData = ctx.getImageData(0, 0, W, H).data, gray = new Uint8Array(W * H);
-        for (var i = 0, p = 0; i < imgData.length; i += 4, p++) gray[p] = (imgData[i] * 77 + imgData[i + 1] * 150 + imgData[i + 2] * 29) >> 8;
-
-        var integral = new Int32Array((W + 1) * (H + 1));
-        for (var y = 0; y < H; y++) {
-          var rSum = 0;
-          for (var x = 0; x < W; x++) { rSum += gray[y * W + x]; integral[(y + 1) * (W + 1) + (x + 1)] = integral[y * (W + 1) + (x + 1)] + rSum; }
-        }
-        var bin = new Uint8Array(W * H), rad = 16;
-        for (var y2 = 0; y2 < H; y2++) {
-          var y0 = Math.max(0, y2 - rad), y1 = Math.min(H - 1, y2 + rad);
-          for (var x2 = 0; x2 < W; x2++) {
-            var x0 = Math.max(0, x2 - rad), x1 = Math.min(W - 1, x2 + rad), cnt = (x1 - x0 + 1) * (y1 - y0 + 1);
-            var sum = integral[(y1 + 1) * (W + 1) + (x1 + 1)] - integral[y0 * (W + 1) + (x1 + 1)] - integral[(y1 + 1) * (W + 1) + x0] + integral[y0 * (W + 1) + x0];
-            if (gray[y2 * W + x2] < (sum / cnt) - 15 && gray[y2 * W + x2] < 190) bin[y2 * W + x2] = 1;
-          }
-        }
-        var visited = new Uint8Array(W * H), queue = new Int32Array(W * H), rawCircles = [];
-        for (var y3 = 4; y3 < H - 4; y3++) {
-          for (var x3 = 4; x3 < W - 4; x3++) {
-            var start = y3 * W + x3;
-            if (bin[start] && !visited[start]) {
-              var head = 0, tail = 0; queue[tail++] = start; visited[start] = 1;
-              var minX = x3, maxX = x3, minY = y3, maxY = y3, area = 0;
-              while (head < tail) {
-                var cur = queue[head++], cx = cur % W, cy = (cur / W) | 0; area++;
-                if (cx < minX) minX = cx; if (cx > maxX) maxX = cx; if (cy < minY) minY = cy; if (cy > maxY) maxY = cy;
-                var n1 = cur - 1, n2 = cur + 1, n3 = cur - W, n4 = cur + W;
-                if (cx > 0 && bin[n1] && !visited[n1]) { visited[n1] = 1; queue[tail++] = n1; }
-                if (cx < W - 1 && bin[n2] && !visited[n2]) { visited[n2] = 1; queue[tail++] = n2; }
-                if (cy > 0 && bin[n3] && !visited[n3]) { visited[n3] = 1; queue[tail++] = n3; }
-                if (cy < H - 1 && bin[n4] && !visited[n4]) { visited[n4] = 1; queue[tail++] = n4; }
-              }
-              var bw = maxX - minX + 1, bh = maxY - minY + 1, aspect = bw / bh;
-              if (bw >= 14 && bw <= 66 && bh >= 14 && bh <= 66 && aspect >= 0.72 && aspect <= 1.38 && area >= 55) {
-                rawCircles.push({ x: (minX + maxX) / 2, y: (minY + maxY) / 2, rx: bw / 2, ry: bh / 2 });
-              }
-            }
-          }
-        }
-        var circles = [];
-        rawCircles.sort(function (a, b) { return (b.rx * b.ry) - (a.rx * a.ry); });
-        rawCircles.forEach(function (c) {
-          if (!circles.some(function (u) { return Math.hypot(u.x - c.x, u.y - c.y) < Math.max(u.rx, c.rx) * 0.85; })) circles.push(c);
-        });
-        circles.sort(function (a, b) { return a.y - b.y || a.x - b.x; });
-        var clusters = [], used = {};
-        for (var i2 = 0; i2 < circles.length; i2++) {
-          if (used[i2]) continue;
-          var anchor = circles[i2], band = [{ idx: i2, c: anchor }];
-          for (var j = i2 + 1; j < circles.length; j++) {
-            if (!used[j] && Math.abs(circles[j].y - anchor.y) <= anchor.ry * 0.65) band.push({ idx: j, c: circles[j] });
-          }
-          band.sort(function (a, b) { return a.c.x - b.c.x; });
-          for (var k = 0; k <= band.length - 4; k++) {
-            var four = band.slice(k, k + 4);
-            var d1 = four[1].c.x - four[0].c.x, d2 = four[2].c.x - four[1].c.x, d3 = four[3].c.x - four[2].c.x;
-            var avgStep = (d1 + d2 + d3) / 3, r = four[0].c.rx;
-            if (avgStep > r * 1.6 && avgStep < r * 4.8 && Math.abs(d1 - avgStep) < avgStep * 0.25 && Math.abs(d2 - avgStep) < avgStep * 0.25 && Math.abs(d3 - avgStep) < avgStep * 0.25) {
-              four.forEach(function (it) { used[it.idx] = true; });
-              clusters.push({
-                xA: four[0].c.x, y: four.reduce(function (s, it) { return s + it.c.y; }, 0) / 4,
-                optStep: avgStep, rx: four.reduce(function (s, it) { return s + it.c.rx; }, 0) / 4, ry: four.reduce(function (s, it) { return s + it.c.ry; }, 0) / 4
-              });
-              k += 3;
-            }
-          }
-        }
-        var is100Mode = totalQuestions > 30, numCols = is100Mode ? 4 : 3, rowsPerCol = is100Mode ? 25 : 10, answerClusters = clusters;
-        if (!is100Mode && clusters.length > 32) answerClusters = clusters.slice().sort(function (a, b) { return b.xA - a.xA; }).slice(0, 30);
-        if (answerClusters.length < 6) { showToast("⚠️ गोले साफ़ नहीं दिखे!"); return; }
-
-        answerClusters.sort(function (a, b) { return a.xA - b.xA; });
-        var colGroups = [], currentGroup = [answerClusters[0]], medianOptStep = median(answerClusters.map(function (c) { return c.optStep; }));
-        for (var i3 = 1; i3 < answerClusters.length; i3++) {
-          if (answerClusters[i3].xA - currentGroup[currentGroup.length - 1].xA > medianOptStep * 3.2) { colGroups.push(currentGroup); currentGroup = [answerClusters[i3]]; }
-          else currentGroup.push(answerClusters[i3]);
-        }
-        colGroups.push(currentGroup);
-        var activeCols = colGroups.slice(-numCols);
-        if (activeCols.length < numCols) { showToast("⚠️ तीनों कॉलम साफ़ नहीं दिखे!"); return; }
-
-        var rowDiffs = [];
-        activeCols.forEach(function (col) {
-          col.sort(function (a, b) { return a.y - b.y; });
-          for (var i4 = 1; i4 < col.length; i4++) { var dy = col[i4].y - col[i4 - 1].y; if (dy > medianOptStep * 0.7 && dy < medianOptStep * 2.2) rowDiffs.push(dy); }
-        });
-        var globalRowStep = median(rowDiffs) || (medianOptStep * 1.15), globalOptStep = medianOptStep;
-        var globalRx = median(answerClusters.map(function (c) { return c.rx; })), globalRy = median(answerClusters.map(function (c) { return c.ry; }));
-
-        var gridModels = activeCols.map(function (col) {
-          col.sort(function (a, b) { return a.y - b.y; });
-          var minY = col[0].y, maxY = col[col.length - 1].y, spanRows = Math.round((maxY - minY) / globalRowStep);
-          var yPoints = [], xPoints = [];
-          col.forEach(function (item) {
-            var rIdx = Math.round((item.y - minY) / globalRowStep);
-            if (spanRows < rowsPerCol - 1 && maxY > H * 0.78) rIdx = (rowsPerCol - 1) - Math.round((maxY - item.y) / globalRowStep);
-            rIdx = Math.max(0, Math.min(rowsPerCol - 1, rIdx));
-            yPoints.push({ idx: rIdx, val: item.y }); xPoints.push({ idx: rIdx, val: item.xA });
-          });
-          var yLine = fitLine(yPoints), xLine = fitLine(xPoints);
-          var stepY = (yPoints.length >= 3 && Math.abs(yLine.m - globalRowStep) < globalRowStep * 0.18) ? yLine.m : globalRowStep;
-          var startY = median(yPoints.map(function (p) { return p.val - p.idx * stepY; }));
-          var slopeX = (xPoints.length >= 3 && Math.abs(xLine.m) < globalOptStep * 0.15) ? xLine.m : 0;
-          var startX = median(xPoints.map(function (p) { return p.val - p.idx * slopeX; }));
-          return { startX: startX, slopeX: slopeX, startY: startY, stepY: stepY };
-        });
-
-        function measureBubbleInk(cx, cy, rx, ry) {
-          var irx = rx * 0.64, iry = ry * 0.64, x0 = Math.max(0, Math.floor(cx - irx)), x1 = Math.min(W - 1, Math.ceil(cx + irx));
-          var y0 = Math.max(0, Math.floor(cy - iry)), y1 = Math.min(H - 1, Math.ceil(cy + iry)), bgSum = 0, bgCnt = 0;
-          for (var a = 0; a < 16; a++) {
-            var ang = (a / 16) * Math.PI * 2;
-            var bx = Math.min(W - 1, Math.max(0, Math.round(cx + Math.cos(ang) * rx * 1.45)));
-            var by = Math.min(H - 1, Math.max(0, Math.round(cy + Math.sin(ang) * ry * 1.45)));
-            bgSum += gray[by * W + bx]; bgCnt++;
-          }
-          var paperLum = bgCnt ? (bgSum / bgCnt) : 220, darkCutoff = Math.max(95, paperLum * 0.68), darkPx = 0, total = 0, lumSum = 0;
-          for (var yy = y0; yy <= y1; yy++) {
-            for (var xx = x0; xx <= x1; xx++) {
-              var nx = (xx - cx) / irx, ny = (yy - cy) / iry;
-              if (nx * nx + ny * ny <= 1.0) { var lum = gray[yy * W + xx]; lumSum += lum; if (lum < darkCutoff) darkPx++; total++; }
-            }
-          }
-          if (!total) return 0;
-          return ((darkPx / total) * 100) * 0.78 + Math.max(0, paperLum - (lumSum / total)) * 0.45;
-        }
-
-        var opts = ["A", "B", "C", "D"]; currentScanState = [];
-        for (var q = 1; q <= totalQuestions; q++) {
-          var ci = Math.floor((q - 1) / rowsPerCol), ri = (q - 1) % rowsPerCol, model = gridModels[ci];
-          var baseX = model.startX + ri * model.slopeX, cy = model.startY + ri * model.stepY;
-          var bubbles = opts.map(function (o, oi) { var cx = baseX + oi * globalOptStep; return { o: o, cx: cx, cy: cy, ink: measureBubbleInk(cx, cy, globalRx, globalRy) }; });
-          var sorted = bubbles.slice().sort(function (a, b) { return b.ink - a.ink; }), top1 = sorted[0], top2 = sorted[1], marked = "-";
-          if (top1.ink > 62) { if (top2.ink > 68 && (top1.ink - top2.ink) < 20) marked = "MULTI"; else if ((top1.ink - top2.ink) >= 20) marked = top1.o; }
-          currentScanState.push({ q: q, marked: marked, ans: key[q] || "A", bubbles: bubbles, rx: globalRx, ry: globalRy });
-        }
-        renderOMRVerification();
-        document.getElementById("omrScanOutput").classList.remove("hidden");
-        showToast("✅ Auto-Grid OMR Scan पूरा!");
+      const rollInput = document.getElementById("student-roll").value.trim().toLowerCase();
+      if (authorizedRolls.length > 0) {
+        const ok = authorizedRolls.find(item => item.roll === rollInput && isChapterMatchForCategory(item.batch, currentUser.studentClass));
+        if (!ok) return toast("❌ यह Roll No इस बैच के लिए Authorized नहीं है!");
       }
 
-      function renderOMRVerification() {
-        var pCanvas = document.getElementById("omrPreviewCanvas");
-        pCanvas.width = lastScanCanvas.width; pCanvas.height = lastScanCanvas.height;
-        var pCtx = pCanvas.getContext("2d"); pCtx.drawImage(lastScanCanvas, 0, 0);
-        var correct = 0, wrong = 0, blank = 0, chips = "";
-        currentScanState.forEach(function (item, idx) {
-          var clr = "#64748b";
-          if (item.marked === "-") blank++; else if (item.marked === item.ans) { correct++; clr = "#16a34a"; } else { wrong++; clr = "#dc2626"; }
-          item.bubbles.forEach(function (b) {
-            pCtx.beginPath(); pCtx.ellipse(b.cx, b.cy, item.rx * 1.1, item.ry * 1.1, 0, 0, Math.PI * 2);
-            if (b.o === item.marked || (item.marked === "MULTI" && b.ink > 68)) { pCtx.strokeStyle = (item.marked === item.ans) ? "#16a34a" : "#dc2626"; pCtx.lineWidth = 4; }
-            else if (b.o === item.ans && item.marked !== item.ans) { pCtx.strokeStyle = "#f59e0b"; pCtx.lineWidth = 2.5; }
-            else { pCtx.strokeStyle = "rgba(14, 165, 233, 0.5)"; pCtx.lineWidth = 1.5; }
-            pCtx.stroke();
-          });
-          chips += '<span class="q-chip" style="color:' + clr + ';" data-act="cycleQ" data-val="' + idx + '">Q' + item.q + ':' + item.marked + '(' + item.ans + ')</span>';
-        });
-        var tot = currentScanState.length;
-        scannedOMR = { mcqObtained: correct, omrDetails: "Total:" + tot + ", Correct:" + correct + ", Wrong:" + wrong + ", Blank:" + blank };
-        document.getElementById("omrSummaryText").textContent = "Marks: " + correct + " / " + tot + " (सही: " + correct + " • गलत: " + wrong + " • खाली: " + blank + ")";
-        document.getElementById("omrDetailChips").innerHTML = chips;
+      currentUser.name = document.getElementById("student-name").value.trim();
+      currentUser.roll = document.getElementById("student-roll").value.trim();
+      if (!isRetestMode) questionsData = allQuestionsData.filter(q => q.chapter === currentUser.chapter);
+      if (!questionsData.length) return toast("इस चैप्टर में प्रश्न उपलब्ध नहीं हैं!");
+
+      const meta = chapterMetaMap[currentUser.chapter] || { duration: 15 };
+      totalTimeSeconds = (meta.duration || 15) * 60;
+      timeLeftSeconds = totalTimeSeconds;
+
+      document.getElementById("active-chapter-title").textContent = currentUser.chapter;
+      document.getElementById("login-screen").classList.add("hidden");
+      document.getElementById("result-screen").classList.add("hidden");
+      document.getElementById("exam-screen").classList.remove("hidden");
+      userAnswers = {}; reviewFlags = {};
+      initPalette(); loadQuestion(0); startTimer();
+    }
+
+    function initPalette() {
+      const g = document.getElementById("palette-grid"); g.innerHTML = "";
+      questionsData.forEach((_, i) => {
+        const b = document.createElement("button");
+        b.type = "button"; b.className = "palette-btn"; b.id = "palette-btn-" + i; b.textContent = i + 1;
+        b.onclick = () => loadQuestion(i);
+        g.appendChild(b);
+      });
+    }
+
+    function loadQuestion(idx) {
+      currentQuestionIndex = idx;
+      const q = questionsData[idx], tot = questionsData.length;
+      document.getElementById("q-number-label").textContent = `Question ${idx + 1} of ${tot}`;
+      document.getElementById("question-text").innerHTML = `${q.id}. ${q.q}`;
+      const list = document.getElementById("options-list"); list.innerHTML = "";
+      ["A", "B", "C", "D"].forEach((k, oi) => {
+        const val = [q.a, q.b, q.c, q.d][oi], sel = userAnswers[idx] === k;
+        const d = document.createElement("div");
+        d.className = "option-item " + (sel ? "selected" : "");
+        d.innerHTML = `<strong>(${k})</strong>&nbsp; ${val}`;
+        d.onclick = () => { userAnswers[idx] = k; delete reviewFlags[idx]; loadQuestion(idx); };
+        list.appendChild(d);
+      });
+      if (typeof renderMathInElement === "function") {
+        renderMathInElement(document.getElementById("exam-screen"), { delimiters: [{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}], throwOnError: false });
       }
+      const ansCnt = Object.keys(userAnswers).length;
+      document.getElementById("progress-fill").style.width = ((ansCnt / tot) * 100) + "%";
+      document.getElementById("answered-count").textContent = `${ansCnt}/${tot} Answered`;
+      questionsData.forEach((_, i) => {
+        const b = document.getElementById("palette-btn-" + i);
+        if (!b) return;
+        b.className = "palette-btn" + (reviewFlags[i] ? " review" : (userAnswers[i] ? " answered" : "")) + (i === idx ? " current" : "");
+      });
+      document.getElementById("next-btn").textContent = idx === tot - 1 ? "Finish ✓" : "Next →";
+    }
 
-      function gradeInfo(pct) {
-        var p = parseFloat(pct);
-        if (p >= 90) return { g: "A+", msg: "अति उत्तम प्रदर्शन! बोर्ड परीक्षा में टॉपर बनने की पूरी क्षमता।" };
-        if (p >= 75) return { g: "A", msg: "बहुत अच्छा प्रयास! निरंतर अभ्यास से 90%+ अंक आसानी से प्राप्त होंगे।" };
-        if (p >= 60) return { g: "B", msg: "अच्छा प्रदर्शन, लिखित प्रश्नों (Theory) के अभ्यास पर और ध्यान दें।" };
-        if (p >= 45) return { g: "C", msg: "मेहनत की आवश्यकता है। रोज़ाना 10 सवालों का लिखित अभ्यास करें।" };
-        return { g: "D", msg: "विशेष ध्यान की आवश्यकता है। अभिभावक कृपया शिक्षक से संपर्क करें।" };
+    function prevQuestion() { if (currentQuestionIndex > 0) loadQuestion(currentQuestionIndex - 1); }
+    function markForReview() { reviewFlags[currentQuestionIndex] = true; nextQuestion(); }
+    function nextQuestion() { if (currentQuestionIndex < questionsData.length - 1) loadQuestion(currentQuestionIndex + 1); else confirmSubmit(); }
+    function confirmSubmit() { if (confirm("क्या आप अपना टेस्ट सबमिट करना चाहते हैं?")) submitExam(); }
+
+    function startTimer() {
+      clearInterval(timerInterval);
+      timerInterval = setInterval(() => {
+        if (timeLeftSeconds <= 0) { clearInterval(timerInterval); submitExam(); return; }
+        timeLeftSeconds--;
+        const m = Math.floor(timeLeftSeconds / 60), s = timeLeftSeconds % 60;
+        document.getElementById("time-left").textContent = `${m < 10 ? "0" : ""}${m}:${s < 10 ? "0" : ""}${s}`;
+        document.getElementById("timer-display").classList.toggle("warning", timeLeftSeconds <= 60);
+      }, 1000);
+    }
+
+    function submitExam() {
+      clearInterval(timerInterval);
+      const tot = questionsData.length;
+      let correct = 0, wrong = 0, attempted = 0; wrongQuestionIndices = [];
+      questionsData.forEach((q, i) => {
+        const a = userAnswers[i];
+        if (a) { attempted++; if (a === q.ans) correct++; else { wrong++; wrongQuestionIndices.push(i); } }
+        else wrongQuestionIndices.push(i);
+      });
+      finalComputedScore = Math.max(0, Number((correct - wrong * 0.25).toFixed(2)));
+      const pct = Math.round((correct / tot) * 100);
+      const taken = Math.max(1, totalTimeSeconds - timeLeftSeconds);
+      const timeStr = `${Math.floor(taken / 60)}m ${taken % 60}s`;
+
+      // Save result to Online Test Sheet via API (Zero Reload!)
+      fetch(ONLINE_API_URL, {
+        method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify({
+          action: "saveResult",
+          payload: { name: currentUser.name, roll: `${currentUser.roll} (${currentUser.studentClass})`, score: finalComputedScore, totalQ: tot, correct, wrong, percentage: pct + "%", timeTaken: timeStr, chapter: currentUser.chapter, dateTime: new Date().toLocaleString("en-IN") }
+        })
+      }).catch(() => {});
+
+      document.getElementById("exam-screen").classList.add("hidden");
+      document.getElementById("result-screen").classList.remove("hidden");
+      document.getElementById("final-score-val").textContent = finalComputedScore;
+      document.getElementById("total-q-label").textContent = `Out of ${tot}`;
+      document.getElementById("stat-correct").textContent = correct;
+      document.getElementById("stat-wrong").textContent = wrong;
+      document.getElementById("stat-time").textContent = timeStr;
+      document.getElementById("stat-accuracy").textContent = pct + "%";
+      document.getElementById("stat-speed").textContent = Math.round(taken / tot) + "s/Q";
+      document.getElementById("stat-attempt").textContent = Math.round((attempted / tot) * 100) + "%";
+
+      document.getElementById("retest-wrong-container").style.display = wrongQuestionIndices.length ? "block" : "none";
+      document.getElementById("wrong-q-count").textContent = wrongQuestionIndices.length;
+    }
+
+    function startWrongQuestionsRetest() {
+      const full = allQuestionsData.filter(q => q.chapter === currentUser.chapter);
+      questionsData = wrongQuestionIndices.map(i => full[i]).filter(Boolean);
+      isRetestMode = true;
+      startExam();
+    }
+
+    function backToOnlineHome() {
+      isRetestMode = false;
+      document.getElementById("result-screen").classList.add("hidden");
+      document.getElementById("login-screen").classList.remove("hidden");
+    }
+
+    function openDailyChallenge() { toast("🎯 " + challengeQuestionsList[new Date().getDate() % challengeQuestionsList.length]); }
+    function openAnnouncements() { toast("📢 Daily Live Test Series Active! — Anuj Sir"); }
+    function openDoubtBox() { document.getElementById("doubt-modal").style.display = "flex"; }
+    function sendDoubtToWhatsApp() {
+      const n = document.getElementById("doubt-student-name").value || "Student", d = document.getElementById("doubt-text").value;
+      if (!d) return toast("कृपया डाउट लिखें!");
+      window.open("https://wa.me/918279647115?text=" + encodeURIComponent(`नमस्ते अनुज भैया, मेरा नाम ${n} है। मेरा डाउट: ${d}`), "_blank");
+      closeModal("doubt-modal");
+    }
+
+    function openChapterSelector(type) {
+      const body = document.getElementById("chapter-selector-body");
+      document.getElementById("selector-modal-title").textContent = "Select Chapter (" + type.toUpperCase() + ")";
+      const filtered = chaptersList.filter(c => isChapterMatchForCategory(c, currentUser.studentClass));
+      body.innerHTML = filtered.length ? filtered.map(c => `<button type="button" class="chapter-item-btn" onclick="openResource('${type}','${c.replace(/'/g,"\\'")}')"><span>📘 ${c}</span><span>›</span></button>`).join("") : "<p>कृपया पहले Class चुनें।</p>";
+      document.getElementById("chapter-selector-modal").style.display = "flex";
+    }
+
+    function openResource(type, chap) {
+      closeModal("chapter-selector-modal");
+      const body = document.getElementById("analysis-modal-body");
+      document.getElementById("analysis-modal-heading").textContent = chap;
+      if (type === "analysis") {
+        body.innerHTML = `<div style="white-space:pre-line;">${chapterAnalysisMap[chap] || "Analysis जल्द उपलब्ध होगा।"}</div>`;
+      } else {
+        let link = type === "notes" ? chapterNotesMap[chap] : (type === "revision" ? chapterRevisionMap[chap] : chapterVideoMap[chap]);
+        if (!link) return toast("यह सामग्री अभी उपलब्ध नहीं है।");
+        if (link.includes("drive.google.com") && !link.includes("preview")) link = link.replace(/\/view.*/, "/preview");
+        body.innerHTML = `<iframe src="${link}" width="100%" height="420px" style="border:0; border-radius:10px;"></iframe>`;
       }
+      document.getElementById("analysis-modal").style.display = "flex";
+    }
 
-      function buildSingleCard(idx, mountId) {
-        var st = activeOfflineStudent.student, r = activeOfflineStudent.results[idx], gi = gradeInfo(r.percentage);
-        document.getElementById(mountId).innerHTML =
-          '<div class="report-sheet"><div class="rc-inner">' +
-          '<div class="rc-header"><div class="rc-emblem">' + getLogoHtml() + '</div><h2>Concept Math Hub</h2><div class="sub">Shahalipur Kotra, Nagina, Bijnor (U.P.) — 246724</div><div class="rc-badge-title">★ OFFICIAL PROGRESS REPORT CARD ★</div></div>' +
-          '<div class="rc-student-box"><div><span>Student:</span> <strong>' + st.name + '</strong></div><div><span>Roll No:</span> <strong>' + st.rollNo + '</strong></div><div><span>Father:</span> <strong>' + (st.fatherName || "—") + '</strong></div><div><span>Date:</span> <strong>' + r.testDate + '</strong></div><div><span>Subject:</span> <strong>' + r.subject + '</strong></div><div><span>Class:</span> <strong>' + st.className + '</strong></div></div>' +
-          '<table class="rc-table"><thead><tr><th>Section</th><th>Max</th><th>Obt.</th><th>%</th></tr></thead><tbody>' +
-          '<tr><td style="text-align:left;">Part-A: OMR (' + r.mcqMax + ' MCQ)</td><td>' + r.mcqMax + '</td><td><span class="pill-omr">' + r.mcqObtained + '</span></td><td>' + (r.mcqMax ? ((r.mcqObtained/r.mcqMax)*100).toFixed(0)+'%' : '—') + '</td></tr>' +
-          '<tr><td style="text-align:left;">Part-B: Theory</td><td>' + r.theoryMax + '</td><td><span class="pill-th">' + r.theoryObtained + '</span></td><td>' + (r.theoryMax ? ((r.theoryObtained/r.theoryMax)*100).toFixed(0)+'%' : '—') + '</td></tr>' +
-          '<tr style="background:#dcfce7; font-weight:800; color:#0f5132;"><td style="text-align:left;">GRAND TOTAL</td><td>' + r.totalMax + '</td><td>' + r.totalObtained + '</td><td><span class="pill-pct">' + r.percentage + '%</span></td></tr>' +
-          '</tbody></table>' +
-          '<div class="rc-summary-strip"><div class="rc-stat s1"><div class="lbl">SCORE</div><div class="val">' + r.totalObtained + '/' + r.totalMax + '</div></div><div class="rc-stat s2"><div class="lbl">PERCENT</div><div class="val">' + r.percentage + '%</div></div><div class="rc-stat s3"><div class="lbl">RANK</div><div class="val">#' + r.rank + '/' + r.totalAppeared + '</div></div><div class="rc-stat s4"><div class="lbl">GRADE</div><div class="val">' + gi.g + '</div></div></div>' +
-          '<div class="rc-remarks"><strong>📌 Teacher Feedback:</strong> ' + (r.theoryFeedback ? r.theoryFeedback + "<br>" : "") + '<em>' + gi.msg + '</em></div>' +
-          '<div class="rc-signs"><div class="sign-line">अभिभावक हस्ताक्षर<br>(Parent Sign)</div><div class="sign-line">निदेशक हस्ताक्षर<br>(Anuj Sir)</div></div>' +
-          '</div></div>';
-        if (mountId === "studentCardMount") { document.getElementById("studentCardSection").classList.remove("hidden"); document.getElementById("studentCardSection").scrollIntoView({ behavior: "smooth" }); }
-      }
+    function openFormulaMaster() {
+      const body = document.getElementById("formula-modal-body");
+      const list = sheetFormulas.filter(f => isChapterMatchForCategory(f.class || f.chapter, currentUser.studentClass));
+      body.innerHTML = list.length ? list.map((f, i) => `<div class="formula-beauty-card"><strong>${i+1}. ${f.title} (${f.chapter})</strong><div class="formula-content-box">${f.formula}</div></div>`).join("") : "<p>कृपया पहले अपनी Class चुनें।</p>";
+      document.getElementById("formula-modal").style.display = "flex";
+      if (typeof renderMathInElement === "function") renderMathInElement(body, { delimiters: [{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}], throwOnError: false });
+    }
 
-      function buildCombinedCard(count, mountId) {
-        if (!activeOfflineStudent) return;
-        var st = activeOfflineStudent.student, slice = activeOfflineStudent.results.slice(0, count).reverse();
-        var mO = 0, mM = 0, tO = 0, tM = 0, gO = 0, gM = 0;
-        var rows = slice.map(function (r, i) {
-          mO += r.mcqObtained; mM += r.mcqMax; tO += r.theoryObtained; tM += r.theoryMax; gO += r.totalObtained; gM += r.totalMax;
-          return '<tr><td><strong>' + (i + 1) + '</strong></td><td>' + r.testDate.slice(0, 5) + '</td><td><span class="pill-omr">' + r.mcqObtained + '/' + r.mcqMax + '</span></td><td><span class="pill-th">' + r.theoryObtained + '/' + r.theoryMax + '</span></td><td><strong>' + r.totalObtained + '/' + r.totalMax + '</strong></td><td><span class="pill-pct">' + Math.round(r.percentage) + '%</span></td><td><span class="pill-rank">#' + r.rank + '</span></td></tr>';
-        }).join("");
-        var pct = gM ? ((gO / gM) * 100).toFixed(1) : 0, gi = gradeInfo(pct);
-        document.getElementById(mountId).innerHTML =
-          '<div class="report-sheet"><div class="rc-inner">' +
-          '<div class="rc-header"><div class="rc-emblem">' + getLogoHtml() + '</div><h2>Concept Math Hub</h2><div class="sub">Shahalipur Kotra, Nagina, Bijnor (U.P.) — 246724</div><div class="rc-badge-title">★ COMBINED PROGRESS REPORT (' + slice.length + ' TESTS) ★</div></div>' +
-          '<div class="rc-student-box"><div><span>Student:</span> <strong>' + st.name + '</strong></div><div><span>Roll No:</span> <strong>' + st.rollNo + '</strong></div><div><span>Father:</span> <strong>' + (st.fatherName || "—") + '</strong></div><div><span>Class:</span> <strong>' + st.className + '</strong></div></div>' +
-          '<table class="rc-table" style="font-size:11.5px;"><thead><tr><th>#</th><th>Date</th><th>OMR</th><th>Theory</th><th>Total</th><th>%</th><th>Rank</th></tr></thead><tbody>' + rows +
-          '<tr style="background:#dcfce7; font-weight:800; color:#0f5132;"><td colspan="2">TOTAL</td><td>' + mO + '/' + mM + '</td><td>' + tO + '/' + tM + '</td><td>' + gO + '/' + gM + '</td><td><span class="pill-pct">' + pct + '%</span></td><td><span class="pill-rank">' + gi.g + '</span></td></tr>' +
-          '</tbody></table>' +
-          '<div class="rc-remarks"><strong>📌 Parent Feedback:</strong> कुल ' + slice.length + ' टेस्ट में औसत प्रतिशत <strong>' + pct + '% (Grade ' + gi.g + ')</strong> रहा। ' + gi.msg + '</div>' +
-          '<div class="rc-signs"><div class="sign-line">अभिभावक हस्ताक्षर<br>(Parent Sign)</div><div class="sign-line">निदेशक हस्ताक्षर<br>(Anuj Sir)</div></div>' +
-          '</div></div>';
-        if (mountId === "studentCardMount") { document.getElementById("studentCardSection").classList.remove("hidden"); document.getElementById("studentCardSection").scrollIntoView({ behavior: "smooth" }); }
-      }
-
-      document.addEventListener("click", function (e) {
-        var target = e.target;
-        while (target && target !== document && !target.getAttribute("data-act")) target = target.parentNode;
-        if (!target || target === document) return;
-
-        var act = target.getAttribute("data-act"), val = target.getAttribute("data-val") || "", sub = target.getAttribute("data-sub") || "";
-        if (act === "nav") switchNav(val, sub);
-        else if (act === "printPage") window.print();
-        else if (act === "vaultTab") {
-          activeVaultCat = val;
-          ["TEST_PAPER", "PYQ", "NOTES_FORMULA"].forEach(function (c) { document.getElementById("vtab-" + c).classList.toggle("active", c === val); });
-          renderVaultList();
-        }
-        else if (act === "subMode") {
-          stopInAppVideo();
-          document.getElementById("ms-explore").classList.toggle("active", val === "explore");
-          document.getElementById("ms-my").classList.toggle("active", val === "my");
-          document.getElementById("sub-explore").classList.toggle("hidden", val !== "explore");
-          document.getElementById("sub-my").classList.toggle("hidden", val !== "my");
-          if (val === "my") showMyBatchesSubView("mb-batches-level");
-        }
-        else if (act === "filterCat") {
-          activeCatFilter = val;
-          var pills = document.querySelectorAll(".cat-pill");
-          for (var i = 0; i < pills.length; i++) pills[i].classList.toggle("active", pills[i].getAttribute("data-val") === val);
-          renderExploreBatches();
-        }
-        else if (act === "switchLogin") { targetBatchObj = null; document.getElementById("enrollModalHeading").textContent = "👤 Student Login"; document.getElementById("paidPaymentSection").classList.add("hidden"); document.getElementById("enrollModal").classList.remove("hidden"); }
-        else if (act === "closeEnroll") document.getElementById("enrollModal").classList.add("hidden");
-        else if (act === "joinBatch") {
-          var b = portalData.batches.find(function (x) { return x.batchId === val; }); if (!b) return;
-          targetBatchObj = b; var isPaid = b.priceType === "PAID" && b.price > 0;
-          document.getElementById("enrollModalHeading").textContent = isPaid ? "💳 Paid Batch Enroll" : "🎓 Free Batch Join";
-          document.getElementById("enrollBatchTitle").textContent = b.batchName;
-          document.getElementById("paidPaymentSection").classList.toggle("hidden", !isPaid);
-          if (isPaid) { document.getElementById("paidAmountTag").textContent = "₹" + b.price; document.getElementById("paidUpiDisplay").textContent = "UPI ID: " + (b.upiId || "Concept Math Hub"); }
-          document.getElementById("enrollModal").classList.remove("hidden");
-        }
-        else if (act === "confirmEnroll") {
-          var name = document.getElementById("enrName").value.trim(), id = document.getElementById("enrId").value.trim(), cls = document.getElementById("enrClass").value;
-          if (!name || !id) return showToast("नाम और Mobile/Roll No. भरें!");
-          studentProfile = { studentName: name, studentId: id, className: cls };
-          safeSet("cmh_batch_student", JSON.stringify(studentProfile));
-          document.getElementById("enrollModal").classList.add("hidden");
-          if (targetBatchObj) {
-            var bId = targetBatchObj.batchId, isPaid = targetBatchObj.priceType === "PAID" && targetBatchObj.price > 0;
-            if (!isPaid && activeBatchIds.indexOf(bId) === -1) activeBatchIds.push(bId);
-            renderBatchesUI();
-            postBatchApi({ action: "enrollStudent", studentId: id, studentName: name, className: cls, batchId: bId, priceType: isPaid ? "PAID" : "FREE", amountPaid: targetBatchObj.price, paymentRef: document.getElementById("enrPaymentRef").value.trim() || "FREE" })
-              .then(function (r) { showToast(r.message || "Enrolled!"); syncBothDatabases(); });
-          } else { showToast("✅ प्रोफ़ाइल सेव हो गई!"); syncBothDatabases(); }
-        }
-        else if (act === "studyBatch" || act === "openBatch") {
-          document.getElementById("ms-explore").classList.remove("active"); document.getElementById("ms-my").classList.add("active");
-          document.getElementById("sub-explore").classList.add("hidden"); document.getElementById("sub-my").classList.remove("hidden");
-          openBatchSubjects(val);
-        }
-        else if (act === "backBatches") { stopInAppVideo(); showMyBatchesSubView("mb-batches-level"); }
-        else if (act === "openSubject") openSubjectChapters(val);
-        else if (act === "backSubjects") { stopInAppVideo(); openBatchSubjects(selBatchId); }
-        else if (act === "openChapter") openChapterLectures(val);
-        else if (act === "backChapters") { stopInAppVideo(); openSubjectChapters(selSubject); }
-        else if (act === "playLec") openClassroomPlayer(val);
-        else if (act === "closePlayer") { stopInAppVideo(); openChapterLectures(selChapter); }
-        else if (act === "clsTab") {
-          ["notes", "dpp", "doubt"].forEach(function (t) { document.getElementById("cpane-" + t).classList.toggle("hidden", t !== val); document.getElementById("ctab-" + t).classList.toggle("active", t === val); });
-        }
-        else if (act === "seek" && ytPlayer && ytPlayer.getCurrentTime) ytPlayer.seekTo(Math.max(0, ytPlayer.getCurrentTime() + Number(val)), true);
-        else if (act === "playPause" && ytPlayer && ytPlayer.getPlayerState) { ytPlayer.getPlayerState() === 1 ? ytPlayer.pauseVideo() : ytPlayer.playVideo(); }
-        else if (act === "speed" && ytPlayer && ytPlayer.setPlaybackRate) { ytPlayer.setPlaybackRate(Number(val)); showToast("Speed: " + val + "x"); }
-        else if (act === "loadOfflineRes") {
-          var roll = document.getElementById("stuRollInput").value.trim(); if (!roll) return showToast("Roll No. डालें!");
-          showToast("Result लोड हो रहा है...");
-          getOfflineApi("action=getStudentResults&rollNo=" + encodeURIComponent(roll)).then(function (res) {
-            if (res.status !== "success" || !res.results.length) return showToast("इस Roll No. का कोई टेस्ट नहीं मिला।");
-            activeOfflineStudent = res;
-            document.getElementById("stuNameTitle").textContent = "👤 " + res.student.name + " (Roll No: " + res.student.rollNo + ")";
-            document.getElementById("stuSubTitle").textContent = res.student.className + " • कुल टेस्ट: " + res.results.length;
-            document.getElementById("stuTestList").innerHTML = res.results.map(function (r, i) {
-              return '<div class="test-row" data-act="singleCard" data-val="' + i + '"><div style="display:flex; align-items:center; gap:10px;"><div class="date-pill">' + r.testDate + '</div><div><div style="font-weight:700; font-size:14px;">' + r.subject + ' — ' + r.testName + '</div><div style="font-size:12px; color:#64748b;">OMR: ' + r.mcqObtained + '/' + r.mcqMax + ' • Theory: ' + r.theoryObtained + '/' + r.theoryMax + ' • Rank #' + r.rank + '</div></div></div><div class="score-tag">' + r.totalObtained + '/' + r.totalMax + ' (' + r.percentage + '%)</div></div>';
-            }).join("");
-            document.getElementById("studentDataBox").classList.remove("hidden"); document.getElementById("studentCardSection").classList.add("hidden");
-          });
-        }
-        else if (act === "singleCard") buildSingleCard(Number(val), "studentCardMount");
-        else if (act === "combCard") buildCombinedCard(Number(val), "studentCardMount");
-        else if (act === "openPin") {
-          if (adminUnlocked) switchNav("admin");
-          else { document.getElementById("pinField").value = ""; document.getElementById("pinModal").classList.remove("hidden"); }
-        }
-        else if (act === "closePin") document.getElementById("pinModal").classList.add("hidden");
-        else if (act === "verifyPin") {
-          if (document.getElementById("pinField").value.trim() === TEACHER_PIN) { adminUnlocked = true; document.getElementById("pinModal").classList.add("hidden"); showToast("🔓 Master Studio Unlocked!"); switchNav("admin"); }
-          else showToast("❌ गलत PIN!");
-        }
-        else if (act === "admTab") {
-          ["omr", "theory", "batch", "setup"].forEach(function (t) { document.getElementById("apane-" + t).classList.toggle("hidden", t !== val); document.getElementById("atab-" + t).classList.toggle("active", t === val); });
-        }
-        else if (act === "startCam") startCamera();
-        else if (act === "capVideo") captureFromVideo();
-        else if (act === "cycleQ") {
-          var idx = Number(val), states = ["-", "A", "B", "C", "D"];
-          currentScanState[idx].marked = states[(states.indexOf(currentScanState[idx].marked) + 1) % 5];
-          renderOMRVerification();
-        }
-        else if (act === "saveOMR") {
-          var rNo = document.getElementById("omrRollNo").value.trim(), tId = document.getElementById("omrTestSelect").value;
-          if (!rNo || !tId || !scannedOMR) return showToast("Roll No. और Test डालें!");
-          showToast("Saving OMR...");
-          postOfflineApi({ action: "saveOMRResult", rollNo: rNo, testId: tId, mcqObtained: scannedOMR.mcqObtained, omrDetails: scannedOMR.omrDetails }).then(function (r) { showToast(r.message || "OMR Saved!"); });
-        }
-        else if (act === "copyPrompt") {
-          var r = document.getElementById("theoryRollNo").value.trim() || "101";
-          navigator.clipboard.writeText("Roll No: " + r + "\nऊपर दी गई Model Answer PDF के अनुसार इस छात्र की कॉपी चेक करें। अंत में एक अलग लाइन में इसी फॉर्मेट में उत्तर दें:\n" + r + " | [कुल प्राप्तांक] | [हिंदी में 1 लाइन का फीडबैक]");
-          showToast("📋 Roll No. " + r + " का Prompt Copy हो गया!");
-        }
-        else if (act === "pasteTheory") {
-          navigator.clipboard.readText().then(function (txt) {
-            var m = txt.match(/(\d+)\s*\|\s*([\d.]+)\s*\|\s*(.+)/);
-            if (!m) return showToast("⚠️ सही फॉर्मेट कॉपी नहीं हुआ!");
-            document.getElementById("theoryRollNo").value = m[1].trim(); document.getElementById("theoryMarksInput").value = m[2].trim(); document.getElementById("theoryFeedbackInput").value = m[3].trim();
-            showToast("✅ Paste हो गया! Save पर क्लिक करें।");
-          }).catch(function () { showToast("नीचे बॉक्स में Paste करें।"); });
-        }
-        else if (act === "saveTheory") {
-          var rNo2 = document.getElementById("theoryRollNo").value.trim(), tId2 = document.getElementById("theoryTestSelect").value, mk = document.getElementById("theoryMarksInput").value;
-          if (!rNo2 || !tId2 || mk === "") return showToast("Roll No, Test और Marks भरें!");
-          postOfflineApi({ action: "saveTheoryResult", rollNo: rNo2, testId: tId2, theoryObtained: mk, theoryFeedback: document.getElementById("theoryFeedbackInput").value }).then(function (r) { showToast(r.message || "Theory Saved!"); });
-        }
-        else if (act === "genTeacherRep") {
-          var rNo3 = document.getElementById("repRollNo").value.trim(), cnt = parseInt(document.getElementById("repCount").value, 10);
-          if (!rNo3) return showToast("Roll No. डालें!");
-          getOfflineApi("action=getStudentResults&rollNo=" + encodeURIComponent(rNo3)).then(function (res) {
-            if (res.status !== "success" || !res.results.length) return showToast("कोई रिकॉर्ड नहीं मिला!");
-            activeOfflineStudent = res;
-            if (cnt === 1) buildSingleCard(0, "teacherCardMount"); else buildCombinedCard(cnt, "teacherCardMount");
-          });
-        }
-        else if (act === "createBatch") {
-          var bName = document.getElementById("newBatchName").value.trim(); if (!bName) return showToast("Batch Name लिखें!");
-          postBatchApi({ action: "createBatch", category: document.getElementById("newBatchCat").value, batchName: bName, className: document.getElementById("newBatchClass").value || "All India", teacherName: document.getElementById("newBatchTeacher").value || "Anuj Sir", teacherPhoto: document.getElementById("newBatchTeacherPhoto").value.trim(), theme: document.getElementById("newBatchTheme").value, priceType: document.getElementById("newBatchPriceType").value, price: document.getElementById("newBatchPrice").value, upiId: document.getElementById("newBatchUpi").value.trim() })
-            .then(function (r) { showToast(r.message || "Batch Created!"); document.getElementById("newBatchName").value = ""; syncBothDatabases(); });
-        }
-        else if (act === "pubLec") {
-          var bid = document.getElementById("admBatchSelect").value, ch = document.getElementById("admChapter").value.trim(), lt = document.getElementById("admTitle").value.trim(), vu = document.getElementById("admVideoUrl").value.trim();
-          if (!bid || !ch || !lt || !vu) return showToast("सभी फ़ील्ड भरें!");
-          postBatchApi({ action: "addLecture", batchId: bid, subject: document.getElementById("admSubject").value, chapterName: ch, lectureNo: document.getElementById("admLecNo").value, lectureTitle: lt, videoUrl: vu, notesUrl: document.getElementById("admNotesUrl").value.trim(), dppUrl: document.getElementById("admDppUrl").value.trim() })
-            .then(function (r) { showToast(r.message || "Lecture Published!"); syncBothDatabases(); });
-        }
-        else if (act === "createOfflineTest") {
-          var c = Math.min(100, Math.max(1, parseInt(document.getElementById("newMaxMcq").value, 10) || 30));
-          var ak = {}; for (var q = 1; q <= c; q++) ak[q] = document.getElementById("ak_" + q).value;
-          postOfflineApi({ action: "createTest", testDate: document.getElementById("newTestDate").value, subject: document.getElementById("newTestSub").value, testName: document.getElementById("newTestName").value || "Practice Test", maxMcq: c, maxTheory: document.getElementById("newMaxTheory").value, answerKey: ak })
-            .then(function (r) { showToast("✅ Test Save हो गया!"); syncBothDatabases(); });
-        }
-        else if (act === "saveOfflineStu") {
-          postOfflineApi({ action: "saveStudent", rollNo: document.getElementById("stRoll").value, name: document.getElementById("stName").value, fatherName: document.getElementById("stFather").value, className: document.getElementById("stClass").value })
-            .then(function (r) { showToast(r.message || "Student Saved!"); });
-        }
-        else if (act === "pubMat") {
-          var mt = document.getElementById("matTitle").value.trim(), mp = document.getElementById("matPdfUrl").value.trim();
-          if (!mt || !mp) return showToast("Title और PDF Link भरें!");
-          postBatchApi({ action: "addMaterial", category: document.getElementById("matCategory").value, className: document.getElementById("matClass").value, subject: document.getElementById("matSubject").value, title: mt, pdfUrl: mp })
-            .then(function (r) { showToast(r.message || "PDF Published!"); syncBothDatabases(); });
+    function openReviewModal(type) {
+      const body = document.getElementById("review-modal-body"); body.innerHTML = "";
+      questionsData.forEach((q, i) => {
+        const ua = userAnswers[i], ok = ua === q.ans;
+        if ((type === "correct" && ok) || (type === "wrong" && !ok)) {
+          body.innerHTML += `<div class="review-item"><strong>${q.id}. ${q.q}</strong><div style="font-size:12.5px; margin-top:4px;">Your: ${ua || "Skipped"} | Correct: <strong>${q.ans}</strong></div><div class="solution-box">💡 ${q.solution}</div></div>`;
         }
       });
+      document.getElementById("review-modal").style.display = "flex";
+    }
 
-      document.getElementById("omrTestSelect").addEventListener("change", updateOMRModeBadge);
-      document.getElementById("newMaxMcq").addEventListener("input", renderAnswerKeyGrid);
+    function openCertificateModal() {
+      document.getElementById("cert-student-name").textContent = currentUser.name || "Student";
+      document.getElementById("cert-chapter-name").textContent = currentUser.chapter;
+      document.getElementById("cert-score-display").textContent = `${finalComputedScore} / ${questionsData.length}`;
+      document.getElementById("cert-date").textContent = new Date().toLocaleDateString("en-IN");
+      document.getElementById("certificate-modal").style.display = "flex";
+    }
 
-      renderBatchesUI();
-      syncBothDatabases();
+    function openLeaderboardModal() {
+      const body = document.getElementById("leaderboard-modal-body");
+      const sorted = [...allResultsData].sort((a, b) => b.score - a.score).slice(0, 5);
+      body.innerHTML = sorted.length ? sorted.map((r, i) => `<div class="img2-history-card"><div><strong>#${i+1} ${r.name}</strong><p style="font-size:11px; color:var(--muted);">${r.chapter}</p></div><strong>${r.score}/${r.total}</strong></div>`).join("") : "<p>कोई रिकॉर्ड नहीं मिला।</p>";
+      document.getElementById("leaderboard-modal").style.display = "flex";
+    }
 
-      setTimeout(function () {
-        try {
-          var tag = document.createElement("script");
-          tag.src = "https://www.youtube.com/iframe_api";
-          document.body.appendChild(tag);
-        } catch (e) {}
-      }, 800);
-    })();
+    function checkHistoryManual() {
+      const r = document.getElementById("student-roll").value.trim().toLowerCase();
+      if (!r) return toast("पहले Roll Number डालें!");
+      const hist = allResultsData.filter(x => (x.roll || "").toLowerCase().includes(r));
+      const box = document.getElementById("student-dashboard-area");
+      box.classList.remove("hidden");
+      document.getElementById("img2-dash-roll").textContent = "Roll: " + r;
+      document.getElementById("dash-stat-tests").textContent = hist.length;
+      document.getElementById("dash-history-summary").innerHTML = hist.slice(-6).reverse().map(h => `<div class="img2-history-card"><div><strong>${h.chapter}</strong><p style="font-size:11px;">${h.date}</p></div><strong>${h.score}/${h.total}</strong></div>`).join("") || "<p>कोई टेस्ट रिकॉर्ड नहीं मिला।</p>";
+    }
+
+    function openProfileModal() { document.getElementById("profile-modal").style.display = "flex"; }
+    function saveStudentProfile() {
+      const n = document.getElementById("profile-input-name").value.trim(), r = document.getElementById("profile-input-roll").value.trim();
+      if (n) document.getElementById("student-name").value = n;
+      if (r) document.getElementById("student-roll").value = r;
+      closeModal("profile-modal"); toast("✅ Profile Saved!");
+    }
+
+    // =========================================================
+    // 2. ONLINE BATCHES LOGIC (0-SECOND SWITCH)
+    // =========================================================
+    let portalData = { batches: [], lectures: [] }, activeBatchIds = [], selBatchId = "", selSubject = "", selChapter = "";
+    function switchBatchTab(t) {
+      document.getElementById("sub-explore").classList.toggle("hidden", t !== "explore");
+      document.getElementById("sub-my").classList.toggle("hidden", t !== "my");
+      document.getElementById("ms-explore").className = t === "explore" ? "btn" : "btn btn-soft";
+      document.getElementById("ms-my").className = t === "my" ? "btn" : "btn btn-soft";
+    }
+    function showBatchSub(id) {
+      ["mb-batches-level", "mb-subjects-level", "mb-chapters-level", "mb-lectures-level", "mb-player-level"].forEach(x => document.getElementById(x).classList.add("hidden"));
+      document.getElementById(id).classList.remove("hidden");
+    }
+    function renderBatches() {
+      const m = document.getElementById("allBatchesList");
+      m.innerHTML = (portalData.batches || []).map(b => `
+        <div class="batch-card">
+          <div class="batch-banner">
+            <div><h3>${b.batchName}</h3><p style="font-size:11.5px; opacity:0.9;">${b.className} • ${b.teacherName || "Anuj Sir"}</p></div>
+            <div class="teacher-avatar-frame"><img src="${b.teacherPhoto || LOGO_URL}" onerror="this.style.display='none'"></div>
+          </div>
+          <div style="padding:12px 14px; display:flex; justify-content:space-between; align-items:center;">
+            <strong>${b.priceType === "PAID" && b.price > 0 ? "₹" + b.price : "FREE"}</strong>
+            <button type="button" class="btn" style="width:auto;" onclick="openBatchClassroom('${b.batchId}')">▶ Open Batch</button>
+          </div>
+        </div>`).join("") || '<div class="card">Batches लोड हो रहे हैं...</div>';
+    }
+    function openBatchClassroom(bid) {
+      selBatchId = bid;
+      switchBatchTab("my");
+      const subs = [...new Set((portalData.lectures || []).filter(l => l.batchId === bid).map(l => l.subject))];
+      document.getElementById("subjectsGridMount").innerHTML = subs.length ? subs.map(s => `<div class="subj-card" onclick="openBatchSub('${s}')"><strong>📘 ${s}</strong></div>`).join("") : "<p>जल्द लेक्चर जुड़ेंगे।</p>";
+      showBatchSub("mb-subjects-level");
+    }
+    function openBatchSub(sub) {
+      selSubject = sub;
+      const chaps = [...new Set((portalData.lectures || []).filter(l => l.batchId === selBatchId && l.subject === sub).map(l => l.chapterName))];
+      document.getElementById("chaptersListMount").innerHTML = chaps.map((c, i) => `<div class="chap-row" onclick="openBatchChap('${c}')"><strong>${i+1}. ${c}</strong></div>`).join("");
+      showBatchSub("mb-chapters-level");
+    }
+    function openBatchChap(ch) {
+      selChapter = ch;
+      const lecs = (portalData.lectures || []).filter(l => l.batchId === selBatchId && l.subject === selSubject && l.chapterName === ch);
+      document.getElementById("lecturesListMount").innerHTML = lecs.map(l => `<div class="lec-card" onclick="playBatchLec('${l.lectureId}')"><strong>▶ Lec ${l.lectureNo}: ${l.lectureTitle}</strong></div>`).join("");
+      showBatchSub("mb-lectures-level");
+    }
+    function playBatchLec(lid) {
+      const l = (portalData.lectures || []).find(x => x.lectureId === lid); if (!l) return;
+      const m = (l.videoUrl || "").match(/(?:youtube\.com\/(?:watch\?v=|embed\/|live\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+      document.getElementById("ytPlayerContainer").innerHTML = m ? `<iframe src="https://www.youtube-nocookie.com/embed/${m[1]}?autoplay=1" allowfullscreen></iframe>` : "";
+      document.getElementById("notesActionMount").innerHTML = l.notesUrl ? `<a href="${l.notesUrl}" target="_blank" class="btn">📥 Notes PDF</a>` : "";
+      document.getElementById("dppActionMount").innerHTML = l.dppUrl ? `<a href="${l.dppUrl}" target="_blank" class="btn btn-amber">📝 DPP PDF</a>` : "";
+      showBatchSub("mb-player-level");
+    }
+    function stopVideo() { document.getElementById("ytPlayerContainer").innerHTML = ""; }
+    function openBatchLoginModal() { document.getElementById("batch-login-modal").style.display = "flex"; }
+    function confirmBatchEnroll() { closeModal("batch-login-modal"); toast("✅ Student Saved!"); }
+
+    // =========================================================
+    // 3. OFFLINE TEST & REPORT CARD + STUDIO LOGIC
+    // =========================================================
+    let offlineData = { tests: [] }, activeOfflineStudent = null, scannedOMR = null, currentScanState = [], lastScanCanvas = null;
+    function loadOfflineResults() {
+      const roll = document.getElementById("stuRollInput").value.trim();
+      if (!roll) return toast("Roll No. डालें!");
+      toast("लोड हो रहा है...");
+      fetch(`${OFFLINE_API_URL}?action=getStudentResults&rollNo=${encodeURIComponent(roll)}`).then(r => r.json()).then(res => {
+        if (res.status !== "success" || !res.results.length) return toast("कोई रिकॉर्ड नहीं मिला।");
+        activeOfflineStudent = res;
+        document.getElementById("stuNameTitle").textContent = `👤 ${res.student.name} (Roll: ${res.student.rollNo})`;
+        document.getElementById("stuSubTitle").textContent = `${res.student.className} • कुल टेस्ट: ${res.results.length}`;
+        document.getElementById("stuTestList").innerHTML = res.results.map((r, i) => `
+          <div class="test-row" onclick="buildSingleCard(${i})">
+            <div style="display:flex; gap:9px; align-items:center;"><div class="date-pill">${r.testDate}</div><div><strong>${r.subject}</strong><div style="font-size:11.5px; color:var(--muted);">OMR: ${r.mcqObtained}/${r.mcqMax} • Theory: ${r.theoryObtained}/${r.theoryMax}</div></div></div>
+            <div class="score-tag">${r.totalObtained}/${r.totalMax}</div>
+          </div>`).join("");
+        document.getElementById("studentDataBox").classList.remove("hidden");
+      });
+    }
+    function buildSingleCard(idx) {
+      const st = activeOfflineStudent.student, r = activeOfflineStudent.results[idx];
+      document.getElementById("studentCardMount").innerHTML = `
+        <div class="report-sheet"><div class="rc-inner">
+          <div class="rc-header"><h2>Concept Math Hub</h2><p style="font-size:11px;">Shahalipur Kotra, Bijnor — Progress Report Card</p></div>
+          <div class="rc-student-box"><div>Student: <strong>${st.name}</strong></div><div>Roll No: <strong>${st.rollNo}</strong></div><div>Subject: <strong>${r.subject}</strong></div><div>Date: <strong>${r.testDate}</strong></div></div>
+          <table class="rc-table"><thead><tr><th>Section</th><th>Max</th><th>Obtained</th></tr></thead><tbody>
+            <tr><td>OMR (${r.mcqMax} MCQ)</td><td>${r.mcqMax}</td><td>${r.mcqObtained}</td></tr>
+            <tr><td>Theory</td><td>${r.theoryMax}</td><td>${r.theoryObtained}</td></tr>
+            <tr style="background:#dcfce7; font-weight:800;"><td>TOTAL (${r.percentage}%)</td><td>${r.totalMax}</td><td>${r.totalObtained} (Rank #${r.rank})</td></tr>
+          </tbody></table>
+          <div class="rc-signs"><div class="sign-line">Parent's Sign</div><div class="sign-line">Anuj Sir (Director)</div></div>
+        </div></div>`;
+      document.getElementById("studentCardSection").classList.remove("hidden");
+    }
+    function buildCombinedCard(cnt, mountId) {
+      if (!activeOfflineStudent) return;
+      const st = activeOfflineStudent.student, slice = activeOfflineStudent.results.slice(0, cnt).reverse();
+      document.getElementById(mountId).innerHTML = `
+        <div class="report-sheet"><div class="rc-inner">
+          <div class="rc-header"><h2>Concept Math Hub</h2><p style="font-size:11px;">Combined Progress Report (${slice.length} Tests)</p></div>
+          <div class="rc-student-box"><div>Student: <strong>${st.name}</strong></div><div>Roll No: <strong>${st.rollNo}</strong></div></div>
+          <table class="rc-table"><thead><tr><th>Date</th><th>OMR</th><th>Theory</th><th>Total</th><th>Rank</th></tr></thead><tbody>
+            ${slice.map(r => `<tr><td>${r.testDate}</td><td>${r.mcqObtained}/${r.mcqMax}</td><td>${r.theoryObtained}/${r.theoryMax}</td><td>${r.totalObtained}/${r.totalMax}</td><td>#${r.rank}</td></tr>`).join("")}
+          </tbody></table>
+          <div class="rc-signs"><div class="sign-line">Parent's Sign</div><div class="sign-line">Anuj Sir (Director)</div></div>
+        </div></div>`;
+      document.getElementById("studentCardSection").classList.remove("hidden");
+    }
+
+    // STUDIO PIN & OMR / THEORY SAVE
+    let studioUnlocked = false;
+    function openStudioPin() {
+      if (studioUnlocked) switchMasterView("studio");
+      else { document.getElementById("pinField").value = ""; document.getElementById("pin-modal").style.display = "flex"; }
+    }
+    function verifyStudioPin() {
+      if (document.getElementById("pinField").value.trim() === TEACHER_PIN) {
+        studioUnlocked = true; closeModal("pin-modal"); switchMasterView("studio"); toast("🔓 Studio Unlocked!");
+      } else toast("❌ गलत PIN!");
+    }
+    function switchStudioTab(t) {
+      document.getElementById("spane-omr").classList.toggle("hidden", t !== "omr");
+      document.getElementById("spane-theory").classList.toggle("hidden", t !== "theory");
+      document.getElementById("stab-omr").className = t === "omr" ? "btn" : "btn btn-soft";
+      document.getElementById("stab-theory").className = t === "theory" ? "btn" : "btn btn-soft";
+    }
+    function saveTheory() {
+      const rollNo = document.getElementById("theoryRollNo").value.trim(), testId = document.getElementById("theoryTestSelect").value, theoryObtained = document.getElementById("theoryMarksInput").value;
+      if (!rollNo || !testId || theoryObtained === "") return toast("सभी फ़ील्ड भरें!");
+      fetch(OFFLINE_API_URL, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify({ action: "saveTheoryResult", rollNo, testId, theoryObtained, theoryFeedback: document.getElementById("theoryFeedbackInput").value }) })
+        .then(r => r.json()).then(res => toast(res.message || "Saved!"));
+    }
+
+    loadAllBackendAPIs();
   </script>
 </body>
 </html>
