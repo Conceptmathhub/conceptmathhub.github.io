@@ -37,6 +37,13 @@
       <span>📚</span><span>Study</span>
     </a>
   </div>
+  <script>
+  var a = document.querySelectorAll('a[href*="script.google.com"]');
+  for (var i = 0; i < a.length; i++) {
+    a[i].setAttribute('target', '_blank');
+    a[i].setAttribute('rel', 'noopener noreferrer');
+  }
+  </script>
 </body>
 </html>
 
